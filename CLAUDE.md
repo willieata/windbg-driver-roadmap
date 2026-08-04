@@ -10,7 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 內容主線
 
-路線以 **Ferry 學院(ferrycofc.com)** 的課程路徑為骨幹,微軟官方文件與看雪(kanxue.com)資料為輔助延伸,科銳培訓為次要對照。首頁 hero 下方有:`.note.primary`(Ferry 主線說明)、`.ferrymap`(12 個 phase × Ferry 課程模組對照表)、`.note`(科銳次要參照)。週次清單裡以「看雪 ·」前綴標記看雪來源的資源。
+整份課程以 **Ferry 學院(ferrycofc.com)** 路徑重排,分三 Stage、15 個 phase(p1–p15)、29 週(w1–w29):Stage 1 開發篇(全棧安全開發篇)、Stage 2 逆向篇(全棧安全逆向篇)、Stage 3 內核篇(驅動攻防 9 課,WinDbg 除錯貫穿)。每週資源清單第一條是對應的 Ferry 課程,標 `<li class="ferry">`(琥珀色「»」領頭);其下為微軟官方文件與看雪(前綴「看雪 ·」)輔助資源。首頁 hero 下方:`.note.primary`(Ferry 三段骨幹)+ `.note`(科銳次要參照)。改動週次時左側 `.frame`(data-target)與 `<section id="pN">` 要同步,週次 `data-id` 必須唯一(進度/筆記的 key)。
 
 ## index.html 結構
 

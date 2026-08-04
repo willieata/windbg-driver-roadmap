@@ -104,6 +104,10 @@
   .fm-row .fm-phase{color:var(--cyan);}
   .fm-row .fm-course{color:var(--muted);}
   @media (max-width:640px){.fm-row{grid-template-columns:1fr;gap:2px;}}
+  .res li.ferry{color:var(--amber);}
+  .res li.ferry::before{content:'»';color:var(--amber);}
+  .res li.ferry a{color:var(--amber);border-bottom-color:var(--amber);}
+  .week.done .res li.ferry{color:var(--line);}
 
   footer{text-align:center;padding:30px 20px 50px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);border-top:1px solid var(--line);}
 </style>
@@ -125,51 +129,40 @@
 <div class="layout">
   <nav class="rail" id="rail">
     <div class="rail-label">call stack</div>
-    <div class="rail-group">— 地基 —</div>
-    <a class="frame" data-target="p1"><span class="addr">00</span>C/C++ 地基強化</a>
-    <a class="frame" data-target="p2"><span class="addr">01</span>OS 基礎概念</a>
-    <a class="frame" data-target="p3"><span class="addr">02</span>組語 / Calling Convention</a>
-    <a class="frame" data-target="p4"><span class="addr">03</span>Driver 開發入門</a>
-    <div class="rail-group">— WinDbg —</div>
-    <a class="frame" data-target="p5"><span class="addr">04</span>環境與基礎指令</a>
-    <a class="frame" data-target="p6"><span class="addr">05</span>Kernel Debug 環境</a>
-    <a class="frame" data-target="p7"><span class="addr">06</span>核心資料結構</a>
-    <a class="frame" data-target="p8"><span class="addr">07</span>IRP 追蹤</a>
-    <a class="frame" data-target="p9"><span class="addr">08</span>記憶體 / IRQL</a>
-    <a class="frame" data-target="p10"><span class="addr">09</span>Dump 分析</a>
-    <a class="frame" data-target="p11"><span class="addr">10</span>TTD / Scripting</a>
-    <a class="frame" data-target="p12"><span class="addr">11</span>反除錯整合</a>
+    <div class="rail-group">— 開發篇 —</div>
+    <a class="frame" data-target="p1"><span class="addr">00</span>C 語言與記憶體</a>
+    <a class="frame" data-target="p2"><span class="addr">01</span>C++ 與泛型</a>
+    <a class="frame" data-target="p3"><span class="addr">02</span>資料結構</a>
+    <a class="frame" data-target="p4"><span class="addr">03</span>Windows 核心編程</a>
+    <a class="frame" data-target="p5"><span class="addr">04</span>圖形界面</a>
+    <div class="rail-group">— 逆向篇 —</div>
+    <a class="frame" data-target="p6"><span class="addr">05</span>組語與逆向入門</a>
+    <a class="frame" data-target="p7"><span class="addr">06</span>逆向提升</a>
+    <a class="frame" data-target="p8"><span class="addr">07</span>逆向攻防</a>
+    <div class="rail-group">— 內核 · WinDbg —</div>
+    <a class="frame" data-target="p9"><span class="addr">08</span>保護模式與除錯環境</a>
+    <a class="frame" data-target="p10"><span class="addr">09</span>驅動開發</a>
+    <a class="frame" data-target="p11"><span class="addr">10</span>系統調用 / 進程執行緒</a>
+    <a class="frame" data-target="p12"><span class="addr">11</span>異步同步 / 內核對象</a>
+    <a class="frame" data-target="p13"><span class="addr">12</span>內存管理</a>
+    <a class="frame" data-target="p14"><span class="addr">13</span>調試異常 / Dump / TTD</a>
+    <a class="frame" data-target="p15"><span class="addr">14</span>實戰拓展</a>
   </nav>
 
   <main>
     <div class="hero">
       <div class="eyebrow">0:000&gt; !roadmap -from_zero -verbose</div>
-      <h1>從零開始:Driver 開發與 WinDbg 除錯 · 29 週</h1>
-      <p>每週任務下方附延伸資源(官方文件、書籍章節、實作 lab)。左側圓點是中斷點樣式的任務開關,點擊切換完成狀態,進度會自動保存。</p>
+      <h1>Ferry 學院路線:全棧安全 → 驅動內核 · 29 週</h1>
+      <p>以 Ferry 學院(ferrycofc.com)課程路徑為骨幹重排:開發篇 → 逆向篇 → 內核篇(驅動攻防),WinDbg 除錯貫穿內核階段。每週琥珀色「»」開頭的是對應的 Ferry 課程,其下為微軟官方文件與看雪等輔助資源。左側圓點是任務開關,點擊切換完成狀態,進度自動保存。</p>
     </div>
 
     <div class="note primary">
       <b>主線骨幹 · Ferry 學院(ferrycofc.com)</b><br>
-      本 29 週以 Ferry 學院的課程路徑為主軸,對應其與 Driver/內核最相關的兩條支線;下方對照表列出各 phase 對應的 Ferry 課程模組。微軟官方文件與看雪資料作為輔助延伸。<br>
-      › <b>全棧安全</b>:開發篇(C → 面向對象+泛型 → 數據結構-CPP → WIN32 → SDK/MFC/QT)→ 逆向篇(入門 / 提升 / 攻防)→ 內核篇(驅動內核開發 / 驅動內核機制)<br>
-      › <b>驅動攻防</b>:保護模式 → 驅動開發 → 系統調用 → 進程線程 → 異步同步 → 內核對象 → 內存管理 → 調試異常 → 實戰拓展<br>
+      整份課程以 Ferry 學院路徑重排,結合「全棧安全」與「驅動攻防」兩條支線,WinDbg 除錯融入內核階段:<br>
+      › <b>Stage 1 · 開發篇</b>(全棧):C → C++/泛型 → 資料結構 → WIN32 → 圖形界面(SDK/MFC/QT)<br>
+      › <b>Stage 2 · 逆向篇</b>(全棧):逆向入門(組語/PE)→ 逆向提升(動態除錯)→ 逆向攻防(反調試/脫殼)<br>
+      › <b>Stage 3 · 內核篇</b>(驅動攻防):保護模式 → 驅動開發 → 系統調用/進程執行緒 → 異步同步/內核對象 → 內存管理 → 調試異常(Dump/TTD)→ 實戰拓展<br>
       › 課程路徑:<a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">ferrycofc.com — 完整學習路徑</a>
-    </div>
-
-    <div class="ferrymap">
-      <div class="fm-title">Phase × Ferry 課程對照</div>
-      <div class="fm-row"><span class="fm-phase">00 · C/C++ 地基</span><span class="fm-course">全棧:面向過程-C、面向對象+泛型編程</span></div>
-      <div class="fm-row"><span class="fm-phase">01 · OS 基礎概念</span><span class="fm-course">全棧:數據結構-CPP · 驅動攻防:進程線程</span></div>
-      <div class="fm-row"><span class="fm-phase">02 · 組語 / Calling Convention</span><span class="fm-course">遊戲安全:x86 彙編、x64 彙編、C/C++ 逆向</span></div>
-      <div class="fm-row"><span class="fm-phase">03 · Driver 開發入門</span><span class="fm-course">全棧:驅動內核開發篇 · 驅動攻防:保護模式、驅動開發、系統調用</span></div>
-      <div class="fm-row"><span class="fm-phase">04 · 環境與基礎指令</span><span class="fm-course">遊戲安全:逆向工具 · 全棧:逆向入門篇</span></div>
-      <div class="fm-row"><span class="fm-phase">05 · Kernel Debug 環境</span><span class="fm-course">全棧:驅動內核開發篇(環境搭建)</span></div>
-      <div class="fm-row"><span class="fm-phase">06 · 核心資料結構</span><span class="fm-course">驅動攻防:內核對象</span></div>
-      <div class="fm-row"><span class="fm-phase">07 · IRP 追蹤</span><span class="fm-course">全棧:驅動內核機制篇 · 驅動攻防:異步同步</span></div>
-      <div class="fm-row"><span class="fm-phase">08 · 記憶體 / IRQL</span><span class="fm-course">驅動攻防:內存管理、異步同步</span></div>
-      <div class="fm-row"><span class="fm-phase">09 · Dump 分析</span><span class="fm-course">驅動攻防:調試異常</span></div>
-      <div class="fm-row"><span class="fm-phase">10 · TTD / Scripting</span><span class="fm-course">全棧:逆向提升篇</span></div>
-      <div class="fm-row"><span class="fm-phase">11 · 反除錯整合</span><span class="fm-course">全棧:逆向攻防篇 · 驅動攻防:實戰拓展</span></div>
     </div>
 
     <div class="note">
@@ -178,329 +171,355 @@
       › <a href="https://bbs.kanxue.com/thread-51839.htm" target="_blank" rel="noopener">看雪 — 科銳逆向工程師培訓課程學習路線</a> · 配套書:錢林松《C++ 反匯編與逆向分析技術揭秘》
     </div>
 
-    <div class="stage-divider">Stage 1 — 地基補強(Week 01–13)</div>
+    <div class="stage-divider">Stage 1 — 開發篇(Ferry 全棧安全 · Week 01–10)</div>
 
     <section class="phase" id="p1">
-      <div class="phase-head foundation"><span class="tag">PHASE 00</span><h2>C/C++ 地基強化</h2><span class="wk">WEEK 01–04</span></div>
+      <div class="phase-head foundation"><span class="tag">PHASE 00</span><h2>C 語言與記憶體</h2><span class="wk">WEEK 01–03</span></div>
 
       <div class="week" data-id="w1"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W1</span>Pointer 與記憶體模型</div>
-        <p>stack vs heap 的差異、pointer arithmetic、function pointer 語法與用途——driver 裡到處都是 callback,這是必練基礎。</p>
+        <div class="wk-title"><span class="num">W1</span>指標與記憶體模型</div>
+        <p>stack vs heap、pointer arithmetic、function pointer——driver 裡到處是 callback,這是必練地基。</p>
         <ul class="res">
-          <li>K&amp;R,《The C Programming Language》第 5 章 Pointers and Arrays</li>
-          <li><a href="https://en.cppreference.com/w/c/language/pointer" target="_blank" rel="noopener">cppreference.com — Pointer declaration</a></li>
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-面向過程-C</a></li>
+          <li>K&amp;R《The C Programming Language》第 5 章 Pointers and Arrays</li>
+          <li><a href="https://en.cppreference.com/w/c/language/pointer" target="_blank" rel="noopener">cppreference — Pointer declaration</a></li>
         </ul>
       </div></div>
 
       <div class="week" data-id="w2"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W2</span>Struct / 記憶體佈局</div>
-        <p>struct/union 的 alignment 與 padding,手刻一個簡單的 binary parser 練習欄位對齊,這觀念之後看 <span class="mono">dt</span> 輸出會直接用到。</p>
+        <div class="wk-title"><span class="num">W2</span>陣列 / 結構體 / 記憶體佈局</div>
+        <p>struct/union 的 alignment 與 padding,手刻一個 binary parser 練欄位對齊——之後看 <span class="mono">dt</span> 輸出會直接用到。</p>
         <ul class="res">
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-面向過程-C</a></li>
           <li>K&amp;R 第 6 章 Structures, Unions</li>
-          <li><a href="https://en.cppreference.com/w/c/language/struct" target="_blank" rel="noopener">cppreference.com — Struct declaration</a></li>
+          <li><a href="https://en.cppreference.com/w/c/language/struct" target="_blank" rel="noopener">cppreference — Struct declaration</a></li>
         </ul>
       </div></div>
 
       <div class="week" data-id="w3"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W3</span>手動記憶體管理</div>
-        <p><span class="mono">malloc/free</span> 生命週期,認識並親手重現 dangling pointer、double free、use-after-free 這幾種典型 bug。</p>
+        <div class="wk-title"><span class="num">W3</span>手動記憶體管理與典型 bug</div>
+        <p><span class="mono">malloc/free</span> 生命週期,親手重現 dangling pointer、double free、use-after-free。</p>
         <ul class="res">
-          <li><a href="https://clang.llvm.org/docs/AddressSanitizer.html" target="_blank" rel="noopener">Clang — AddressSanitizer 文件</a>(抓 use-after-free / double free)</li>
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-面向過程-C</a></li>
+          <li><a href="https://clang.llvm.org/docs/AddressSanitizer.html" target="_blank" rel="noopener">Clang — AddressSanitizer</a>(抓 use-after-free / double free)</li>
           <li><a href="https://valgrind.org/docs/manual/mc-manual.html" target="_blank" rel="noopener">Valgrind — Memcheck 手冊</a></li>
-        </ul>
-      </div></div>
-
-      <div class="week" data-id="w4"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W4</span>綜合小專案</div>
-        <p>實作一個 linked list,搭配自己寫的 memory pool allocator——這正是 driver 開發裡常見的手法。</p>
-        <ul class="res">
-          <li>無指定教材,重點是實作與用 W3 的工具驗證自己沒有 leak / UAF</li>
         </ul>
       </div></div>
     </section>
 
     <section class="phase" id="p2">
-      <div class="phase-head foundation"><span class="tag">PHASE 01</span><h2>OS 基礎概念</h2><span class="wk">WEEK 05–06</span></div>
+      <div class="phase-head foundation"><span class="tag">PHASE 01</span><h2>C++ 與泛型</h2><span class="wk">WEEK 04–05</span></div>
 
-      <div class="week" data-id="w5"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W5</span>Process / Thread / 排程</div>
-        <p>context switch 概念、kernel mode 與 user mode 的界線、syscall 如何跨越這條界線進入核心。</p>
+      <div class="week" data-id="w4"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W4</span>類別 / 繼承 / 多型與物件佈局</div>
+        <p>class/繼承/虛函式,重點理解 <span class="mono">vtable</span> 的記憶體佈局——逆向 C++ 程式時全靠它還原類別結構。</p>
         <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows/win32/procthread/about-processes-and-threads" target="_blank" rel="noopener">Microsoft Learn — About Processes and Threads</a></li>
-          <li>Pavel Yosifovich 等著,《Windows Internals》Part 1,Ch.1–2</li>
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-面向對象+泛型編程</a></li>
+          <li><a href="https://en.cppreference.com/w/cpp/language/classes" target="_blank" rel="noopener">cppreference — Classes</a></li>
         </ul>
       </div></div>
 
-      <div class="week" data-id="w6"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W6</span>虛擬記憶體與分頁</div>
-        <p>virtual address space、page table 基本概念,先搞懂這塊,之後才會知道為什麼 driver 要在意 IRQL。</p>
+      <div class="week" data-id="w5"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W5</span>模板 / 泛型與 STL</div>
+        <p>template、STL 容器與迭代器,理解泛型展開後的實際程式碼樣貌。</p>
         <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows/win32/memory/about-memory-management" target="_blank" rel="noopener">Microsoft Learn — About Memory Management</a></li>
-          <li>《Windows Internals》Part 1,Ch.5 Memory Management</li>
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-面向對象+泛型編程</a></li>
+          <li><a href="https://en.cppreference.com/w/cpp/language/templates" target="_blank" rel="noopener">cppreference — Templates</a></li>
         </ul>
       </div></div>
     </section>
 
     <section class="phase" id="p3">
-      <div class="phase-head foundation"><span class="tag">PHASE 02</span><h2>組語 / Calling Convention</h2><span class="wk">WEEK 07–09</span></div>
+      <div class="phase-head foundation"><span class="tag">PHASE 02</span><h2>資料結構</h2><span class="wk">WEEK 06–07</span></div>
+
+      <div class="week" data-id="w6"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W6</span>線性結構</div>
+        <p>鏈結串列 / 堆疊 / 佇列,手刻練習——內核裡的 <span class="mono">LIST_ENTRY</span> 就是雙向鏈結串列。</p>
+        <ul class="res">
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-數據結構-CPP</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows/win32/api/ntdef/ns-ntdef-list_entry" target="_blank" rel="noopener">Microsoft Learn — LIST_ENTRY</a></li>
+        </ul>
+      </div></div>
 
       <div class="week" data-id="w7"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W7</span>x64 暫存器與基本指令</div>
-        <p><span class="mono">mov / lea / push / pop / call / ret</span>,通用暫存器在函式呼叫過程中各自扮演的角色。</p>
+        <div class="wk-title"><span class="num">W7</span>樹 / 雜湊 / 圖</div>
+        <p>二元樹、雜湊表、圖的走訪,理解內核 PnP 樹、handle table 背後的結構思維。</p>
         <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/x64-architecture" target="_blank" rel="noopener">Microsoft Learn — x64 Architecture Overview and Registers</a></li>
-          <li>Randall Hyde,《The Art of 64-Bit Assembly》第 2–3 章</li>
-        </ul>
-      </div></div>
-
-      <div class="week" data-id="w8"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W8</span>Calling Convention 與 Stack Frame</div>
-        <p>x64 fastcall、prologue/epilogue,練到能看懂一段組語裡的呼叫堆疊實際在做什麼。</p>
-        <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention" target="_blank" rel="noopener">Microsoft Learn — x64 Calling Convention</a></li>
-          <li><a href="https://learn.microsoft.com/en-us/archive/blogs/ntdebugging/challenges-of-debugging-optimized-x64-code" target="_blank" rel="noopener">NTDebugging Blog — Challenges of Debugging Optimized x64 Code</a></li>
-          <li>看雪 · <a href="https://bbs.kanxue.com/thread-216755.htm" target="_blank" rel="noopener">老話重提之調用約定</a></li>
-          <li>看雪 · <a href="https://bbs.kanxue.com/thread-271638.htm" target="_blank" rel="noopener">棧與棧幀的調試</a></li>
-        </ul>
-      </div></div>
-
-      <div class="week" data-id="w9"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W9</span>原始碼對照組語</div>
-        <p>編譯自己寫的簡單 C 程式,用 IDA 對照組語驗證理解——這塊你已經有底子,重點是把組語跟 C 語意接起來。</p>
-        <ul class="res">
-          <li>用自己熟悉的 IDA(Hex-Rays 官方文件:docs.hex-rays.com)搭配 W7–8 的資料對照</li>
-          <li>看雪 · <a href="https://bbs.kanxue.com/thread-191797.htm" target="_blank" rel="noopener">X86-64 的逆向 — 使用 Bomb 程式分析</a></li>
-          <li>看雪 · <a href="https://bbs.kanxue.com/thread-266732-1.htm" target="_blank" rel="noopener">分析實戰讀書筆記 15:C++ 與 X64</a></li>
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-數據結構-CPP</a></li>
         </ul>
       </div></div>
     </section>
 
     <section class="phase" id="p4">
-      <div class="phase-head foundation"><span class="tag">PHASE 03</span><h2>Driver 開發入門</h2><span class="wk">WEEK 10–13</span></div>
+      <div class="phase-head foundation"><span class="tag">PHASE 03</span><h2>Windows 核心編程(WIN32)</h2><span class="wk">WEEK 08–09</span></div>
 
-      <div class="week" data-id="w10"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W10</span>開發環境建置</div>
-        <p>安裝 WDK,建立 Visual Studio driver 專案,設定 test signing 與測試機(這台之後也會拿來做 kernel debug target)。</p>
+      <div class="week" data-id="w8"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W8</span>進程 / 執行緒 / Handle</div>
+        <p>Win32 API 建立進程/執行緒、handle 機制、核心物件——user-mode 這層搞熟,進內核才有對照。</p>
         <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/" target="_blank" rel="noopener">Microsoft Learn — Getting Started with Windows Drivers</a></li>
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-核心編程-WIN32</a></li>
+          <li>Jeffrey Richter《Windows via C/C++》第 3–7 章(核心物件、進程、執行緒)</li>
+          <li><a href="https://learn.microsoft.com/en-us/windows/win32/procthread/processes-and-threads" target="_blank" rel="noopener">Microsoft Learn — Processes and Threads</a></li>
         </ul>
       </div></div>
 
-      <div class="week" data-id="w11"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W11</span>第一個 WDM Driver</div>
-        <p>寫出 <span class="mono">DriverEntry</span> 與 <span class="mono">Unload</span>,建立最基本的 IOCTL 通訊架構。</p>
+      <div class="week" data-id="w9"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W9</span>記憶體 / DLL / 同步物件</div>
+        <p>VirtualAlloc、DLL 載入與注入基礎、mutex/event/critical section——注入與 HOOK 的前置知識。</p>
         <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/introduction-to-wdm" target="_blank" rel="noopener">Microsoft Learn — Introduction to WDM</a></li>
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/choosing-a-driver-model" target="_blank" rel="noopener">Microsoft Learn — Choosing a Driver Model</a></li>
-          <li>看雪 · <a href="https://bbs.kanxue.com/thread-275999-1.htm" target="_blank" rel="noopener">Windows 驅動快速入門</a></li>
-          <li>看雪 · <a href="https://bbs.kanxue.com/thread-268379-1.htm" target="_blank" rel="noopener">X86 內核筆記_2_驅動開發</a></li>
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-核心編程-WIN32</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-libraries" target="_blank" rel="noopener">Microsoft Learn — Dynamic-Link Libraries</a></li>
+        </ul>
+      </div></div>
+    </section>
+
+    <section class="phase" id="p5">
+      <div class="phase-head foundation"><span class="tag">PHASE 04</span><h2>圖形界面(SDK / MFC / QT)</h2><span class="wk">WEEK 10</span></div>
+
+      <div class="week" data-id="w10"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W10</span>訊息迴圈與工具 GUI</div>
+        <p>Win32 訊息迴圈,用 MFC 或 QT 做一個小工具介面——之後寫自己的 driver 控制器 / 逆向輔助工具會用到。</p>
+        <ul class="res">
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-圖形界面-SDK+MFC+QT</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows/win32/learnwin32/your-first-windows-program" target="_blank" rel="noopener">Microsoft Learn — Your First Windows Program</a></li>
+        </ul>
+      </div></div>
+    </section>
+
+    <div class="stage-divider">Stage 2 — 逆向篇(Ferry 全棧安全 · Week 11–17)</div>
+
+    <section class="phase" id="p6">
+      <div class="phase-head"><span class="tag">PHASE 05</span><h2>組語與逆向入門</h2><span class="wk">WEEK 11–13</span></div>
+
+      <div class="week" data-id="w11"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W11</span>x86/x64 暫存器、指令、Calling Convention</div>
+        <p>暫存器、常用指令、x64 fastcall 與 prologue/epilogue,練到能看懂一段組語的呼叫堆疊在做什麼。</p>
+        <ul class="res">
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-逆向入門篇</a>(x86 / x64 彙編)</li>
+          <li><a href="https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention" target="_blank" rel="noopener">Microsoft Learn — x64 Calling Convention</a></li>
+          <li>看雪 · <a href="https://bbs.kanxue.com/thread-216755.htm" target="_blank" rel="noopener">老話重提之調用約定</a></li>
+          <li>看雪 · <a href="https://bbs.kanxue.com/thread-271638.htm" target="_blank" rel="noopener">棧與棧幀的調試</a></li>
         </ul>
       </div></div>
 
       <div class="week" data-id="w12"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W12</span>IRP 與 Dispatch Routine</div>
-        <p>理解 IRP 是什麼、Major Function Table 的角色,寫一個簡單的 dispatch routine 處理請求。</p>
+        <div class="wk-title"><span class="num">W12</span>PE 檔案結構</div>
+        <p>DOS/NT header、section、import/export table、重定位——載入器、脫殼、注入的共同基礎。</p>
         <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/i-o-request-packets" target="_blank" rel="noopener">Microsoft Learn — I/O Request Packets</a></li>
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/creating-ioctl-requests-in-drivers" target="_blank" rel="noopener">Microsoft Learn — Creating IOCTL Requests in Drivers</a></li>
-          <li>看雪 · <a href="https://bbs.kanxue.com/thread-275480.htm" target="_blank" rel="noopener">通過驅動接觸 Win 內核</a></li>
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-逆向入門篇</a>(PE 文件結構)</li>
+          <li><a href="https://learn.microsoft.com/en-us/windows/win32/debug/pe-format" target="_blank" rel="noopener">Microsoft Learn — PE Format</a></li>
         </ul>
       </div></div>
 
       <div class="week" data-id="w13"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W13</span>KMDF 入門</div>
-        <p>對比 WDM,理解框架幫你簡化了哪些部分,把 W11–12 的功能改用 KMDF 重寫一次。</p>
+        <div class="wk-title"><span class="num">W13</span>原始碼對照組語 · 逆向工具上手</div>
+        <p>編譯自己的 C/C++ 程式,用 IDA / x64dbg / WinDbg 對照組語驗證理解,把組語跟 C/C++ 語意接起來。</p>
         <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/writing-a-kmdf-driver-based-on-a-template" target="_blank" rel="noopener">Microsoft Learn — Write a KMDF Driver Based on a Template</a></li>
-        </ul>
-      </div></div>
-    </section>
-
-    <div class="stage-divider">Stage 2 — WinDbg 除錯(Week 14–29)</div>
-
-    <section class="phase" id="p5">
-      <div class="phase-head"><span class="tag">PHASE 04</span><h2>環境與基礎指令</h2><span class="wk">WEEK 14–15</span></div>
-
-      <div class="week" data-id="w14"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W14</span>安裝與 Symbol 設定</div>
-        <p>安裝 WinDbg Preview,設定 <span class="mono">_NT_SYMBOL_PATH</span>,練習 <span class="mono">.reload /f</span>、<span class="mono">lm</span>、<span class="mono">dt</span>、<span class="mono">x</span> 對一般 user-mode process。</p>
-        <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/symbol-path" target="_blank" rel="noopener">Microsoft Learn — Symbol Path for Windows Debuggers</a></li>
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/setting-symbol-and-source-paths-in-windbg" target="_blank" rel="noopener">Microsoft Learn — Setting Symbol and Executable Image Paths in WinDbg</a></li>
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-逆向入門篇</a> · 逆向工具</li>
+          <li>看雪 · <a href="https://bbs.kanxue.com/thread-191797.htm" target="_blank" rel="noopener">X86-64 的逆向 — 使用 Bomb 程式分析</a></li>
+          <li>看雪 · <a href="https://bbs.kanxue.com/thread-266732-1.htm" target="_blank" rel="noopener">分析實戰讀書筆記 15:C++ 與 X64</a></li>
           <li>看雪 · <a href="https://bbs.kanxue.com/thread-285980.htm" target="_blank" rel="noopener">WinDbg 常用調試命令總結</a></li>
-          <li>看雪 · <a href="https://bbs.kanxue.com/thread-270324.htm" target="_blank" rel="noopener">WinDbg 使用詳解</a></li>
-        </ul>
-      </div></div>
-
-      <div class="week" data-id="w15"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W15</span>User-mode 除錯練手感</div>
-        <p>寫一個會觸發 access violation 的小程式,attach 抓下來。練 <span class="mono">bp / bl / bc</span>、<span class="mono">k</span>、<span class="mono">dv</span>。</p>
-        <ul class="res">
-          <li>Mario Hewardt、Daniel Pravat,《Advanced Windows Debugging》第 1–3 章</li>
-        </ul>
-      </div></div>
-    </section>
-
-    <section class="phase" id="p6">
-      <div class="phase-head"><span class="tag">PHASE 05</span><h2>Kernel Debug 環境</h2><span class="wk">WEEK 16–17</span></div>
-
-      <div class="week" data-id="w16"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W16</span>Named Pipe / COM 除錯</div>
-        <p>用 W10 建的 target VM 接 kernel debug:<span class="mono">windbg -k com:pipe,port=\\.\pipe\xxx,resets=0</span>。</p>
-        <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/attaching-to-a-virtual-machine--kernel-mode-" target="_blank" rel="noopener">Microsoft Learn — Kernel-Mode Debugging of a VM via Virtual COM Port</a></li>
-          <li>看雪 · <a href="https://bbs.kanxue.com/thread-254041-1.htm" target="_blank" rel="noopener">VS2019 驅動開發以及 WinDbg + VMware15 雙機調試環境配置</a></li>
-          <li>看雪 · <a href="https://bbs.kanxue.com/thread-261326.htm" target="_blank" rel="noopener">雙機內核調試入門(VirtualKD-Redux)</a></li>
-          <li>看雪 · <a href="https://bbs.kanxue.com/thread-246228.htm" target="_blank" rel="noopener">WinDbg 內核調試配置方法介紹(翻譯)</a></li>
-        </ul>
-      </div></div>
-
-      <div class="week" data-id="w17"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W17</span>KDNET 網路除錯</div>
-        <p><span class="mono">bcdedit /debug on</span>、<span class="mono">bcdedit /dbgsettings net</span>,並理解 <span class="mono">kd -kl</span> local kernel debug 的限制。</p>
-        <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/setting-up-a-network-debugging-connection" target="_blank" rel="noopener">Microsoft Learn — Set Up KDNET Manually</a></li>
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/setting-up-a-network-debugging-connection-automatically" target="_blank" rel="noopener">Microsoft Learn — Set Up KDNET Automatically</a></li>
         </ul>
       </div></div>
     </section>
 
     <section class="phase" id="p7">
-      <div class="phase-head"><span class="tag">PHASE 06</span><h2>核心資料結構</h2><span class="wk">WEEK 18–19</span></div>
+      <div class="phase-head"><span class="tag">PHASE 06</span><h2>逆向提升</h2><span class="wk">WEEK 14–15</span></div>
 
-      <div class="week" data-id="w18"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W18</span>Driver / Device Object</div>
-        <p><span class="mono">dt nt!_DRIVER_OBJECT</span>、<span class="mono">dt nt!_DEVICE_OBJECT</span>,對照 <span class="mono">!drvobj</span>、<span class="mono">!devobj</span>、<span class="mono">!devstack</span> 的輸出,跟自己 W11 寫的 driver 對照。</p>
+      <div class="week" data-id="w14"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W14</span>動態除錯:斷點 / 追蹤 / 資料還原</div>
+        <p>attach、<span class="mono">bp/bl/bc</span>、單步、追蹤,寫一個會觸發 access violation 的程式抓下來練手感。</p>
         <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/-drvobj" target="_blank" rel="noopener">Microsoft Learn — !drvobj</a></li>
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/-devobj" target="_blank" rel="noopener">Microsoft Learn — !devobj</a></li>
-          <li>看雪 · <a href="https://bbs.kanxue.com/thread-290220.htm" target="_blank" rel="noopener">Windows 內核框架介紹</a></li>
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-逆向提升篇</a></li>
+          <li>Mario Hewardt、Daniel Pravat《Advanced Windows Debugging》第 1–3 章</li>
+          <li>看雪 · <a href="https://bbs.kanxue.com/thread-270324.htm" target="_blank" rel="noopener">WinDbg 使用詳解</a></li>
         </ul>
       </div></div>
 
-      <div class="week" data-id="w19"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W19</span>Device Stack / PnP 樹</div>
-        <p><span class="mono">!devnode</span> 理解 device stack 與 PnP 樹狀結構。</p>
+      <div class="week" data-id="w15"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W15</span>演算法還原與混淆處理</div>
+        <p>從組語還原演算法邏輯,認識常見混淆手法與去混淆思路。</p>
         <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/-devstack" target="_blank" rel="noopener">Microsoft Learn — !devstack</a></li>
-          <li><a href="https://learn.microsoft.com/en-us/archive/blogs/doronh/debugger-commands-drvobj-devobj-podev-devstack-that-make-my-life-easier-part-1" target="_blank" rel="noopener">Debugger commands that make my life easier(實戰範例)</a></li>
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-逆向提升篇</a></li>
         </ul>
       </div></div>
     </section>
 
     <section class="phase" id="p8">
-      <div class="phase-head"><span class="tag">PHASE 07</span><h2>IRP 追蹤</h2><span class="wk">WEEK 20–21</span></div>
+      <div class="phase-head"><span class="tag">PHASE 07</span><h2>逆向攻防</h2><span class="wk">WEEK 16–17</span></div>
 
-      <div class="week" data-id="w20"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W20</span>IRP 基礎指令</div>
-        <p><span class="mono">!irp</span>、<span class="mono">!irpfind</span>,在自己 W12 寫的 dispatch routine 下 <span class="mono">bp</span>,觀察 IRP 進來的當下狀態。</p>
+      <div class="week" data-id="w16"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W16</span>反調試手法與繞過</div>
+        <p><span class="mono">IsDebuggerPresent</span>、PEB 標誌、時間差偵測等手法與對應繞過——之後內核反偵測的 user-mode 版。</p>
         <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/-irp" target="_blank" rel="noopener">Microsoft Learn — !irp</a></li>
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/debug-universal-drivers---step-by-step-lab--echo-kernel-mode-" target="_blank" rel="noopener">Microsoft Learn — 官方手把手 Lab:Debug Windows Drivers(Echo Kernel Mode)</a></li>
-        </ul>
-      </div></div>
-
-      <div class="week" data-id="w21"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W21</span>完整 IRP 生命週期</div>
-        <p>追一條 IRP 從建立到 <span class="mono">IoCompleteRequest</span> 的完整流程,搭配 <span class="mono">k</span>、<span class="mono">dv</span> 還原呼叫堆疊。</p>
-        <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/ns-wdm-_irp" target="_blank" rel="noopener">Microsoft Learn — _IRP (wdm.h) 結構詳解</a></li>
-          <li>看雪 · <a href="https://bbs7.kanxue.com/thread-170809-1.htm" target="_blank" rel="noopener">WDM 驅動處理 IRP_MN_REMOVE_DEVICE 意外 IRQL_NOT_LESS_OR_EQUAL(除錯案例)</a></li>
-        </ul>
-      </div></div>
-    </section>
-
-    <section class="phase" id="p9">
-      <div class="phase-head"><span class="tag">PHASE 08</span><h2>記憶體 / IRQL</h2><span class="wk">WEEK 22–23</span></div>
-
-      <div class="week" data-id="w22"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W22</span>Pool 分析</div>
-        <p><span class="mono">!pool</span>、<span class="mono">!poolused</span> 理解 pool tag,搭配 Pool Monitor 抓記憶體洩漏。</p>
-        <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/-poolval" target="_blank" rel="noopener">Microsoft Learn — !poolval</a></li>
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/-pool" target="_blank" rel="noopener">Microsoft Learn — !pool</a></li>
-        </ul>
-      </div></div>
-
-      <div class="week" data-id="w23"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W23</span>分頁與 IRQL 規則</div>
-        <p><span class="mono">!pte</span>、<span class="mono">!vtop</span>、<span class="mono">!address</span>,搞懂 DISPATCH_LEVEL 不能碰 paged pool 這條規則,這是多數當機的根源。</p>
-        <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/-pte" target="_blank" rel="noopener">Microsoft Learn — !pte</a></li>
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/managing-hardware-priorities" target="_blank" rel="noopener">Microsoft Learn — Managing Hardware Priorities(IRQL 規則)</a></li>
-          <li><a href="https://learn.microsoft.com/en-us/archive/blogs/doronh/what-is-irql" target="_blank" rel="noopener">What is IRQL?(概念說明,推薦先讀這篇)</a></li>
-          <li>看雪 · <a href="https://www.kanxue.com/book-173-4154.htm" target="_blank" rel="noopener">IRQL、驅動多線程、內核同步與互斥機制、死鎖(內核驅動高級班)</a></li>
-        </ul>
-      </div></div>
-    </section>
-
-    <section class="phase" id="p10">
-      <div class="phase-head"><span class="tag">PHASE 09</span><h2>Dump 分析</h2><span class="wk">WEEK 24–25</span></div>
-
-      <div class="week" data-id="w24"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W24</span>Crash Dump 起手式</div>
-        <p>產生 kernel dump,<span class="mono">!analyze -v</span> 起手,搭配 <span class="mono">.trap</span>、<span class="mono">.cxr</span> 還原當機當下的 context。</p>
-        <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/using-the--analyze-extension" target="_blank" rel="noopener">Microsoft Learn — Using the !analyze Extension</a></li>
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/analyzing-a-kernel-mode-dump-file-with-windbg" target="_blank" rel="noopener">Microsoft Learn — Analyze a Kernel-Mode Dump File by Using WinDbg</a></li>
-          <li>看雪 · <a href="https://bbs.kanxue.com/thread-289479.htm" target="_blank" rel="noopener">WinDbg Dump 分析完整指南</a></li>
-          <li>看雪 · <a href="https://bbs.kanxue.com/thread-264431.htm" target="_blank" rel="noopener">調試實戰:通過轉儲文件分析程式無響應(WinDbg + IDA)</a></li>
-        </ul>
-      </div></div>
-
-      <div class="week" data-id="w25"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W25</span>Driver Verifier 實戰</div>
-        <p>開啟 Driver Verifier(special pool、IRQL checking、DMA 驗證),故意讓自己的 driver 炸掉,用前面學的指令修復。</p>
-        <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/driver-verifier" target="_blank" rel="noopener">Microsoft Learn — How to Use Driver Verifier for Driver Testing</a></li>
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/driver-verifier-options" target="_blank" rel="noopener">Microsoft Learn — Driver Verifier Options</a></li>
-        </ul>
-      </div></div>
-    </section>
-
-    <section class="phase" id="p11">
-      <div class="phase-head"><span class="tag">PHASE 10</span><h2>TTD / Scripting</h2><span class="wk">WEEK 26–27</span></div>
-
-      <div class="week" data-id="w26"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W26</span>Time Travel Debugging</div>
-        <p>錄製與回放執行過程,<span class="mono">!tt</span>、<span class="mono">dx @$cursession</span>,抓一次難重現的 race condition。</p>
-        <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/time-travel-debugging-overview" target="_blank" rel="noopener">Microsoft Learn — Time Travel Debugging Overview</a></li>
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/time-travel-debugging-walkthrough" target="_blank" rel="noopener">Microsoft Learn — TTD Sample App Walkthrough</a></li>
-          <li>看雪 · <a href="https://bbs.kanxue.com/thread-278069.htm" target="_blank" rel="noopener">TTD 調試與 ttd-bindings 逆向工程實踐</a></li>
-          <li>看雪 · <a href="https://bbs.kanxue.com/thread-255305.htm" target="_blank" rel="noopener">通過回溯調試分析脆弱性的根本原因(翻譯)</a></li>
-        </ul>
-      </div></div>
-
-      <div class="week" data-id="w27"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W27</span>資料模型與自動化</div>
-        <p><span class="mono">dx</span> 資料模型與 JavaScript extension,寫一個自己的 debugger extension 自動列出特定結構欄位。</p>
-        <ul class="res">
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/time-travel-debugging-ttd-exe-command-line-util" target="_blank" rel="noopener">Microsoft Learn — TTD.exe Command Line Utility</a></li>
-          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/windbg-timeline-preview" target="_blank" rel="noopener">Microsoft Learn — WinDbg: Time Travel Timelines</a></li>
-        </ul>
-      </div></div>
-    </section>
-
-    <section class="phase" id="p12">
-      <div class="phase-head"><span class="tag">PHASE 11</span><h2>反除錯整合</h2><span class="wk">WEEK 28–29</span></div>
-
-      <div class="week" data-id="w28"><div class="bp"></div><div class="week-body">
-        <div class="wk-title"><span class="num">W28</span>除錯偵測手法</div>
-        <p><span class="mono">KdDebuggerEnabled</span>、<span class="mono">SharedUserData</span> 偵測手法,理解 anti-cheat 如何偵測 WinDbg 附掛。</p>
-        <ul class="res">
-          <li>Alex Matrosov、Eugene Rodionov、Sergey Bratus,《Rootkits and Bootkits》相關章節</li>
-          <li>OSR Online 論壇(osronline.com)搜尋 anti-debug / KdDebuggerEnabled 討論串</li>
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-逆向攻防篇</a></li>
           <li>看雪 · <a href="https://bbs.kanxue.com/thread-225740.htm" target="_blank" rel="noopener">反調試技術總結</a></li>
           <li>看雪 · <a href="https://bbs.kanxue.com/thread-268010.htm" target="_blank" rel="noopener">反調試:調試標誌寄存器(翻譯)</a></li>
         </ul>
       </div></div>
 
+      <div class="week" data-id="w17"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W17</span>加殼 / 脫殼 · Anti-Anti</div>
+        <p>認識加殼原理,手動脫一個簡單殼(找 OEP、dump、修 IAT),理解攻防的來回。</p>
+        <ul class="res">
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-逆向攻防篇</a></li>
+        </ul>
+      </div></div>
+    </section>
+
+    <div class="stage-divider">Stage 3 — 內核篇(Ferry 驅動攻防)· WinDbg 貫穿 · Week 18–29</div>
+
+    <section class="phase" id="p9">
+      <div class="phase-head"><span class="tag">PHASE 08</span><h2>保護模式與除錯環境</h2><span class="wk">WEEK 18–19</span></div>
+
+      <div class="week" data-id="w18"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W18</span>保護模式:分段 / 分頁 / 特權級</div>
+        <p>Ring0/Ring3、GDT/IDT、分段與分頁機制——理解內核與使用者態的邊界是怎麼劃出來的。</p>
+        <ul class="res">
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">驅動內核攻防之保護模式</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/virtual-address-spaces" target="_blank" rel="noopener">Microsoft Learn — Virtual Address Spaces</a></li>
+        </ul>
+      </div></div>
+
+      <div class="week" data-id="w19"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W19</span>WinDbg 雙機內核除錯環境 + Symbol</div>
+        <p>建 target VM,設定 <span class="mono">_NT_SYMBOL_PATH</span>、KDNET / 雙機管道,練 <span class="mono">.reload /f</span>、<span class="mono">lm</span>、<span class="mono">dt</span>、<span class="mono">x</span>。</p>
+        <ul class="res">
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-驅動內核開發篇</a>(環境搭建)</li>
+          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/symbol-path" target="_blank" rel="noopener">Microsoft Learn — Symbol Path</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/setting-up-a-network-debugging-connection" target="_blank" rel="noopener">Microsoft Learn — Set Up KDNET</a></li>
+          <li>看雪 · <a href="https://bbs.kanxue.com/thread-254041-1.htm" target="_blank" rel="noopener">VS2019 驅動開發 + WinDbg + VMware15 雙機調試配置</a></li>
+          <li>看雪 · <a href="https://bbs.kanxue.com/thread-261326.htm" target="_blank" rel="noopener">雙機內核調試入門(VirtualKD-Redux)</a></li>
+          <li>看雪 · <a href="https://bbs.kanxue.com/thread-246228.htm" target="_blank" rel="noopener">WinDbg 內核調試配置方法(翻譯)</a></li>
+        </ul>
+      </div></div>
+    </section>
+
+    <section class="phase" id="p10">
+      <div class="phase-head"><span class="tag">PHASE 09</span><h2>驅動開發</h2><span class="wk">WEEK 20–21</span></div>
+
+      <div class="week" data-id="w20"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W20</span>第一個 WDM Driver</div>
+        <p>安裝 WDK,寫出 <span class="mono">DriverEntry</span> / <span class="mono">Unload</span>,建立 IOCTL 通訊,載入到 W19 的 target 機。</p>
+        <ul class="res">
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">驅動內核攻防之驅動開發</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/introduction-to-wdm" target="_blank" rel="noopener">Microsoft Learn — Introduction to WDM</a></li>
+          <li>看雪 · <a href="https://bbs.kanxue.com/thread-275999-1.htm" target="_blank" rel="noopener">Windows 驅動快速入門</a></li>
+          <li>看雪 · <a href="https://bbs.kanxue.com/thread-268379-1.htm" target="_blank" rel="noopener">X86 內核筆記_2_驅動開發</a></li>
+        </ul>
+      </div></div>
+
+      <div class="week" data-id="w21"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W21</span>Driver / Device Object · WinDbg 對照</div>
+        <p><span class="mono">dt nt!_DRIVER_OBJECT</span>、<span class="mono">dt nt!_DEVICE_OBJECT</span>,對照 <span class="mono">!drvobj</span>、<span class="mono">!devobj</span>、<span class="mono">!devstack</span> 跟自己寫的 driver。</p>
+        <ul class="res">
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">全棧安全-驅動內核開發篇</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/-drvobj" target="_blank" rel="noopener">Microsoft Learn — !drvobj</a></li>
+          <li>看雪 · <a href="https://bbs.kanxue.com/thread-275480.htm" target="_blank" rel="noopener">通過驅動接觸 Win 內核</a></li>
+          <li>看雪 · <a href="https://bbs.kanxue.com/thread-290220.htm" target="_blank" rel="noopener">Windows 內核框架介紹</a></li>
+        </ul>
+      </div></div>
+    </section>
+
+    <section class="phase" id="p11">
+      <div class="phase-head"><span class="tag">PHASE 10</span><h2>系統調用 / 進程執行緒</h2><span class="wk">WEEK 22–23</span></div>
+
+      <div class="week" data-id="w22"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W22</span>系統調用機制(SSDT)</div>
+        <p>syscall 從 Ring3 進 Ring0 的完整路徑、SSDT 的角色,理解 hook / 監控常見的切入點。</p>
+        <ul class="res">
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">驅動內核攻防之系統調用</a></li>
+          <li>Pavel Yosifovich《Windows Kernel Programming》系統機制章節</li>
+        </ul>
+      </div></div>
+
+      <div class="week" data-id="w23"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W23</span>EPROCESS / ETHREAD · WinDbg 遍歷</div>
+        <p><span class="mono">dt nt!_EPROCESS</span>、<span class="mono">!process</span>、<span class="mono">!thread</span>,走一遍進程/執行緒鏈結串列,對照 W8 的 user-mode 認知。</p>
+        <ul class="res">
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">驅動內核攻防之進程線程</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/-process" target="_blank" rel="noopener">Microsoft Learn — !process</a></li>
+          <li>Russinovich 等《Windows Internals》Part 1 — Processes and Threads</li>
+        </ul>
+      </div></div>
+    </section>
+
+    <section class="phase" id="p12">
+      <div class="phase-head"><span class="tag">PHASE 11</span><h2>異步同步 / 內核對象</h2><span class="wk">WEEK 24–25</span></div>
+
+      <div class="week" data-id="w24"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W24</span>IRP 完整生命週期與異步 I/O</div>
+        <p>追一條 IRP 從建立到 <span class="mono">IoCompleteRequest</span>,<span class="mono">!irp</span> / <span class="mono">!irpfind</span> 搭配 <span class="mono">k</span> 還原呼叫堆疊。</p>
+        <ul class="res">
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">驅動內核攻防之異步同步</a> · 全棧-驅動內核機制篇</li>
+          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/-irp" target="_blank" rel="noopener">Microsoft Learn — !irp</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/debug-universal-drivers---step-by-step-lab--echo-kernel-mode-" target="_blank" rel="noopener">Microsoft Learn — 官方手把手 Lab:Echo Kernel Mode</a></li>
+          <li>看雪 · <a href="https://bbs7.kanxue.com/thread-170809-1.htm" target="_blank" rel="noopener">WDM 處理 IRP_MN_REMOVE_DEVICE 的 IRQL 崩潰案例</a></li>
+        </ul>
+      </div></div>
+
+      <div class="week" data-id="w25"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W25</span>內核同步與 IRQL 規則</div>
+        <p>spinlock / mutex / event,搞懂 DISPATCH_LEVEL 不能碰 paged pool 這條規則——多數當機的根源。</p>
+        <ul class="res">
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">驅動內核攻防之內核對象</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/managing-hardware-priorities" target="_blank" rel="noopener">Microsoft Learn — Managing Hardware Priorities(IRQL)</a></li>
+          <li>看雪 · <a href="https://www.kanxue.com/book-173-4154.htm" target="_blank" rel="noopener">IRQL、驅動多線程、內核同步與互斥、死鎖</a></li>
+        </ul>
+      </div></div>
+    </section>
+
+    <section class="phase" id="p13">
+      <div class="phase-head"><span class="tag">PHASE 12</span><h2>內存管理</h2><span class="wk">WEEK 26</span></div>
+
+      <div class="week" data-id="w26"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W26</span>Pool / 分頁分析與記憶體洩漏</div>
+        <p><span class="mono">!pool</span> / <span class="mono">!poolused</span> 看 pool tag,<span class="mono">!pte</span> / <span class="mono">!vtop</span> / <span class="mono">!address</span> 理解位址轉換,抓記憶體洩漏。</p>
+        <ul class="res">
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">驅動安全攻防之內存管理</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/-pool" target="_blank" rel="noopener">Microsoft Learn — !pool</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/-pte" target="_blank" rel="noopener">Microsoft Learn — !pte</a></li>
+        </ul>
+      </div></div>
+    </section>
+
+    <section class="phase" id="p14">
+      <div class="phase-head"><span class="tag">PHASE 13</span><h2>調試異常 / Dump / TTD</h2><span class="wk">WEEK 27–28</span></div>
+
+      <div class="week" data-id="w27"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W27</span>Crash Dump 分析 · Driver Verifier</div>
+        <p>產生 kernel dump,<span class="mono">!analyze -v</span> 起手,<span class="mono">.trap</span> / <span class="mono">.cxr</span> 還原 context;開 Driver Verifier 故意炸自己的 driver 再修。</p>
+        <ul class="res">
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">驅動內核攻防之調試異常</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/using-the--analyze-extension" target="_blank" rel="noopener">Microsoft Learn — Using !analyze</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/driver-verifier" target="_blank" rel="noopener">Microsoft Learn — Driver Verifier</a></li>
+          <li>看雪 · <a href="https://bbs.kanxue.com/thread-289479.htm" target="_blank" rel="noopener">WinDbg Dump 分析完整指南</a></li>
+          <li>看雪 · <a href="https://bbs.kanxue.com/thread-264431.htm" target="_blank" rel="noopener">調試實戰:轉儲文件分析程式無響應(WinDbg + IDA)</a></li>
+        </ul>
+      </div></div>
+
+      <div class="week" data-id="w28"><div class="bp"></div><div class="week-body">
+        <div class="wk-title"><span class="num">W28</span>TTD 時間旅行除錯</div>
+        <p>錄製與回放執行過程,<span class="mono">!tt</span>、<span class="mono">dx @$cursession</span>,抓一次難重現的 race condition。</p>
+        <ul class="res">
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">驅動內核攻防之調試異常</a>(進階)</li>
+          <li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/time-travel-debugging-overview" target="_blank" rel="noopener">Microsoft Learn — Time Travel Debugging Overview</a></li>
+          <li>看雪 · <a href="https://bbs.kanxue.com/thread-278069.htm" target="_blank" rel="noopener">TTD 調試與 ttd-bindings 逆向工程實踐</a></li>
+          <li>看雪 · <a href="https://bbs.kanxue.com/thread-255305.htm" target="_blank" rel="noopener">通過回溯調試分析脆弱性的根本原因(翻譯)</a></li>
+        </ul>
+      </div></div>
+    </section>
+
+    <section class="phase" id="p15">
+      <div class="phase-head"><span class="tag">PHASE 14</span><h2>實戰拓展</h2><span class="wk">WEEK 29</span></div>
+
       <div class="week" data-id="w29"><div class="bp"></div><div class="week-body">
         <div class="wk-title"><span class="num">W29</span>綜合實戰</div>
-        <p>把自己的 driver 放進有反偵測意識的情境,同時練習「隱蔽除錯」與「偵測繞過」兩個角度,收斂整個 29 週的技巧。</p>
+        <p>把自己的 driver 放進有反偵測意識的情境,同時練「隱蔽除錯」與「偵測繞過」兩個角度,收斂整條路線的技巧。</p>
         <ul class="res">
-          <li>無新教材,回顧 W1–28 的筆記與自己的 driver 專案進行整合演練</li>
+          <li class="ferry">Ferry · <a href="https://ferrycofc.com/index/course/learn" target="_blank" rel="noopener">驅動內核攻防之實戰拓展</a></li>
+          <li>Alex Matrosov 等《Rootkits and Bootkits》相關章節</li>
+          <li>OSR Online 論壇(osronline.com)搜尋 anti-debug / KdDebuggerEnabled 討論串</li>
         </ul>
       </div></div>
     </section>

@@ -1,11 +1,12 @@
 # WinDbg × Driver 除錯路線 — 29 週
 
-從零開始的 Windows kernel driver 開發與 WinDbg 除錯學習路線,涵蓋:
+以 **Ferry 學院(ferrycofc.com)** 課程路徑為骨幹重排的學習路線,結合「全棧安全」與「驅動攻防」兩條支線,WinDbg 除錯貫穿內核階段:
 
-- **Stage 1 — 地基補強(Week 1–13)**:C/C++ 進階、OS 基礎概念、x64 組語與 Calling Convention、Driver 開發入門(WDM/KMDF)
-- **Stage 2 — WinDbg 除錯(Week 14–29)**:環境設定、Kernel Debug 環境、核心資料結構、IRP 追蹤、記憶體/IRQL、Dump 分析、Time Travel Debugging、反除錯整合
+- **Stage 1 — 開發篇(Week 1–10)**:C 語言與記憶體 → C++/泛型 → 資料結構 → Windows 核心編程(WIN32)→ 圖形界面(SDK/MFC/QT)
+- **Stage 2 — 逆向篇(Week 11–17)**:組語與逆向入門(x86/x64、PE)→ 逆向提升(動態除錯)→ 逆向攻防(反調試、脫殼)
+- **Stage 3 — 內核篇 · WinDbg 貫穿(Week 18–29)**:保護模式與除錯環境 → 驅動開發 → 系統調用/進程執行緒 → 異步同步/內核對象 → 內存管理 → 調試異常(Dump/TTD)→ 實戰拓展
 
-每週任務附官方文件 / 書籍章節等延伸資源,並可勾選追蹤進度(進度儲存在瀏覽器本機,透過 Claude Artifact 的 storage API)。
+每週琥珀色「»」開頭的是對應的 Ferry 課程模組,其下為微軟官方文件、看雪等輔助資源。可勾選追蹤進度、每週寫筆記,並用頂欄 export/import 備份。
 
 ## 使用方式
 

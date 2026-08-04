@@ -101,7 +101,22 @@ for gid, r, g, ncourse, nles in group_nav:
                 for ls in lessons:
                     lid = f'L{cid}_{idx}'
                     idx += 1
-                    main.append(f'        <li class="lesson" data-id="{lid}"><span class="dot"></span><span class="lt">{esc(ls)}</span></li>')
+                    if isinstance(ls, dict):
+                        ltitle = ls.get('t') or ls.get('title') or ''
+                        res = ls.get('r') or ls.get('res') or []
+                    else:
+                        ltitle = ls; res = []
+                    reshtml = ''
+                    if res:
+                        items = ''.join(f'<li><a href="{esc(u)}" target="_blank" rel="noopener">{esc(n)}</a></li>' for n, u in res)
+                        reshtml = f'<div class="lres"><span class="lres-h">学习资料</span><ul>{items}</ul></div>'
+                    hasres = ' has-res' if res else ''
+                    main.append(f'        <li class="lesson{hasres}" data-id="{lid}">')
+                    main.append(f'          <span class="dot" title="标记完成"></span>')
+                    main.append(f'          <span class="lt">{esc(ltitle)}</span>')
+                    main.append(f'          <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>')
+                    main.append(f'          <div class="lpanel">{reshtml}<div class="lnote" data-note-id="{lid}"></div></div>')
+                    main.append(f'        </li>')
                 main.append(f'      </ul>')
         # per-course note placeholder
         main.append(f'      <div class="course-note" data-note-id="NC{cid}"></div>')
@@ -179,15 +194,31 @@ main{{padding:0 26px 80px;max-width:1000px}}
 .chapter-title{{color:var(--violet);font-size:13px;font-weight:600}}
 .chapter-n{{color:var(--dim);font-size:11px}}
 .chapter::after{{content:"";flex:1;height:1px;background:var(--line)}}
-.lessons{{list-style:none;margin:0;padding:0;
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px 18px}}
-.lesson{{display:flex;align-items:center;gap:8px;padding:3px 4px;border-radius:4px;cursor:pointer;color:var(--dim)}}
+.lessons{{list-style:none;margin:0;padding:0;display:block}}
+.lesson{{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:4px 6px;border-radius:5px;color:var(--dim)}}
 .lesson:hover{{background:var(--panel2)}}
-.lesson .dot{{flex:none;width:11px;height:11px;border-radius:50%;border:2px solid var(--dim);transition:.15s}}
-.lesson .lt{{font-size:12.5px}}
+.lesson .dot{{flex:none;width:12px;height:12px;border-radius:50%;border:2px solid var(--dim);cursor:pointer;transition:.15s}}
+.lesson .dot:hover{{border-color:var(--red)}}
+.lesson .lt{{flex:1;min-width:0;font-size:12.5px;cursor:pointer}}
 .lesson.done{{color:var(--ink)}}
 .lesson.done .dot{{background:var(--red);border-color:var(--red);box-shadow:0 0 6px rgba(255,92,92,.6)}}
 .lesson.done .lt{{text-decoration:line-through;text-decoration-color:var(--dim)}}
+.lx{{flex:none;width:22px;height:22px;line-height:20px;text-align:center;padding:0;
+  background:none;border:1px solid var(--line);border-radius:5px;color:var(--dim);cursor:pointer;font-size:14px}}
+.lx:hover{{color:var(--cyan);border-color:var(--cyan)}}
+.lesson.has-res .lx{{color:var(--amber);border-color:var(--amber)}}
+.lesson.noted .lx{{color:var(--green);border-color:var(--green)}}
+.lpanel{{display:none;flex-basis:100%;width:100%;margin:6px 0 6px 20px;padding:10px 12px;
+  background:var(--panel2);border:1px solid var(--line);border-left:2px solid var(--cyan);border-radius:6px}}
+.lesson.open .lpanel{{display:block}}
+.lres{{margin-bottom:8px}}
+.lres-h{{display:block;color:var(--amber);font-size:11px;letter-spacing:.5px;margin-bottom:4px}}
+.lres ul{{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 12px}}
+.lres li a{{display:inline-block;font-size:12px;padding:3px 9px;background:var(--panel);
+  border:1px solid var(--line);border-radius:12px;color:var(--cyan)}}
+.lres li a:hover{{border-color:var(--cyan)}}
+.lnote-area{{width:100%;background:var(--panel);color:var(--ink);border:1px solid var(--line);
+  border-radius:6px;padding:7px 9px;font:12.5px/1.5 inherit;resize:vertical;min-height:56px}}
 .empty{{color:var(--dim);font-size:12px;padding:8px 0}}
 .course-note{{margin-top:10px}}
 .note-toggle{{background:none;border:1px dashed var(--line);color:var(--dim);border-radius:6px;
@@ -265,13 +296,35 @@ main{{padding:0 26px 80px;max-width:1000px}}
   }}
 
   // init lessons
+  function markNoted(li,id){{ li.classList.toggle('noted', !!(notes[id]&&String(notes[id]).trim())); }}
+  function ensureNote(li){{
+    var box=li.querySelector('.lnote');
+    if(!box || box.dataset.ready) return;
+    box.dataset.ready='1';
+    var id=box.getAttribute('data-note-id');
+    var ta=document.createElement('textarea');
+    ta.className='lnote-area';
+    ta.placeholder='这一节的笔记 / 疑问 / 补充链接…';
+    if(notes[id]) ta.value=notes[id];
+    var t=null;
+    ta.addEventListener('input',function(){{
+      clearTimeout(t);
+      t=setTimeout(function(){{ notes[id]=ta.value; saveNotes(); markNoted(li,id); }},400);
+    }});
+    box.appendChild(ta);
+  }}
   lessons.forEach(function(li){{
     var id=li.getAttribute('data-id');
     if(done.has(id)) li.classList.add('done');
-    li.addEventListener('click', function(){{
+    markNoted(li,id);
+    li.querySelector('.dot').addEventListener('click',function(e){{
+      e.stopPropagation();
       if(li.classList.toggle('done')) done.add(id); else done.delete(id);
       saveProg(); updateHeader(); updateCourse(li.closest('.course'));
     }});
+    function toggle(){{ li.classList.toggle('open'); if(li.classList.contains('open')) ensureNote(li); }}
+    li.querySelector('.lt').addEventListener('click',toggle);
+    li.querySelector('.lx').addEventListener('click',toggle);
   }});
   document.querySelectorAll('.course').forEach(updateCourse);
   updateHeader();

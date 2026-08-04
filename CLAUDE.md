@@ -17,7 +17,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 進度儲存機制
 
-勾選進度的 key 為 `windbg-driver-roadmap-full:progress`(JSON 陣列的 `data-id` 列表),每週筆記的 key 為 `windbg-driver-roadmap-full:notes`(`{data-id: 筆記文字}` 物件)。在 Claude Artifact 環境用 `window.storage` API 保存;一般瀏覽器(含 GitHub Pages)偵測不到該 API 時自動 fallback 到 `localStorage`,由 `storageGet`/`storageSet` 統一封裝。筆記的 UI(note 按鈕與 textarea)由 JS 動態注入每個 `.week`,HTML 裡不用手寫。
+勾選進度的 key 為 `windbg-driver-roadmap-full:progress`(JSON 陣列的 `data-id` 列表),每週筆記的 key 為 `windbg-driver-roadmap-full:notes`(`{data-id: 筆記文字}` 物件)。在 Claude Artifact 環境用 `window.storage` API 保存;一般瀏覽器(含 GitHub Pages)偵測不到該 API 時自動 fallback 到 `localStorage`,由 `storageGet`/`storageSet` 統一封裝。筆記的 UI(note 按鈕與 textarea)由 JS 動態注入每個 `.week`,HTML 裡不用手寫。頂欄的 export/import 按鈕可將進度＋筆記備份成 JSON(`format: 'windbg-driver-roadmap-backup'`)或從備份還原,匯入成功後會 `location.reload()` 重新渲染。
 
 ## 部署與更新
 

@@ -8,6 +8,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 所有內容(HTML、CSS、JS)都內嵌在 `index.html` 一個檔案裡,約 500 行。內容語言為繁體中文,修改文案時保持繁體中文與既有的技術術語混排風格。
 
+## 內容主線
+
+路線以 **Ferry 學院(ferrycofc.com)** 的課程路徑為骨幹,微軟官方文件與看雪(kanxue.com)資料為輔助延伸,科銳培訓為次要對照。首頁 hero 下方有:`.note.primary`(Ferry 主線說明)、`.ferrymap`(12 個 phase × Ferry 課程模組對照表)、`.note`(科銳次要參照)。週次清單裡以「看雪 ·」前綴標記看雪來源的資源。
+
 ## index.html 結構
 
 - **CSS**(`<style>` 區塊,頂部):WinDbg 主題深色風格,配色定義在 `:root` CSS 變數(`--cyan`、`--amber`、`--green` 等)。

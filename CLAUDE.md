@@ -4,25 +4,36 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 專案概述
 
-單一靜態頁面(`index.html`)的 29 週 WinDbg / Windows kernel driver 除錯學習路線圖,設計為 Claude Artifact / GitHub Pages 部署。無 build、無測試、無依賴——直接用瀏覽器開啟 `index.html` 即可預覽。
+單一靜態頁面(`index.html`)的學習路線圖,以 **Ferry 學院(ferrycofc.com)** 各課程的真實「課程目錄」為素材,把 53 門課按章節小節逐節鋪開。設計為 Claude Artifact / GitHub Pages 部署。無測試、無執行期依賴——直接用瀏覽器開啟 `index.html` 即可預覽。內容語言為簡繁混排的技術術語,以簡體課程名 + 繁體說明為主。
 
-所有內容(HTML、CSS、JS)都內嵌在 `index.html` 一個檔案裡,約 500 行。內容語言為繁體中文,修改文案時保持繁體中文與既有的技術術語混排風格。
+`index.html` 不是手寫維護的,而是由 `build/` 下的產生器輸出(見下)。約 300KB、1800+ 小節,手改不切實際——改內容請改資料再重新產生。
 
-## 內容主線
+## 內容結構(3 路線 / 10 模組 / 53 課)
 
-整份課程以 **Ferry 學院(ferrycofc.com)** 路徑重排,分三 Stage、15 個 phase(p1–p15)、29 週(w1–w29):Stage 1 開發篇(全棧安全開發篇)、Stage 2 逆向篇(全棧安全逆向篇)、Stage 3 內核篇(驅動攻防 9 課,WinDbg 除錯貫穿)。每週資源清單第一條是對應的 Ferry 課程,標 `<li class="ferry">`(琥珀色「»」領頭);其下為微軟官方文件與看雪(前綴「看雪 ·」)輔助資源。首頁 hero 下方:`.note.primary`(Ferry 三段骨幹)+ `.note`(科銳次要參照)。改動週次時左側 `.frame`(data-target)與 `<section id="pN">` 要同步,週次 `data-id` 必須唯一(進度/筆記的 key)。
+- **Route A · 遊戲安全**:逆向入門 → 常規逆向 → 虛幻實戰 → Unity 實戰
+- **Route B · 全棧安全**:開發篇 → 逆向篇 → 內核篇
+- **Route C · 驅動攻防(內核 · WinDbg 貫穿)**:保護模式 → 驅動開發 → 系統調用/進程執行緒 → 異步同步/內核對象/記憶體管理 → 調試異常 → 實戰拓展
 
-## index.html 結構
+Route B / Route C 共 19 門課目前為**佔位**(抓取時網站限流/驗證碼),`chapters:[]` + `note:"目录待抓取"`,頁面顯示為 `.empty`。另有 id=36「無畏契約」課程已下架。
 
-- **CSS**(`<style>` 區塊,頂部):WinDbg 主題深色風格,配色定義在 `:root` CSS 變數(`--cyan`、`--amber`、`--green` 等)。
-- **左側導覽欄**(`.rail`):每個 `.frame` 連結透過 `data-target` 指向對應的 `<section class="phase" id="pN">`。新增 phase 時兩邊要同步。
-- **週次區塊**:每週是一個 `<div class="week" data-id="wN">`,含 `.bp`(中斷點樣式的完成勾選圓點)、`.wk-title`、說明段落與 `.res` 資源清單。`data-id` 必須唯一——它是進度儲存的 key。
-- **JS**(`<script>` 區塊,底部):總週數由 `document.querySelectorAll('.week').length` 動態計算,新增/刪除週次不需要改 JS;但 README 與 `<footer>`、`<h1>` 中寫死的「29 週」字樣需要手動同步更新。
+## 產生器與資料(build/)
+
+- `build/course_<id>.json`:每門課的目錄資料。schema:`{id, name, route, group, order, chapters:[{title, lessons:[...]}]}`;抓不到時 `chapters:[]` 並加 `note`。
+- `build/gen.py`:讀取全部 `course_*.json`(依 `order` 排序,依 `route`→`group` 分組),產生整個 `index.html`(CSS/JS 全內嵌)。`ROUTE_ORDER` 決定路線順序;OUT 為 repo 內 `index.html` 絕對路徑。
+- 補齊佔位課程:編輯對應 `course_<id>.json` 填入 `chapters`,執行 `python build/gen.py` 重新產生。
+- ferrycofc 課程詳情頁 URL:`https://ferrycofc.com/index/course/show/id/<id>.html`。**注意**:並發抓取會觸發「訪問次數過多」驗證碼,對 IP 黏性封鎖(等待數十分鐘未必解除);要抓請串行低頻,或用瀏覽器過驗證。內核/驅動類課名還可能誤觸發模型的 cyber 安全防護(Opus/Sonnet 皆會),必要時降到較低推理模型或改用瀏覽器工具。
+
+## index.html 結構(產生結果)
+
+- **CSS**(`<style>`,頂部):WinDbg 深色主題,配色在 `:root` CSS 變數(`--cyan`/`--amber`/`--green`/`--red`/`--violet`)。
+- **左側導覽欄**(`.rail`):`.rail-route` 路線標題 + 每模組一個 `.frame`,`data-target` 指向 `<section class="group" id="gN">`。
+- **課程卡片**:`<article class="course" data-course="ID">`,內含 `.course-head`(標題連結 + `.course-prog` 進度徽章)、若干 `.chapter`(篇)、`.lessons > li.lesson`。每個 `li.lesson` 的 `data-id="L<courseid>_<n>"` **必須唯一**——它是進度儲存的 key。每卡片底部 `.course-note[data-note-id="NC<courseid>"]` 由 JS 注入筆記 UI。
+- **JS**(`<script>`,底部):進度以勾選的 `.lesson` 計數;`.course-prog` 即時顯示每課完成數。
 
 ## 進度儲存機制
 
-勾選進度的 key 為 `windbg-driver-roadmap-full:progress`(JSON 陣列的 `data-id` 列表),每週筆記的 key 為 `windbg-driver-roadmap-full:notes`(`{data-id: 筆記文字}` 物件)。在 Claude Artifact 環境用 `window.storage` API 保存;一般瀏覽器(含 GitHub Pages)偵測不到該 API 時自動 fallback 到 `localStorage`,由 `storageGet`/`storageSet` 統一封裝。筆記的 UI(note 按鈕與 textarea)由 JS 動態注入每個 `.week`,HTML 裡不用手寫。頂欄的 export/import 按鈕可將進度＋筆記備份成 JSON(`format: 'windbg-driver-roadmap-backup'`)或從備份還原,匯入成功後會 `location.reload()` 重新渲染。
+進度 key:`windbg-driver-roadmap-full:progress`(已完成 lesson `data-id` 的 JSON 陣列)。筆記 key:`windbg-driver-roadmap-full:notes`(`{NC<courseid>: 文字}`,**每門課一則**)。Claude Artifact 環境用 `window.storage`,否則 fallback 到 `localStorage`。頂欄 export/import 將兩者備份成 JSON(`format:'windbg-driver-roadmap-backup', version:1`),匯入成功後 `location.reload()`。
 
 ## 部署與更新
 
-推送到 GitHub 後由 GitHub Pages(main branch, root)提供服務。內容更新流程就是直接編輯 `index.html` 後 commit + push(見 README)。
+推送到 GitHub 後由 GitHub Pages(main branch, root)提供服務。更新流程:改 `build/` 資料 → `python build/gen.py` → commit + push(見 README)。

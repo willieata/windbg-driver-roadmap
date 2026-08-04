@@ -1,0 +1,49 @@
+{
+  "id": 59,
+  "name": "游戏安全-PE文件结构",
+  "route": "游戏安全",
+  "group": "逆向入门",
+  "order": 6,
+  "chapters": [
+    {
+      "title": "PE文件",
+      "lessons": [
+        "0.0 PE-什么是PE文件",
+        "0.1 PE-Pe文件结构",
+        "0.2 HEADER-IMAGE_DOS_HEADER",
+        "0.3 HEADER-文件读入与写出",
+        "0.4 HEADER-DOS_练习",
+        "0.5 HEADER-结构体指针练习",
+        "0.6 HEADER-IMAGE_NT_HEADERS",
+        "0.7 HEADER-IMAGE_FILE_HEADER",
+        "0.8 HEADER-IMAGE_OPTIONAL_HEADER",
+        "0.9 HEADER-IMAGE_SECTION_HEADER",
+        "1.0 BUFFER-FileBufferToImageBuffer_1",
+        "1.1 BUFFER-FileBufferToImageBuffer_2",
+        "1.2 BUFFER-FileBufferToImageBuffer_3",
+        "1.3 BUFFER-代码实现缓存转换_1",
+        "1.4 BUFFER-代码实现缓存转换_2",
+        "1.5 RVA-FOA转换_1",
+        "1.6 RVA-FOA转换_2",
+        "1.7 IMAGE_DATA_DIRECTORY",
+        "1.8 EXPORT-LIB",
+        "1.9 EXPORT-DLL_1",
+        "2.0 EXPORT-DLL_2",
+        "2.1 EXPORT-DLL_3",
+        "2.2 EXPORT-IMAGE_EXPORT_DIRECTORY_1",
+        "2.3 EXPORT-IMAGE_EXPORT_DIRECTORY_2",
+        "2.4 EXPORT-IMAGE_EXPORT_DIRECTORY_3",
+        "2.5 EXPORT-GetExportFunAddByName",
+        "2.6 EXPORT-GetExportFunAddByOrdinal",
+        "2.7 IMPORT-IMAGE_IMPORT_DESCRIPTOR",
+        "2.8 IMPORT-FileBuffer_IAT_INT",
+        "2.9 IMPORT-ImageBuffer_IAT_INT",
+        "3.0 IMPORT-GetImportData",
+        "3.1 RELOCATION",
+        "3.2 RELOCATION-IMAGE_BASE_RELOCATION",
+        "3.3 RELOCATION-RepairRelocation",
+        "3.4 RELOCATION-GetRelEntryData"
+      ]
+    }
+  ]
+}

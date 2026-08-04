@@ -1,0 +1,71 @@
+{
+  "id": 67,
+  "name": "游戏安全-逆向工具",
+  "route": "游戏安全",
+  "group": "逆向入门",
+  "order": 14,
+  "chapters": [
+    {
+      "title": "一、Cheat Engine",
+      "lessons": [
+        "00 Cheat Engine 下载与安装",
+        "01 Cheat Engine 选项设置(DBVM)与搜索详解",
+        "02 Cheat Engine 热键、群组与搜索拓展",
+        "03 Cheat Engine 访问改写调试定位基址",
+        "04 Cheat Engine 反汇编窗口调试分析代码流程",
+        "05 Cheat Engine 代码注入模板HOOK代码流程",
+        "06 Cheat Engine AOB自动汇编脚本实现无视游戏重启HOOK",
+        "07 Cheat Engine 汇编内存线程等视图详解",
+        "08 Cheat Engine 自带教程关卡1-6关",
+        "09 Cheat Engine 自带教程关卡7-9关 拓展结构分析与对象访问器"
+      ]
+    },
+    {
+      "title": "二、Dbg",
+      "lessons": [
+        "10 Dbg-下载安装与设置",
+        "11 Dbg-窗口视图与异常过滤",
+        "12 Dbg-视图分类与视图功能",
+        "13 Dbg-反汇编窗口显示与操作详解",
+        "14 Dbg-内存窗口显示与操作详解",
+        "15 Dbg-断点种类与断点使用技巧",
+        "16 Dbg-调试与跟踪回溯技巧",
+        "17 Dbg-数据库的使用与备份",
+        "18 Dbg-Scylla dump内存",
+        "19 Dbg-ScyllaHide详解"
+      ]
+    },
+    {
+      "title": "三、IDA",
+      "lessons": [
+        "20 IDA-介绍与载入的基本使用",
+        "21 IDA-界面介绍与函数跳转",
+        "22 IDA-窗口分类介绍与多种注释（F5一键源码）",
+        "23 IDA-交叉引用与模糊搜索",
+        "24 IDA-分析转换与数据库应用",
+        "25 IDA-实战手撕某游戏反调试保护",
+        "26 Reclass-编辑结构生成C++代码"
+      ]
+    },
+    {
+      "title": "四、Cheat Engine-过检测篇",
+      "lessons": [
+        "01. [新] Cheat Engine 魔改-以往常见问题总结",
+        "02. [新] Cheat Engine 魔改-UI图标与文字属性更改",
+        "03. [新] Cheat Engine 魔改-随机标题名与界面火星文",
+        "04. [新] Cheat Engine 魔改-劫持CE引流实现一键加群",
+        "05. [新] Cheat Engine 魔改-抹除特征完全修复Lua错误",
+        "06. [新] Cheat Engine 魔改-修复无法使用变速精灵问题",
+        "07. [新] Cheat Engine 魔改-修复无法使用VEH调试问题",
+        "08. [新] Cheat Engine 魔改-修复无法使用Mono插件问题",
+        "09. [新] Cheat Engine 魔改-修复无法使用汉化补丁问题",
+        "10. [新] Cheat Engine 魔改-篡改文件实现进程混淆伪装",
+        "11. [新] Cheat Engine 魔改-映射驱动实现提权破图标读写",
+        "12. [新] Cheat Engine 魔改-驱动环境搭建与驱动信息魔改",
+        "13. [新] Cheat Engine 魔改-驱动文件魔改与重新编译",
+        "14. [新] Cheat Engine 魔改-详解驱动签名与驱动文件双签",
+        "15. [新] Cheat Engine 魔改-(补充)针对 EAC ACE等反作弊设置与调试方法"
+      ]
+    }
+  ]
+}

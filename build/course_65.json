@@ -1,0 +1,26 @@
+{
+  "id": 65,
+  "name": "游戏安全-数据结构",
+  "route": "游戏安全",
+  "group": "逆向入门",
+  "order": 12,
+  "note": "目录未取得（抓取结果编号不连续，00/02-11，疑似原页面缺01或抓取遗漏）",
+  "chapters": [
+    {
+      "title": "数据结构模块",
+      "lessons": [
+        "00. 数据结构-数据在内存中的分布形式",
+        "02. 数据结构-Vector模板设计思路",
+        "03. 数据结构-Vector容器有无参构造与析构实现",
+        "04. 数据结构-Vector-push_back实现",
+        "05. 数据结构-Vector-expand增容",
+        "06. 数据结构-Vector-pop_back与capacity",
+        "07. 数据结构-Vector-at-索引成员数据",
+        "08. 数据结构-Vector-Insert",
+        "09. 数据结构-Vector-Erase",
+        "10. 数据结构-Vector-Clean&Show",
+        "11. 数据结构-Vector结构逆向与联合游戏实例化分析"
+      ]
+    }
+  ]
+}

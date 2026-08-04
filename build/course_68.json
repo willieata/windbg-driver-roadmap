@@ -1,0 +1,68 @@
+{
+  "id": 68,
+  "name": "游戏安全-图形绘制",
+  "route": "游戏安全",
+  "group": "逆向入门",
+  "order": 15,
+  "chapters": [
+    {
+      "title": "GDI",
+      "lessons": [
+        "00 内部外部绘制原理介绍",
+        "01 GDI-图像窗口初始化创建",
+        "02 GDI-动态绘制的两种方式及原理",
+        "03 GDI-利用窗口重绘动态绘制矩形",
+        "04 GDI-利用画布刷新动态绘制矩形",
+        "05 GDI-利用笔与笔刷结合绘制花式线条与矩形",
+        "06 GDI-自定义字体样式与颜色绘制动态文本",
+        "07 GDI-绘制透明窗口附带穿透属性并隐藏窗口任务栏"
+      ]
+    },
+    {
+      "title": "DX9/DX11",
+      "lessons": [
+        "08 DirectX 系列通用应用介绍与环境配置",
+        "09 DirectX9 框架与设备初始化",
+        "10 DirectX9 绘制线条与清空画布",
+        "11 DirectX9 向量的含义与绘制矩形",
+        "12 DirectX9 创建字体与绘制样式文本",
+        "13 DirectX11 交换链设备初始化与释放",
+        "14 DirectX11 初始化D2D1工厂与深层管道设备",
+        "15 DirectX11 创建动态文本绘制设备与清空画布",
+        "16 DirectX11 动态绘制线条与矩形"
+      ]
+    },
+    {
+      "title": "IMGUI",
+      "lessons": [
+        "17 Dear IMGUI 使用介绍",
+        "18 Dear IMGUI 环境搭建",
+        "19 Dear IMGUI 桌面程序自绘窗口",
+        "20 Dear IMGUI 动态链接库自绘窗口",
+        "21 Dear IMGUI Demo流程代码详解",
+        "22 Dear IMGUI 窗口创建与窗口属性",
+        "23 Dear IMGUI 多任务窗口与窗口属性拓展",
+        "24 Dear IMGUI 初涉控件创建与调用",
+        "25 Dear IMGUI 全局字体自定义加载与显示中文",
+        "26 Dear IMGUI 字体拓展与内存加载字体",
+        "27 Dear IMGUI 多字库内存加载与单控件字体切换",
+        "28 Dear IMGUI 探索所有控件全局颜色更改详解",
+        "29 Dear IMGUI 单独自定义控件颜色与位置",
+        "30 Dear IMGUI 控件详解-Button",
+        "31 Dear IMGUI 控件详解-CheckBox",
+        "32 Dear IMGUI 控件详解-RadioButton",
+        "33 Dear IMGUI 控件详解-Text拓展与HelpMarker",
+        "34 Dear IMGUI 控件详解-InPutText拓展",
+        "35 Dear IMGUI 控件详解-InPutInt&Flaot拓展",
+        "36 Dear IMGUI 利用官方库联动InPutText与String",
+        "37 Dear IMGUI 控件详解-SliderInt&Float",
+        "38 Dear IMGUI 控件详解-Combo联动自定义设置主题",
+        "39 Dear IMGUI 控件详解-Separator&CollapsingHeader管控视图",
+        "40 Dear IMGUI 控件详解-TreeNod联合CollapsingHeader",
+        "41 Dear IMGUI 控件详解-BeginTabBar窗口拓展",
+        "42 Dear IMGUI 控件详解-BginTable表格嵌套",
+        "43 Dear IMGUI 源码学习技巧与其他开源库自主学习经验"
+      ]
+    }
+  ]
+}

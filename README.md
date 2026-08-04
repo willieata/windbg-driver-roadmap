@@ -1,40 +1,50 @@
-# WinDbg × Driver 除錯路線 — 29 週
+# Ferry 课程目录学习路线 — 53 门课 / 1800+ 小节
 
-以 **Ferry 學院(ferrycofc.com)** 課程路徑為骨幹重排的學習路線,結合「全棧安全」與「驅動攻防」兩條支線,WinDbg 除錯貫穿內核階段:
+以 **Ferry 学院(ferrycofc.com)** 的真实「课程目录」为素材,把 53 门课按各自的章节小节逐节铺开、从零基础起步的学习路线图。单一静态页面(`index.html`),用浏览器直接开启即可。
 
-- **Stage 1 — 開發篇(Week 1–10)**:C 語言與記憶體 → C++/泛型 → 資料結構 → Windows 核心編程(WIN32)→ 圖形界面(SDK/MFC/QT)
-- **Stage 2 — 逆向篇(Week 11–17)**:組語與逆向入門(x86/x64、PE)→ 逆向提升(動態除錯)→ 逆向攻防(反調試、脫殼)
-- **Stage 3 — 內核篇 · WinDbg 貫穿(Week 18–29)**:保護模式與除錯環境 → 驅動開發 → 系統調用/進程執行緒 → 異步同步/內核對象 → 內存管理 → 調試異常(Dump/TTD)→ 實戰拓展
+## 结构
 
-每週琥珀色「»」開頭的是對應的 Ferry 課程模組,其下為微軟官方文件、看雪等輔助資源。可勾選追蹤進度、每週寫筆記,並用頂欄 export/import 備份。
+三条路线、10 个模块、53 门课,每门课一张卡片,篇为小标题,**每个小节都是一个可勾选的断点圆点**:
+
+- **Route A · 游戏安全**:逆向入门(C/C++、汇编、PE、注入/HOOK/绘制、工具)→ 常规逆向 → 虚幻实战 → Unity 实战
+- **Route B · 全栈安全**:开发篇(C/C++/数据结构/WIN32/GUI)→ 逆向篇 → 内核篇
+- **Route C · 驱动攻防(内核 · WinDbg 贯穿)**:保护模式 → 驱动开发 → 系统调用/进程线程 → 异步同步/内核对象/内存管理 → 调试异常(WinDbg/Dump/TTD)→ 实战拓展
+
+勾选小节记录进度、每门课可写一则笔记、顶栏可导出/导入 JSON 备份。点击课程标题跳到对应的 Ferry 课程详情页。
+
+> 目前 Route B / Route C 共 19 门课因抓取时网站限流(验证码)暂为占位,页面标注「目录待抓取」;真实目录补齐后重新生成即可。另有「无畏契约」因课程已下架无目录。
 
 ## 使用方式
 
-直接開啟 `index.html`,或透過 GitHub Pages 線上瀏覽(見下方設定)。
+直接开启 `index.html`,或透过 GitHub Pages 线上浏览。
 
-> 進度勾選(中斷點樣式的圓點)在 Claude Artifact 環境使用 `window.storage` API 保存;在一般瀏覽器(含 GitHub Pages)則自動 fallback 到 `localStorage`,進度存在本機瀏覽器,換裝置或換瀏覽器不會同步。
+> 进度勾选在 Claude Artifact 环境使用 `window.storage` API 保存;一般浏览器(含 GitHub Pages)自动 fallback 到 `localStorage`,存在本机,换装置/浏览器不会同步——用顶栏 export/import 搬移。
 
-## 部署到 GitHub Pages
+## 内容如何生成 / 补齐
 
-1. 在 GitHub 建立一個新 repo(例如 `windbg-driver-roadmap`)
-2. 在本機這個資料夾執行:
-   ```bash
-   git remote add origin https://github.com/<你的帳號>/windbg-driver-roadmap.git
-   git branch -M main
-   git push -u origin main
-   ```
-3. 到 repo 的 Settings → Pages → Source 選擇 `main` branch、`/ (root)`,存檔後幾分鐘內會產生網址
+内容由 `build/` 下的生成器产出,可复现:
 
-## 更新內容
+- `build/course_<id>.json`:每门课的课程目录数据(章节 → 小节)。
+- `build/gen.py`:读取全部 `course_*.json`,生成整个 `index.html`(含 CSS/JS)。
 
-之後每次要調整週次內容或補資源,直接編輯 `index.html`,然後:
+补齐占位课程:编辑对应的 `build/course_<id>.json`,填入 `chapters`(格式见既有文件),然后:
+
+```bash
+python build/gen.py
+```
+
+即可重新生成 `index.html`。
+
+## 部署 / 更新
+
+推送到 GitHub 后由 GitHub Pages(main branch, root)提供服务:
 
 ```bash
 git add -A
-git commit -m "update: 說明這次改了什麼"
+git commit -m "update: 说明这次改了什么"
 git push
 ```
 
 ## License
 
-個人學習用途,內容為公開資訊整理,無特定授權限制。
+个人学习用途,内容为公开资讯整理,无特定授权限制。

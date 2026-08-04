@@ -444,9 +444,16 @@
   const total = document.querySelectorAll('.week').length;
   let done = new Set();
 
+  const hasArtifactStorage = typeof window.storage !== 'undefined';
+
   try{
-    const res = await window.storage.get(STORAGE_KEY, false);
-    if(res && res.value){ done = new Set(JSON.parse(res.value)); }
+    if(hasArtifactStorage){
+      const res = await window.storage.get(STORAGE_KEY, false);
+      if(res && res.value){ done = new Set(JSON.parse(res.value)); }
+    }else{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(raw){ done = new Set(JSON.parse(raw)); }
+    }
   }catch(e){ /* no saved progress yet */ }
 
   function render(){
@@ -464,8 +471,10 @@
   }
 
   async function persist(){
-    try{ await window.storage.set(STORAGE_KEY, JSON.stringify([...done]), false); }
-    catch(e){ console.error('storage save failed', e); }
+    try{
+      if(hasArtifactStorage){ await window.storage.set(STORAGE_KEY, JSON.stringify([...done]), false); }
+      else{ localStorage.setItem(STORAGE_KEY, JSON.stringify([...done])); }
+    }catch(e){ console.error('storage save failed', e); }
   }
 
   document.querySelectorAll('.bp').forEach(bp=>{

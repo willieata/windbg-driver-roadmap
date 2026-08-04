@@ -11,7 +11,7 @@
 
 直接開啟 `index.html`,或透過 GitHub Pages 線上瀏覽(見下方設定)。
 
-> 注意:進度勾選功能(中斷點樣式的圓點)依賴 Claude.ai Artifact 的 `window.storage` API,單獨用瀏覽器開啟 `index.html`(非透過 Claude Artifact)時,勾選功能不會保存進度,但頁面排版與內容瀏覽不受影響。
+> 進度勾選(中斷點樣式的圓點)在 Claude Artifact 環境使用 `window.storage` API 保存;在一般瀏覽器(含 GitHub Pages)則自動 fallback 到 `localStorage`,進度存在本機瀏覽器,換裝置或換瀏覽器不會同步。
 
 ## 部署到 GitHub Pages
 

@@ -17,7 +17,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 進度儲存機制
 
-勾選進度透過 `window.storage`(Claude Artifact 的 storage API)保存,key 為 `windbg-driver-roadmap-full:progress`。在一般瀏覽器中該 API 不存在,程式碼已用 try/catch 包住,勾選不會保存但頁面不會壞——這是預期行為,不是 bug。
+勾選進度的 key 為 `windbg-driver-roadmap-full:progress`。在 Claude Artifact 環境用 `window.storage` API 保存;一般瀏覽器(含 GitHub Pages)偵測不到該 API 時自動 fallback 到 `localStorage`。兩邊儲存格式相同(JSON 陣列的 `data-id` 列表)。
 
 ## 部署與更新
 

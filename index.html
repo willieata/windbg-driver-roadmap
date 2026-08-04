@@ -93,6 +93,8 @@
 
   .note{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);border-left:2px solid var(--line);padding:10px 14px;margin-top:6px;}
   .note b{color:var(--cyan);font-weight:500;}
+  .note a{color:var(--cyan);text-decoration:none;border-bottom:1px dotted var(--cyan);}
+  .note a:hover{color:var(--amber);border-bottom-color:var(--amber);}
 
   footer{text-align:center;padding:30px 20px 50px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);border-top:1px solid var(--line);}
 </style>
@@ -135,6 +137,13 @@
       <div class="eyebrow">0:000&gt; !roadmap -from_zero -verbose</div>
       <h1>從零開始:Driver 開發與 WinDbg 除錯 · 29 週</h1>
       <p>每週任務下方附延伸資源(官方文件、書籍章節、實作 lab)。左側圓點是中斷點樣式的任務開關,點擊切換完成狀態,進度會自動保存。</p>
+    </div>
+
+    <div class="note">
+      <b>參考路線 · 科銳逆向工程師培訓(看雪創始人錢林松機構)</b><br>
+      一條更完整的逆向工程師培養路徑,分四階段:預科班(C/C++ 地基)→ 一~三階段(x86 軟體安全:組語、PE、脫殼、反調試、漏洞)→ 四階段(移動 Android 安全)。入學門檻約二級 C 語言水平。本 29 週路線可視為其中「Driver 開發 + 內核除錯」這條支線的聚焦版——想往更廣的逆向方向延伸時可對照參考。<br>
+      › 原文:<a href="https://bbs.kanxue.com/thread-51839.htm" target="_blank" rel="noopener">看雪 — 科銳逆向工程師培訓課程學習路線</a><br>
+      › 配套書:錢林松《C++ 反匯編與逆向分析技術揭秘》
     </div>
 
     <div class="stage-divider">Stage 1 — 地基補強(Week 01–13)</div>

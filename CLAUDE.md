@@ -20,7 +20,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 產生器與資料(build/)
 
-- `build/course_<id>.json`:每門課的目錄資料。schema:`{id, name, route, group, order, chapters:[{title, lessons:[...]}]}`;抓不到時 `chapters:[]` 並加 `note`。`lessons` 每項可為純字串,或 `{"t": 標題, "r": [[資料名, 網址], ...]}`(帶學習資料)。
+- `build/course_<id>.json`:每門課的目錄資料。schema:`{id, name, route, group, order, chapters:[{title, lessons:[...]}]}`;抓不到時 `chapters:[]` 並加 `note`。`lessons` 每項可為純字串,或 `{"t": 標題, "w": 一行導讀, "r": [[資料名, 網址, 分層], ...]}`。分層取值 `主學`/`原文`/`實操`/`延伸`(對應 `gen.py` 的 `TAG_CLS`),缺省則不顯示標籤。
+- **章級驗收關卡**:章(`chapters[i]`)可加 `gate` 物件——`{title, quiz:[{q,a}], lab:{task, steps:[], pass, tip}, pits:[{s,c,f}]}`(`s`=症狀 `c`=原因 `f`=怎麼辦)。由 `render_gate()` 渲染在該章小節列表之後,含固定的「卡住了怎麼問」求助區塊。關卡通過狀態與小節共用 `done` 集合(id 為 `G<courseid>_<章序>`),但**不計入** `.course-prog` 分母(選擇器只數 `.lesson`)。
+- **拆章不影響進度**:`data-id` 的序號在整門課內連續累加、與章無關,所以把一章拆成數個單元不會改變任何 `data-id`。
 - `build/gen.py`:讀取全部 `course_*.json`(依 `order` 排序,依 `route`→`group` 分組),產生整個 `index.html`(CSS/JS 全內嵌)。`ROUTE_ORDER` 決定路線順序;OUT 為 repo 內 `index.html` 絕對路徑。
 - `build/fetch_catalog.py`:串行低頻抓 ferrycofc 課程目錄回填 JSON。`python build/fetch_catalog.py` 自動抓所有空目錄課程,或 `python build/fetch_catalog.py 13 14` 指定 id。抓完執行 `python build/gen.py` 重新產生。
 - ferrycofc 課程詳情頁 URL:`https://ferrycofc.com/index/course/show/id/<id>.html`。**注意**:並發抓取會觸發「訪問次數過多」驗證碼,對 IP 黏性封鎖(等待數十分鐘未必解除);要抓請串行低頻,或用瀏覽器過驗證。內核/驅動類課名還可能誤觸發模型的 cyber 安全防護(Opus/Sonnet 皆會),必要時降到較低推理模型或改用瀏覽器工具。

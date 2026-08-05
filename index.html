@@ -82,12 +82,64 @@ main{padding:0 26px 80px;max-width:1000px}
 .lpanel{display:none;flex-basis:100%;width:100%;margin:6px 0 6px 20px;padding:10px 12px;
   background:var(--panel2);border:1px solid var(--line);border-left:2px solid var(--cyan);border-radius:6px}
 .lesson.open .lpanel{display:block}
+.lguide{margin:0 0 8px;padding:6px 9px;background:rgba(167,139,250,.08);
+  border-left:2px solid var(--violet);border-radius:4px;color:var(--ink);font-size:12.5px}
 .lres{margin-bottom:8px}
 .lres-h{display:block;color:var(--amber);font-size:11px;letter-spacing:.5px;margin-bottom:4px}
 .lres ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 12px}
 .lres li a{display:inline-block;font-size:12px;padding:3px 9px;background:var(--panel);
   border:1px solid var(--line);border-radius:12px;color:var(--cyan)}
 .lres li a:hover{border-color:var(--cyan)}
+.lres li a i{font-style:normal;font-size:10px;margin-right:5px;padding:1px 5px;border-radius:8px;
+  background:var(--line);color:var(--dim)}
+.lres li a.t-main{border-color:var(--amber);color:var(--amber)}
+.lres li a.t-main i{background:var(--amber);color:#0b0f14}
+.lres li a.t-src{border-color:var(--violet);color:var(--violet)}
+.lres li a.t-src i{background:var(--violet);color:#0b0f14}
+.lres li a.t-lab{border-color:var(--green);color:var(--green)}
+.lres li a.t-lab i{background:var(--green);color:#0b0f14}
+/* ---- 验收关卡 ---- */
+.gate{margin:10px 0 4px;border:1px solid var(--line);border-left:3px solid var(--green);
+  border-radius:6px;background:var(--panel2)}
+.gate-head{display:flex;align-items:center;gap:9px;padding:8px 11px}
+.gate-dot{flex:none;width:12px;height:12px;border-radius:50%;border:2px solid var(--green);cursor:pointer}
+.gate.passed .gate-dot{background:var(--green);box-shadow:0 0 6px rgba(61,220,132,.6)}
+.gate-t{flex:1;font-size:13px;font-weight:600;color:var(--green)}
+.gate.passed .gate-t::after{content:" ✓ 已通过";color:var(--dim);font-weight:400;font-size:11px}
+.gate-x{background:none;border:1px solid var(--line);border-radius:5px;color:var(--dim);
+  padding:2px 9px;font-size:11px;cursor:pointer}
+.gate-x:hover{color:var(--green);border-color:var(--green)}
+.gate-body{display:none;padding:0 12px 12px}
+.gate.open .gate-body{display:block}
+.gsec{margin-top:12px}
+.gsec h4{margin:0 0 6px;font-size:12px;color:var(--amber);letter-spacing:.5px}
+.quiz{margin:0;padding-left:20px;color:var(--ink);font-size:12.5px}
+.quiz li{margin-bottom:7px}
+.qq{margin-right:8px}
+.qa-x{background:none;border:1px dashed var(--line);border-radius:5px;color:var(--dim);
+  padding:1px 7px;font-size:10.5px;cursor:pointer;vertical-align:1px}
+.qa-x:hover{color:var(--cyan);border-color:var(--cyan)}
+.qa{display:none;margin:5px 0 0;padding:6px 9px;background:var(--panel);
+  border-left:2px solid var(--cyan);border-radius:4px;color:var(--dim);font-size:12px}
+.quiz li.show .qa{display:block}
+.lab{padding:9px 11px;background:rgba(61,220,132,.06);border:1px solid rgba(61,220,132,.25);border-radius:6px}
+.lab-task{margin:0 0 6px;font-size:12.5px;color:var(--ink)}
+.lab-steps{margin:0 0 6px;padding-left:20px;font-size:12px;color:var(--dim)}
+.lab-steps li{margin-bottom:3px}
+.lab-pass{margin:6px 0 0;font-size:12px;color:var(--green)}
+.lab-pass b{margin-right:6px;padding:1px 6px;background:var(--green);color:#0b0f14;border-radius:4px;font-size:10.5px}
+.lab-tip{margin:5px 0 0;font-size:11.5px;color:var(--dim)}
+.pits{list-style:none;margin:0;padding:0;font-size:12px}
+.pits li{margin-bottom:7px;padding-left:11px;border-left:2px solid var(--red)}
+.pits b{display:block;color:var(--red);font-weight:600;margin-bottom:2px}
+.pits span{display:block;color:var(--dim)}
+.pits span::before{display:inline-block;min-width:38px;color:var(--line);content:""}
+.pit-c b,.pit-f b{display:inline}
+.help p{margin:0 0 6px;font-size:12px;color:var(--dim)}
+.help p b{color:var(--cyan);font-weight:600}
+.help .links{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 12px}
+.help .links a{font-size:11.5px;padding:2px 8px;border:1px solid var(--line);border-radius:10px}
+.help .links a:hover{border-color:var(--cyan)}
 .lnote-area{width:100%;background:var(--panel);color:var(--ink);border:1px solid var(--line);
   border-radius:6px;padding:7px 9px;font:12.5px/1.5 inherit;resize:vertical;min-height:56px}
 .empty{color:var(--dim);font-size:12px;padding:8px 0}
@@ -24159,357 +24211,547 @@ main{padding:0 26px 80px;max-width:1000px}
         <a class="course-title" href="https://ferrycofc.com/index/course/show/id/13.html" target="_blank" rel="noopener">驱动内核之保护模式</a>
         <span class="course-prog" data-course-total="58">0 / 58</span>
       </div>
-      <div class="chapter"><span class="chapter-title">【驱动安全攻防】保护模式</span><span class="chapter-n">58</span></div>
+      <div class="chapter"><span class="chapter-title">第一单元 · 段寄存器与保护模式总览</span><span class="chapter-n">6</span></div>
       <ul class="lessons">
-        <li class="lesson" data-id="L13_0">
+        <li class="lesson has-res" data-id="L13_0">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.0 保护模式-保护模式基本概念</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_0"></div></div>
+          <div class="lpanel"><div class="lguide">实模式段基址左移 4 位、无权限可言;保护模式下段寄存器变成&quot;选择子&quot;,地址与权限都要查表才知道。先建立这个总印象。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11163046.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 1.保护模式总览</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.1 为什么要保护</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_02.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.2 保护机制总览</a></li></ul></div><div class="lnote" data-note-id="L13_0"></div></div>
         </li>
-        <li class="lesson" data-id="L13_1">
+        <li class="lesson has-res" data-id="L13_1">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.0 保护模式-段与页特性初探</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_1"></div></div>
+          <div class="lpanel"><div class="lguide">段管&quot;能不能访问&quot;,页管&quot;访问落到哪块物理内存&quot;。两套机制串联:逻辑地址→(段)线性地址→(页)物理地址。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.3 段页组合</a></li><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11143967.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 虚拟内存与物理内存</a></li><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11163046.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 1.保护模式总览</a></li></ul></div><div class="lnote" data-note-id="L13_1"></div></div>
         </li>
-        <li class="lesson" data-id="L13_2">
+        <li class="lesson has-res" data-id="L13_2">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.1 保护模式-段寄存器</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_2"></div></div>
+          <div class="lpanel"><div class="lguide">CS/SS/DS/ES/FS/GS 六个。重点是 CS 决定当前执行权限、FS 在 Windows 里指向 TEB/KPCR。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11163622.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 2.段寄存器</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.1 段式地址转换</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/r--registers-" target="_blank" rel="noopener"><i>实操</i>WinDbg · r 看/改寄存器</a></li></ul></div><div class="lnote" data-note-id="L13_2"></div></div>
         </li>
-        <li class="lesson" data-id="L13_3">
+        <li class="lesson has-res" data-id="L13_3">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.2 保护模式-段寄存器结构解析</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_3"></div></div>
+          <div class="lpanel"><div class="lguide">16 位可见部分是选择子(高 13 位索引 + TI + RPL),另有程序看不到的 80 位隐藏描述符缓存——理解这个才懂为什么改了 GDT 不立刻生效。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11163622.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 2.段寄存器</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.1 段式地址转换</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/dg--display-selector-" target="_blank" rel="noopener"><i>实操</i>WinDbg · dg 解析段选择子</a></li></ul></div><div class="lnote" data-note-id="L13_3"></div></div>
         </li>
-        <li class="lesson" data-id="L13_4">
+        <li class="lesson has-res" data-id="L13_4">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.3 保护模式-段寄存器读写</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_4"></div></div>
+          <div class="lpanel"><div class="lguide">mov 只能写可见的 16 位;写入的瞬间 CPU 会去 GDT/LDT 取描述符填隐藏部分,并做权限检查——所以写段寄存器可能直接崩。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11163622.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 2.段寄存器</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s04_02.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 4.2 系统指令</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/r--registers-" target="_blank" rel="noopener"><i>实操</i>WinDbg · r 看/改寄存器</a></li></ul></div><div class="lnote" data-note-id="L13_4"></div></div>
         </li>
-        <li class="lesson" data-id="L13_5">
+        <li class="lesson has-res" data-id="L13_5">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.4 保护模式-段寄存器属性探测</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_5"></div></div>
+          <div class="lpanel"><div class="lguide">用 WinDbg 的 dg 把六个段寄存器逐个解析出来,对照 base/limit/DPL/type,亲眼确认 R3 和 R0 的 CS 不是同一个。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/dg--display-selector-" target="_blank" rel="noopener"><i>实操</i>WinDbg · dg 解析段选择子</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/r--registers-" target="_blank" rel="noopener"><i>实操</i>WinDbg · r 看/改寄存器</a></li><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11163622.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 2.段寄存器</a></li></ul></div><div class="lnote" data-note-id="L13_5"></div></div>
         </li>
-        <li class="lesson" data-id="L13_6">
+      </ul>
+      <div class="gate" data-gate="G13_0">
+        <div class="gate-head"><span class="gate-dot" title="标记本关通过"></span><span class="gate-t">验收关卡 · 段寄存器</span><button class="gate-x" type="button">展开</button></div>
+        <div class="gate-body">
+          <div class="gsec"><h4>概念自测</h4><ol class="quiz">
+            <li><span class="qq">段寄存器 16 位可见部分里,哪几位是索引?TI 和 RPL 各占几位?</span><button class="qa-x" type="button">看答案</button><div class="qa">高 13 位是描述符表索引,第 2 位是 TI(0 查 GDT、1 查 LDT),低 2 位是 RPL。所以选择子 0x1B = 索引 3、TI=0、RPL=3。</div></li>
+            <li><span class="qq">为什么直接改 GDT 里的描述符,当前段寄存器的行为不会立刻改变?</span><button class="qa-x" type="button">看答案</button><div class="qa">因为段寄存器有 80 位的隐藏描述符缓存,base/limit/属性在装载选择子的那一刻就被拷进缓存了。必须重新 mov 一次段寄存器(或跨段跳转)才会重新读表。</div></li>
+            <li><span class="qq">Windows 32 位下,R3 和 R0 的 CS 值分别是多少?怎么从值本身看出权限?</span><button class="qa-x" type="button">看答案</button><div class="qa">R3 的 CS 通常是 0x1B,R0 是 0x08。低 2 位就是 RPL,也就是当前的 CPL:0x1B &amp; 3 = 3,0x08 &amp; 3 = 0。</div></li>
+            <li><span class="qq">段管什么、页管什么?一个虚拟地址要经过几次转换?</span><button class="qa-x" type="button">看答案</button><div class="qa">段负责权限检查并把逻辑地址转成线性地址;页负责把线性地址转成物理地址。两次转换,顺序不可颠倒。</div></li>
+          </ol></div>
+          <div class="gsec lab"><h4>动手任务</h4>
+            <p class="lab-task">在 WinDbg 内核调试下,把当前上下文的六个段寄存器全部解析出来,并从数值本身推出当前 CPL。</p>
+            <ol class="lab-steps">
+              <li>搭好内核调试(VMware/Hyper-V + 串口或 net,见「WinDbg · 搭建内核调试环境」)。</li>
+              <li>中断到内核,执行 r 查看 cs ss ds es fs gs 六个值。</li>
+              <li>对每个值执行 dg &lt;选择子&gt;,记录 Base / Limit / DPL / Type。</li>
+              <li>在用户态进程上下文里(.process /r /p &lt;EPROCESS&gt;)再做一遍,对比 R3 与 R0 的差异。</li>
+            </ol>
+            <p class="lab-pass"><b>通过标准</b>你能不查表说出:①当前 CPL 是多少、从哪个数字看出来;②fs 在 R0 和 R3 分别指向什么(KPCR / TEB),base 值不同在哪;③哪个段的 Base 不是 0。</p>
+            <p class="lab-tip">提示 · dg 一次可以给范围:dg 0 30 会把 GDT 前几项全列出来,比一个一个看快。</p>
+          </div>
+          <div class="gsec"><h4>常见坑</h4><ul class="pits">
+            <li><b>dg 命令报错或输出全 0</b><span class="pit-c">原因 不在内核调试会话里,或当前不是 x86/x64 有效上下文。</span><span class="pit-f">怎么办 确认已经 break in 到内核(提示符是 kd&gt;),并且目标机没有处于挂起状态。</span></li>
+            <li><b>把选择子当成段基址去算地址</b><span class="pit-c">原因 实模式思维残留。</span><span class="pit-f">怎么办 记住保护模式下选择子只是&quot;表的下标&quot;,基址必须从描述符里取。</span></li>
+          </ul></div>
+          <div class="gsec help"><h4>卡住了怎么问</h4><p>贴出这四样东西,问题才问得清楚:<b>①</b> 你的目标(想验证什么)、<b>②</b> 实际操作(完整命令或代码)、<b>③</b> 实际输出(WinDbg/编译器原文,别转述)、<b>④</b> 你的假设(你认为应该是什么、为什么)。</p><ul class="links"><li><a href="https://bbs.kanxue.com/forum-2.htm" target="_blank" rel="noopener">看雪 · 驱动开发版块</a></li><li><a href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/" target="_blank" rel="noopener">WinDbg 官方文档</a></li><li><a href="https://stackoverflow.com/questions/tagged/windbg" target="_blank" rel="noopener">Stack Overflow · windbg</a></li></ul></div>
+        </div>
+      </div>
+      <div class="chapter"><span class="chapter-title">第二单元 · GDT 与段描述符</span><span class="chapter-n">9</span></div>
+      <ul class="lessons">
+        <li class="lesson has-res" data-id="L13_6">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.5 保护模式-全局描述符表</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_6"></div></div>
+          <div class="lpanel"><div class="lguide">GDTR 是 48 位(32 位基址 + 16 位界限)。表里每项 8 字节,第 0 项恒为空描述符。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/himu-qaq/p/18442980" target="_blank" rel="noopener"><i>主学</i>GDT 与分段机制详解</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.1 段式地址转换</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/r--registers-" target="_blank" rel="noopener"><i>实操</i>WinDbg · r 看/改寄存器</a></li></ul></div><div class="lnote" data-note-id="L13_6"></div></div>
         </li>
-        <li class="lesson" data-id="L13_7">
+        <li class="lesson has-res" data-id="L13_7">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.6 保护模式-段选择子与段描述符</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_7"></div></div>
+          <div class="lpanel"><div class="lguide">选择子 = 索引 + TI(查 GDT 还是 LDT)+ RPL(请求权限)。描述符 = 基址 + 界限 + 属性,字段被拆得很碎,要会手动拼。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/himu-qaq/p/18442980" target="_blank" rel="noopener"><i>主学</i>GDT 与分段机制详解</a></li><li><a class="t-main" href="https://www.cnblogs.com/sudochen/p/16194838.html" target="_blank" rel="noopener"><i>主学</i>X86 描述符介绍</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.1 段式地址转换</a></li></ul></div><div class="lnote" data-note-id="L13_7"></div></div>
         </li>
-        <li class="lesson" data-id="L13_8">
+        <li class="lesson has-res" data-id="L13_8">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.7 保护模式-段描述符解析</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_8"></div></div>
+          <div class="lpanel"><div class="lguide">把一个 8 字节描述符按位拆开:基址三段拼、界限两段拼、G 位决定界限单位。手拆一遍胜过看十遍图。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/sudochen/p/16194838.html" target="_blank" rel="noopener"><i>主学</i>X86 描述符介绍</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.1 段式地址转换</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/dg--display-selector-" target="_blank" rel="noopener"><i>实操</i>WinDbg · dg 解析段选择子</a></li></ul></div><div class="lnote" data-note-id="L13_8"></div></div>
         </li>
-        <li class="lesson" data-id="L13_9">
+        <li class="lesson has-res" data-id="L13_9">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.8 保护模式-段描述符P位测试</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_9"></div></div>
+          <div class="lpanel"><div class="lguide">P=0 表示描述符无效,访问会触发 #NP 异常。这是&quot;段不在内存&quot;的换页设计,也是常见的反调试/隐藏手法基础。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11178407.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 5.段描述符 P 位与 G 位</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.3 段级保护</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s09_08.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 9.8 异常条件详解</a></li></ul></div><div class="lnote" data-note-id="L13_9"></div></div>
         </li>
-        <li class="lesson" data-id="L13_10">
+        <li class="lesson has-res" data-id="L13_10">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.9 保护模式-段描述符G位测试</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_10"></div></div>
+          <div class="lpanel"><div class="lguide">G=0 界限以字节为单位(最大 1MB),G=1 以 4KB 页为单位(最大 4GB)。算有效界限时别忘了 G=1 要 &lt;&lt;12 再补 0xFFF。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11178407.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 5.段描述符 P 位与 G 位</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.1 段式地址转换</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/dg--display-selector-" target="_blank" rel="noopener"><i>实操</i>WinDbg · dg 解析段选择子</a></li></ul></div><div class="lnote" data-note-id="L13_10"></div></div>
         </li>
-        <li class="lesson" data-id="L13_11">
+        <li class="lesson has-res" data-id="L13_11">
           <span class="dot" title="标记完成"></span>
           <span class="lt">2.0 保护模式-段描述符S位测试</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_11"></div></div>
+          <div class="lpanel"><div class="lguide">S=1 是代码/数据段,S=0 是系统段(门、TSS、LDT)。S 位决定 TYPE 域四位怎么解释——这是读描述符的分岔口。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11179821.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 6.S 位与 TYPE 域</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.1 段式地址转换</a></li><li><a class="t-main" href="https://www.cnblogs.com/sudochen/p/16194838.html" target="_blank" rel="noopener"><i>主学</i>X86 描述符介绍</a></li></ul></div><div class="lnote" data-note-id="L13_11"></div></div>
         </li>
-        <li class="lesson" data-id="L13_12">
+        <li class="lesson has-res" data-id="L13_12">
           <span class="dot" title="标记完成"></span>
           <span class="lt">2.1 保护模式-数据段描述符属性测试</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_12"></div></div>
+          <div class="lpanel"><div class="lguide">数据段 TYPE 的三位:E(向下扩展)、W(可写)、A(已访问)。向下扩展段的界限含义是反的,这是经典陷阱。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11179821.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 6.S 位与 TYPE 域</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.3 段级保护</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.1 段式地址转换</a></li></ul></div><div class="lnote" data-note-id="L13_12"></div></div>
         </li>
-        <li class="lesson" data-id="L13_13">
+        <li class="lesson has-res" data-id="L13_13">
           <span class="dot" title="标记完成"></span>
           <span class="lt">2.2 保护模式-代码段描述符属性测试</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_13"></div></div>
+          <div class="lpanel"><div class="lguide">代码段 TYPE 的三位:C(一致)、R(可读)、A。代码段永远不可写;要改代码得另外映射一个数据段——很多 patch 手法的原理。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11179821.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 6.S 位与 TYPE 域</a></li><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11200111.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 7.D/B 位</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.3 段级保护</a></li></ul></div><div class="lnote" data-note-id="L13_13"></div></div>
         </li>
-        <li class="lesson" data-id="L13_14">
+        <li class="lesson has-res" data-id="L13_14">
           <span class="dot" title="标记完成"></span>
           <span class="lt">2.3 保护模式-系统段描述符种类区别</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_14"></div></div>
+          <div class="lpanel"><div class="lguide">系统段 TYPE 有 16 种值:调用门/中断门/陷阱门/任务门/TSS/LDT 各占一个编号。背下这张表,后面所有门都靠它区分。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11179821.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 6.S 位与 TYPE 域</a></li><li><a class="t-main" href="https://www.cnblogs.com/sudochen/p/16194838.html" target="_blank" rel="noopener"><i>主学</i>X86 描述符介绍</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.1 段式地址转换</a></li></ul></div><div class="lnote" data-note-id="L13_14"></div></div>
         </li>
-        <li class="lesson" data-id="L13_15">
+      </ul>
+      <div class="gate" data-gate="G13_1">
+        <div class="gate-head"><span class="gate-dot" title="标记本关通过"></span><span class="gate-t">验收关卡 · GDT 与段描述符</span><button class="gate-x" type="button">展开</button></div>
+        <div class="gate-body">
+          <div class="gsec"><h4>概念自测</h4><ol class="quiz">
+            <li><span class="qq">一个 8 字节段描述符里,32 位基址被拆成了几段?分别在哪些字节?</span><button class="qa-x" type="button">看答案</button><div class="qa">拆成三段:字节 2-3 是基址低 16 位、字节 4 是基址 16-23 位、字节 7 是基址 24-31 位。界限则拆成字节 0-1(低 16 位)和字节 6 的低 4 位。</div></li>
+            <li><span class="qq">G=1 时,Limit 字段写 0xFFFFF,实际有效界限是多少?</span><button class="qa-x" type="button">看答案</button><div class="qa">0xFFFFF × 4KB + 0xFFF = 0xFFFFFFFF,即 4GB。G=1 时要左移 12 位并把低 12 位补 1,不是简单乘 4096。</div></li>
+            <li><span class="qq">S 位为什么是读描述符的第一个分岔口?</span><button class="qa-x" type="button">看答案</button><div class="qa">因为 S=1 时 TYPE 的四位解释为代码/数据段属性(E/W/A 或 C/R/A),S=0 时同样四位解释为系统段种类(调用门 12、中断门 14、陷阱门 15、TSS 9/11、任务门 5、LDT 2)。同样的 bit,含义完全不同。</div></li>
+            <li><span class="qq">向下扩展的数据段(E=1),Limit 的含义有什么不同?</span><button class="qa-x" type="button">看答案</button><div class="qa">有效范围变成 Limit+1 到 段上界,方向是反的。这是给栈段设计的,栈向下增长时扩大栈只需要减小 Limit。</div></li>
+            <li><span class="qq">为什么代码段永远不能有&quot;可写&quot;属性?想改代码怎么办?</span><button class="qa-x" type="button">看答案</button><div class="qa">TYPE 里代码段只有 C/R/A 三位,没有 W 位。要改代码必须另建一个基址相同的数据段描述符(别名段),用它去写。</div></li>
+          </ol></div>
+          <div class="gsec lab"><h4>动手任务</h4>
+            <p class="lab-task">手工解析 GDT 中的一项描述符:只看 8 字节原始十六进制,推出 Base / Limit / DPL / 类型,再用 dg 对答案。</p>
+            <ol class="lab-steps">
+              <li>r gdtr 与 r gdtl 取得 GDT 基址和界限。</li>
+              <li>dq &lt;gdt基址&gt; L10 把前 16 项的原始 8 字节 dump 出来。</li>
+              <li>挑第 1 项(0x08,内核 CS)和第 3 项(0x18 或 0x1B 对应项),在纸上按位拆:基址三段拼接、界限两段拼接、看 G/D/P/S/DPL/TYPE。</li>
+              <li>对每一项执行 dg &lt;选择子&gt;,逐字段核对。</li>
+            </ol>
+            <p class="lab-pass"><b>通过标准</b>你手拆出来的 Base / Limit / DPL / Type 与 dg 输出完全一致(至少两项),并且能说出 G 位对你算 Limit 的具体影响。</p>
+            <p class="lab-tip">提示 · 先在纸上写出 8 字节的位布局图再动手,比硬记字段位置快得多。</p>
+          </div>
+          <div class="gsec"><h4>常见坑</h4><ul class="pits">
+            <li><b>基址拼错,算出来的地址明显不对</b><span class="pit-c">原因 漏了字节 7 的基址高 8 位,或者字节序看反了。</span><span class="pit-f">怎么办 x86 是小端:dq 输出的是一个 64 位整数,最低字节对应描述符字节 0。按整数的 bit 位置来拆比按&quot;字节顺序&quot;更不容易错。</span></li>
+            <li><b>G=1 时 Limit 忘记补低 12 位的 1</b><span class="pit-c">原因 把 G 当成单纯的乘法。</span><span class="pit-f">怎么办 G=1 的语义是&quot;以页为单位&quot;,页内全部可访问,所以低 12 位必须补 1。</span></li>
+          </ul></div>
+          <div class="gsec help"><h4>卡住了怎么问</h4><p>贴出这四样东西,问题才问得清楚:<b>①</b> 你的目标(想验证什么)、<b>②</b> 实际操作(完整命令或代码)、<b>③</b> 实际输出(WinDbg/编译器原文,别转述)、<b>④</b> 你的假设(你认为应该是什么、为什么)。</p><ul class="links"><li><a href="https://bbs.kanxue.com/forum-2.htm" target="_blank" rel="noopener">看雪 · 驱动开发版块</a></li><li><a href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/" target="_blank" rel="noopener">WinDbg 官方文档</a></li><li><a href="https://stackoverflow.com/questions/tagged/windbg" target="_blank" rel="noopener">Stack Overflow · windbg</a></li></ul></div>
+        </div>
+      </div>
+      <div class="chapter"><span class="chapter-title">第三单元 · 权限检查、跨段跳转与调用门</span><span class="chapter-n">12</span></div>
+      <ul class="lessons">
+        <li class="lesson has-res" data-id="L13_15">
           <span class="dot" title="标记完成"></span>
           <span class="lt">2.4 保护模式-CPU权限等级</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_15"></div></div>
+          <div class="lpanel"><div class="lguide">Ring 0~3,x86 实际只用了 0 和 3。权限不是&quot;身份&quot;而是&quot;三个数字的比较规则&quot;,下一节就是那套规则。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.1 为什么要保护</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_02.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.2 保护机制总览</a></li><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11200941.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 8.段权限检查</a></li></ul></div><div class="lnote" data-note-id="L13_15"></div></div>
         </li>
-        <li class="lesson" data-id="L13_16">
+        <li class="lesson has-res" data-id="L13_16">
           <span class="dot" title="标记完成"></span>
           <span class="lt">2.5 保护模式-CPL &amp; DPL &amp; RPL</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_16"></div></div>
+          <div class="lpanel"><div class="lguide">CPL=当前 CS 的低 2 位;DPL=目标描述符的权限;RPL=选择子低 2 位。核心规则:访问数据段要 max(CPL,RPL) &lt;= DPL。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11200941.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 8.段权限检查</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.3 段级保护</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_02.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.2 保护机制总览</a></li></ul></div><div class="lnote" data-note-id="L13_16"></div></div>
         </li>
-        <li class="lesson" data-id="L13_17">
+        <li class="lesson has-res" data-id="L13_17">
           <span class="dot" title="标记完成"></span>
           <span class="lt">2.6 保护模式-代码跨段跳转</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_17"></div></div>
+          <div class="lpanel"><div class="lguide">jmp far / call far 的完整校验流程:取描述符→查 S 与 TYPE→按一致/非一致分别比 DPL→通过才换 CS。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11201216.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 9.代码的跨段跳转流程</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.3 段级保护</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.1 段式地址转换</a></li></ul></div><div class="lnote" data-note-id="L13_17"></div></div>
         </li>
-        <li class="lesson" data-id="L13_18">
+        <li class="lesson has-res" data-id="L13_18">
           <span class="dot" title="标记完成"></span>
           <span class="lt">2.7 保护模式-代码段Conforming测试</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_18"></div></div>
+          <div class="lpanel"><div class="lguide">一致代码段(C=1)允许低权限跳进来&quot;但不提权&quot;——CPL 保持原值。这是最容易背反的一条,务必动手验。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-lab" href="https://www.cnblogs.com/hanhandaren/p/11260032.html" target="_blank" rel="noopener"><i>实操</i>汉大人 · 测试一致代码段</a></li><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11200941.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 8.段权限检查</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.3 段级保护</a></li></ul></div><div class="lnote" data-note-id="L13_18"></div></div>
         </li>
-        <li class="lesson" data-id="L13_19">
+        <li class="lesson has-res" data-id="L13_19">
           <span class="dot" title="标记完成"></span>
           <span class="lt">2.8 保护模式-Call Far</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_19"></div></div>
+          <div class="lpanel"><div class="lguide">call far 会额外压入返回的 CS:EIP。跨段调用能不能提权,取决于目标是普通代码段还是门——普通段不行。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11201854.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 10.长调用与短调用</a></li><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11201216.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 9.代码的跨段跳转流程</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.3 段级保护</a></li></ul></div><div class="lnote" data-note-id="L13_19"></div></div>
         </li>
-        <li class="lesson" data-id="L13_20">
+        <li class="lesson has-res" data-id="L13_20">
           <span class="dot" title="标记完成"></span>
           <span class="lt">2.9 保护模式-调用门(Call Gate)</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_20"></div></div>
+          <div class="lpanel"><div class="lguide">调用门描述符里存着目标段选择子 + 偏移,call far 时 CPU 用门里的地址而忽略你给的偏移。这是从 R3 合法进 R0 的正门。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11202497.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 11.调用门</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.3 段级保护</a></li><li><a class="t-main" href="https://www.cnblogs.com/sudochen/p/16194838.html" target="_blank" rel="noopener"><i>主学</i>X86 描述符介绍</a></li></ul></div><div class="lnote" data-note-id="L13_20"></div></div>
         </li>
-        <li class="lesson" data-id="L13_21">
+        <li class="lesson has-res" data-id="L13_21">
           <span class="dot" title="标记完成"></span>
           <span class="lt">3.0 保护模式-权限切换特征</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_21"></div></div>
+          <div class="lpanel"><div class="lguide">提权时 CPU 会从 TSS 里取对应级别的 SS0:ESP0 换栈,并把旧的 SS:ESP 压到新栈上。识别提权就看有没有换栈。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11202497.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 11.调用门</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s07_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 7.1 任务状态段</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.3 段级保护</a></li></ul></div><div class="lnote" data-note-id="L13_21"></div></div>
         </li>
-        <li class="lesson" data-id="L13_22">
+        <li class="lesson has-res" data-id="L13_22">
           <span class="dot" title="标记完成"></span>
           <span class="lt">3.1 保护模式-调用门执行流程以及权限校验</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_22"></div></div>
+          <div class="lpanel"><div class="lguide">完整流程:门 DPL &gt;= max(CPL,RPL) 才能用门;目标段 DPL &lt;= CPL 才能提权。两道检查方向相反,分清楚。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11202497.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 11.调用门</a></li><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11200941.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 8.段权限检查</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.3 段级保护</a></li></ul></div><div class="lnote" data-note-id="L13_22"></div></div>
         </li>
-        <li class="lesson" data-id="L13_23">
+        <li class="lesson has-res" data-id="L13_23">
           <span class="dot" title="标记完成"></span>
           <span class="lt">3.2 保护模式-有参调用门</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_23"></div></div>
+          <div class="lpanel"><div class="lguide">门描述符的 ParamCount 指明从旧栈往新栈复制几个双字参数。参数是 CPU 帮你搬的,不是你 push 过去的。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11202497.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 11.调用门</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.3 段级保护</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.1 段式地址转换</a></li></ul></div><div class="lnote" data-note-id="L13_23"></div></div>
         </li>
-        <li class="lesson" data-id="L13_24">
+        <li class="lesson has-res" data-id="L13_24">
           <span class="dot" title="标记完成"></span>
           <span class="lt">3.3 保护模式-嵌套调用门</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_24"></div></div>
+          <div class="lpanel"><div class="lguide">调用门里再调用调用门,栈的层层切换与返回时的 retf 参数弹出。画出栈图是唯一靠谱的理解方式。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11202497.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 11.调用门</a></li><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11201854.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 10.长调用与短调用</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.3 段级保护</a></li></ul></div><div class="lnote" data-note-id="L13_24"></div></div>
         </li>
-        <li class="lesson" data-id="L13_25">
+        <li class="lesson has-res" data-id="L13_25">
           <span class="dot" title="标记完成"></span>
           <span class="lt">3.4 保护模式-逃逸进入R1层</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_25"></div></div>
+          <div class="lpanel"><div class="lguide">把目标段 DPL 设成 1,通过调用门落到 Ring 1——验证 x86 确实有四环,只是操作系统没用。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11202497.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 11.调用门</a></li><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11200941.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 8.段权限检查</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.3 段级保护</a></li></ul></div><div class="lnote" data-note-id="L13_25"></div></div>
         </li>
-        <li class="lesson" data-id="L13_26">
+        <li class="lesson has-res" data-id="L13_26">
           <span class="dot" title="标记完成"></span>
           <span class="lt">3.5 保护模式-应用层调用内核函数</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_26"></div></div>
+          <div class="lpanel"><div class="lguide">用调用门在 R3 调到内核地址执行代码,这是理解&quot;系统调用为什么需要门&quot;的最直接实验(也是提权手法的原型)。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-lab" href="https://www.cnblogs.com/hanhandaren/p/11225817.html" target="_blank" rel="noopener"><i>实操</i>汉大人 · 练习:三环访问高 2G</a></li><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11202497.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 11.调用门</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/x--examine-symbols-" target="_blank" rel="noopener"><i>实操</i>WinDbg · x 查符号</a></li></ul></div><div class="lnote" data-note-id="L13_26"></div></div>
         </li>
-        <li class="lesson" data-id="L13_27">
+      </ul>
+      <div class="gate" data-gate="G13_2">
+        <div class="gate-head"><span class="gate-dot" title="标记本关通过"></span><span class="gate-t">验收关卡 · 权限检查与调用门</span><button class="gate-x" type="button">展开</button></div>
+        <div class="gate-body">
+          <div class="gsec"><h4>概念自测</h4><ol class="quiz">
+            <li><span class="qq">访问数据段的权限规则是什么?写成一个不等式。</span><button class="qa-x" type="button">看答案</button><div class="qa">max(CPL, RPL) &lt;= DPL 才允许。注意是&quot;数值上小于等于&quot;,而数值越小权限越高。</div></li>
+            <li><span class="qq">一致代码段(C=1)最反直觉的一点是什么?</span><button class="qa-x" type="button">看答案</button><div class="qa">低权限代码可以跳进去执行(只要 CPL &gt;= DPL),但 CPL 保持不变——不提权。它是给共享的库代码用的,不是提权通道。</div></li>
+            <li><span class="qq">通过调用门提权时,要过哪两道方向相反的检查?</span><button class="qa-x" type="button">看答案</button><div class="qa">①门本身:门的 DPL &gt;= max(CPL, RPL),即&quot;你的权限够不够低到能用这道门&quot;;②目标代码段:段的 DPL &lt;= CPL 才能真正跳过去并提权。一个要求 DPL 大,一个要求 DPL 小。</div></li>
+            <li><span class="qq">提权发生时栈怎么变?怎么从现象判断&quot;确实提权了&quot;?</span><button class="qa-x" type="button">看答案</button><div class="qa">CPU 从 TSS 取对应 Ring 的 SS0:ESP0(或 SS1/SS2)换到新栈,并把旧的 SS、ESP 压入新栈,然后才压返回的 CS:EIP。看到换栈就是提权了。</div></li>
+            <li><span class="qq">调用门的 ParamCount 字段是干什么的?</span><button class="qa-x" type="button">看答案</button><div class="qa">指明提权换栈时,CPU 自动从旧栈往新栈复制多少个 32 位参数(0~31 个)。参数是硬件搬的,不是你手动 push 到新栈的。</div></li>
+          </ol></div>
+          <div class="gsec lab"><h4>动手任务</h4>
+            <p class="lab-task">在 GDT 空闲项里构造一个调用门,从 R3 通过 call far 进入 R0 执行一段自己的代码,再正常返回。</p>
+            <ol class="lab-steps">
+              <li>先用内核调试或一个已能加载的测试驱动,在 GDT 里找一个空描述符项(比如某个 P=0 的槽位)。</li>
+              <li>构造调用门描述符:TYPE=12(32 位调用门)、门 DPL=3、目标选择子=内核 CS(0x08)、偏移=你的处理函数地址、ParamCount=0。</li>
+              <li>R3 侧用一个 far 指针(offset 随便填,CPU 会忽略;选择子填门的选择子)执行 call far。</li>
+              <li>在处理函数入口用 bp 断下,r 看 CS 的低 2 位确认已是 0,再看 ESP 是否已换到内核栈。</li>
+              <li>处理函数以 retf 返回,确认 R3 侧继续正常执行。</li>
+            </ol>
+            <p class="lab-pass"><b>通过标准</b>断在处理函数时 CS&amp;3 == 0、ESP 落在内核栈范围内,retf 后 R3 程序没有崩溃并继续往下跑。</p>
+            <p class="lab-tip">提示 · 第一次做把处理函数写成只有 retf 一条指令,先跑通&quot;进得去出得来&quot;,再往里加内容。</p>
+          </div>
+          <div class="gsec"><h4>常见坑</h4><ul class="pits">
+            <li><b>call far 立刻 #GP</b><span class="pit-c">原因 门 DPL 设成了 0,R3 用不了这道门;或目标段选择子写错。</span><span class="pit-f">怎么办 门 DPL 必须 &gt;= 调用方 CPL(要 R3 能用就设 3),而目标代码段的 DPL 要 &lt;= 0 才能提到 R0。</span></li>
+            <li><b>进去了但一执行就蓝屏</b><span class="pit-c">原因 内核栈没换成功,或处理函数里用了 R3 的段寄存器/地址。</span><span class="pit-f">怎么办 进入 R0 后 DS/ES 仍是 R3 的选择子,访问内核数据前先自己加载内核数据段;返回前恢复。</span></li>
+            <li><b>retf 后 R3 栈错乱</b><span class="pit-c">原因 ParamCount 与实际参数数量对不上,或用了 ret 而非 retf。</span><span class="pit-f">怎么办 跨段返回必须 retf;有参数时 retf N 要和 ParamCount 约定一致。</span></li>
+          </ul></div>
+          <div class="gsec help"><h4>卡住了怎么问</h4><p>贴出这四样东西,问题才问得清楚:<b>①</b> 你的目标(想验证什么)、<b>②</b> 实际操作(完整命令或代码)、<b>③</b> 实际输出(WinDbg/编译器原文,别转述)、<b>④</b> 你的假设(你认为应该是什么、为什么)。</p><ul class="links"><li><a href="https://bbs.kanxue.com/forum-2.htm" target="_blank" rel="noopener">看雪 · 驱动开发版块</a></li><li><a href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/" target="_blank" rel="noopener">WinDbg 官方文档</a></li><li><a href="https://stackoverflow.com/questions/tagged/windbg" target="_blank" rel="noopener">Stack Overflow · windbg</a></li></ul></div>
+        </div>
+      </div>
+      <div class="chapter"><span class="chapter-title">第四单元 · 中断门与陷阱门</span><span class="chapter-n">5</span></div>
+      <ul class="lessons">
+        <li class="lesson has-res" data-id="L13_27">
           <span class="dot" title="标记完成"></span>
           <span class="lt">3.6 保护模式-中断描述符</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_27"></div></div>
+          <div class="lpanel"><div class="lguide">IDTR 指向 IDT,表里 256 项全是门描述符(中断门/陷阱门/任务门),没有段描述符。用 !idt 直接看 Windows 的实际布局。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s09_04.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 9.4 中断描述符表</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s09_05.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 9.5 IDT 描述符</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/-idt" target="_blank" rel="noopener"><i>实操</i>WinDbg · !idt 看中断表</a></li></ul></div><div class="lnote" data-note-id="L13_27"></div></div>
         </li>
-        <li class="lesson" data-id="L13_28">
+        <li class="lesson has-res" data-id="L13_28">
           <span class="dot" title="标记完成"></span>
           <span class="lt">3.7 保护模式-INT3执行流程</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_28"></div></div>
+          <div class="lpanel"><div class="lguide">int 3 → 查 IDT 第 3 项 → 压 EFLAGS/CS/EIP →(可能换栈)→ 进内核。跟一遍就懂了调试器断点的底层。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11205672.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 12.中断门</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s09_06.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 9.6 中断任务与中断过程</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/bp--bu--bm--set-breakpoint-" target="_blank" rel="noopener"><i>实操</i>WinDbg · bp 下断点</a></li></ul></div><div class="lnote" data-note-id="L13_28"></div></div>
         </li>
-        <li class="lesson" data-id="L13_29">
+        <li class="lesson has-res" data-id="L13_29">
           <span class="dot" title="标记完成"></span>
           <span class="lt">3.8 保护模式-中断门提权 &amp; IF TF VM NT</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_29"></div></div>
+          <div class="lpanel"><div class="lguide">中断门进入时 IF 自动清零(屏蔽中断),陷阱门不清——这是两者唯一的实质区别。TF/VM/NT 的变化也在这里一起理清。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/onetrainee/p/12436327.html" target="_blank" rel="noopener"><i>主学</i>中断门与陷阱门的区别</a></li><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11205672.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 12.中断门</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s09_02.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 9.2 中断的开关</a></li></ul></div><div class="lnote" data-note-id="L13_29"></div></div>
         </li>
-        <li class="lesson" data-id="L13_30">
+        <li class="lesson has-res" data-id="L13_30">
           <span class="dot" title="标记完成"></span>
           <span class="lt">3.9 保护模式-变形中断门</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_30"></div></div>
+          <div class="lpanel"><div class="lguide">把 IDT 项的 TYPE/DPL 改掉,观察 CPU 行为变化(比如把 DPL 改成 0 让 R3 的 int 触发 #GP)。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11205672.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 12.中断门</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s09_05.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 9.5 IDT 描述符</a></li><li><a class="t-ext" href="https://www.4hou.com/posts/wR8w" target="_blank" rel="noopener"><i>延伸</i>嘶吼 · Windows 内核 IDT 总结</a></li></ul></div><div class="lnote" data-note-id="L13_30"></div></div>
         </li>
-        <li class="lesson" data-id="L13_31">
+        <li class="lesson has-res" data-id="L13_31">
           <span class="dot" title="标记完成"></span>
           <span class="lt">4.0 保护模式-陷进门示例</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_31"></div></div>
+          <div class="lpanel"><div class="lguide">陷阱门保留中断响应,适合调试异常这类&quot;不急着关中断&quot;的场景。对比中断门跑一遍就记住了。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11205734.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 13.陷阱门</a></li><li><a class="t-main" href="https://www.cnblogs.com/onetrainee/p/12436327.html" target="_blank" rel="noopener"><i>主学</i>中断门与陷阱门的区别</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s09_06.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 9.6 中断任务与中断过程</a></li></ul></div><div class="lnote" data-note-id="L13_31"></div></div>
         </li>
-        <li class="lesson" data-id="L13_32">
+      </ul>
+      <div class="gate" data-gate="G13_3">
+        <div class="gate-head"><span class="gate-dot" title="标记本关通过"></span><span class="gate-t">验收关卡 · 中断门与陷阱门</span><button class="gate-x" type="button">展开</button></div>
+        <div class="gate-body">
+          <div class="gsec"><h4>概念自测</h4><ol class="quiz">
+            <li><span class="qq">IDT 里可以放哪三种描述符?能放段描述符吗?</span><button class="qa-x" type="button">看答案</button><div class="qa">只能放中断门(TYPE=14/6)、陷阱门(TYPE=15/7)、任务门(TYPE=5)。放段描述符会触发 #GP。</div></li>
+            <li><span class="qq">中断门和陷阱门唯一的实质区别是什么?</span><button class="qa-x" type="button">看答案</button><div class="qa">通过中断门进入时 CPU 自动把 EFLAGS.IF 清零(屏蔽可屏蔽中断),陷阱门不动 IF。其余流程完全一样。</div></li>
+            <li><span class="qq">为什么 R3 的 int 3 能进内核,而 R3 的 int 0x2E 在某些版本上会 #GP?</span><button class="qa-x" type="button">看答案</button><div class="qa">取决于对应 IDT 项的门 DPL。int 3 那一项 DPL=3 所以 R3 可用;若某项 DPL=0,R3 主动 int 它就会因为 DPL &lt; CPL 而 #GP。注意硬件中断不走这个检查。</div></li>
+            <li><span class="qq">中断进入内核时,栈上从高到低依次压了什么?</span><button class="qa-x" type="button">看答案</button><div class="qa">若发生提权:旧 SS、旧 ESP、EFLAGS、CS、EIP,有错误码的异常再压错误码。不提权则没有前两项。</div></li>
+            <li><span class="qq">TF 位在中断进入时怎么变?这和单步调试有什么关系?</span><button class="qa-x" type="button">看答案</button><div class="qa">CPU 保存 EFLAGS 后会清 TF,防止在中断处理程序里继续单步。调试器就是靠置 TF + #DB(1 号)实现单步的。</div></li>
+          </ol></div>
+          <div class="gsec lab"><h4>动手任务</h4>
+            <p class="lab-task">跟踪一次 int 3 的完整进入过程,并从 IDT 原始数据手工还原出 3 号中断的处理函数地址。</p>
+            <ol class="lab-steps">
+              <li>r idtr / r idtl 取得 IDT 基址。</li>
+              <li>dq &lt;idt基址&gt;+3*8 L1 取出第 3 项的 8 字节原始值。</li>
+              <li>手工拼出偏移(低 16 位在字节 0-1,高 16 位在字节 6-7)和选择子(字节 2-3),读出 TYPE 和 DPL。</li>
+              <li>ln &lt;你算出的地址&gt; 看是不是 nt!KiTrap03,再用 !idt 3 对答案。</li>
+              <li>在 R3 程序里执行 int 3,用 bp nt!KiTrap03 断下,k 看栈、r 看 CS/EFLAGS 变化。</li>
+            </ol>
+            <p class="lab-pass"><b>通过标准</b>手算出的处理函数地址与 !idt 3 一致;并且你能指出进入后 IF 位是否被清零、由此判断这一项是中断门还是陷阱门。</p>
+            <p class="lab-tip">提示 · !idt 不带参数会列全表,先看一眼整体再挑单项细究。</p>
+          </div>
+          <div class="gsec"><h4>常见坑</h4><ul class="pits">
+            <li><b>手算的地址和 !idt 差很远</b><span class="pit-c">原因 门描述符的偏移是拆成高低两半的,中间 4 字节是选择子和属性。</span><span class="pit-f">怎么办 按 IDT 门的布局重拼:offset = (字节7:6 &lt;&lt; 16) | 字节1:0。</span></li>
+            <li><b>改 IDT 后系统立刻蓝屏</b><span class="pit-c">原因 PatchGuard,或多核下只改了一个 CPU 的 IDT。</span><span class="pit-f">怎么办 实验请在测试模式 + 虚拟机里做,并且理解每个 CPU 有各自的 IDTR。</span></li>
+          </ul></div>
+          <div class="gsec help"><h4>卡住了怎么问</h4><p>贴出这四样东西,问题才问得清楚:<b>①</b> 你的目标(想验证什么)、<b>②</b> 实际操作(完整命令或代码)、<b>③</b> 实际输出(WinDbg/编译器原文,别转述)、<b>④</b> 你的假设(你认为应该是什么、为什么)。</p><ul class="links"><li><a href="https://bbs.kanxue.com/forum-2.htm" target="_blank" rel="noopener">看雪 · 驱动开发版块</a></li><li><a href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/" target="_blank" rel="noopener">WinDbg 官方文档</a></li><li><a href="https://stackoverflow.com/questions/tagged/windbg" target="_blank" rel="noopener">Stack Overflow · windbg</a></li></ul></div>
+        </div>
+      </div>
+      <div class="chapter"><span class="chapter-title">第五单元 · 任务段与任务切换</span><span class="chapter-n">7</span></div>
+      <ul class="lessons">
+        <li class="lesson has-res" data-id="L13_32">
           <span class="dot" title="标记完成"></span>
           <span class="lt">4.1 保护模式-任务段描述符</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_32"></div></div>
+          <div class="lpanel"><div class="lguide">TSS 描述符 TYPE=9(可用)或 11(忙)。B 位标记任务正在运行,重复切入同一个忙任务会 #GP。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11206460.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 14.TSS 任务段</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s07_02.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 7.2 TSS 描述符</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s07_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 7.1 任务状态段</a></li></ul></div><div class="lnote" data-note-id="L13_32"></div></div>
         </li>
-        <li class="lesson" data-id="L13_33">
+        <li class="lesson has-res" data-id="L13_33">
           <span class="dot" title="标记完成"></span>
           <span class="lt">4.2 保护模式-KTSS</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_33"></div></div>
+          <div class="lpanel"><div class="lguide">Windows 并不用硬件任务切换,但保留了 KTSS——主要给 双重错误 和 NMI 用。dt nt!_KTSS 看真实结构。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11206460.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 14.TSS 任务段</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/dt--display-type-" target="_blank" rel="noopener"><i>实操</i>WinDbg · dt 显示结构体</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s07_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 7.1 任务状态段</a></li></ul></div><div class="lnote" data-note-id="L13_33"></div></div>
         </li>
-        <li class="lesson" data-id="L13_34">
+        <li class="lesson has-res" data-id="L13_34">
           <span class="dot" title="标记完成"></span>
           <span class="lt">4.3 保护模式-任务切换执行流程全解</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_34"></div></div>
+          <div class="lpanel"><div class="lguide">切换时 CPU 保存全部通用寄存器 + 段寄存器 + CR3 + EIP 到旧 TSS,再从新 TSS 全量恢复。这是硬件级的上下文切换。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s07_05.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 7.5 任务切换</a></li><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11206460.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 14.TSS 任务段</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s07_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 7.3 任务寄存器</a></li></ul></div><div class="lnote" data-note-id="L13_34"></div></div>
         </li>
-        <li class="lesson" data-id="L13_35">
+        <li class="lesson has-res" data-id="L13_35">
           <span class="dot" title="标记完成"></span>
           <span class="lt">4.4 保护模式-任务跳转并修复</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_35"></div></div>
+          <div class="lpanel"><div class="lguide">jmp far 到 TSS 描述符即触发任务切换。修复要点:LDT 选择子、CR3、以及各段选择子必须自洽,否则切过去立刻三重错误。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s07_05.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 7.5 任务切换</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s07_06.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 7.6 任务链接(NT)</a></li><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11206460.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 14.TSS 任务段</a></li></ul></div><div class="lnote" data-note-id="L13_35"></div></div>
         </li>
-        <li class="lesson" data-id="L13_36">
+        <li class="lesson has-res" data-id="L13_36">
           <span class="dot" title="标记完成"></span>
           <span class="lt">4.5 保护模式-任务门与任务段</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_36"></div></div>
+          <div class="lpanel"><div class="lguide">任务门是 IDT 或 GDT 里指向 TSS 的一层间接。用它可以让某个中断直接切到独立任务——Windows 的双重错误处理就是这么做的。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11207994.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 15.TSS 任务门</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s07_04.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 7.4 任务门描述符</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s09_06.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 9.6 中断任务与中断过程</a></li></ul></div><div class="lnote" data-note-id="L13_36"></div></div>
         </li>
-        <li class="lesson" data-id="L13_37">
+        <li class="lesson has-res" data-id="L13_37">
           <span class="dot" title="标记完成"></span>
           <span class="lt">4.6 保护模式-任务切换并修复CR3</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_37"></div></div>
+          <div class="lpanel"><div class="lguide">新 TSS 里的 CR3 决定切过去后用哪张页表。改 CR3 = 换整个地址空间,这是理解进程隔离的关键一步。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s07_05.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 7.5 任务切换</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s07_07.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 7.7 任务地址空间</a></li><li><a class="t-main" href="https://cloud.tencent.com/developer/article/1746324" target="_blank" rel="noopener"><i>主学</i>线性地址到物理地址的转换</a></li></ul></div><div class="lnote" data-note-id="L13_37"></div></div>
         </li>
-        <li class="lesson" data-id="L13_38">
+        <li class="lesson has-res" data-id="L13_38">
           <span class="dot" title="标记完成"></span>
           <span class="lt">4.7 保护模式-段机制完结</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_38"></div></div>
+          <div class="lpanel"><div class="lguide">回顾:段机制解决&quot;谁能访问什么&quot;,到此闭环。下一步交给分页解决&quot;访问落在哪里&quot;。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.1 段式地址转换</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.3 段页组合</a></li><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11163046.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 1.保护模式总览</a></li></ul></div><div class="lnote" data-note-id="L13_38"></div></div>
         </li>
-        <li class="lesson" data-id="L13_39">
+      </ul>
+      <div class="gate" data-gate="G13_4">
+        <div class="gate-head"><span class="gate-dot" title="标记本关通过"></span><span class="gate-t">验收关卡 · 任务段与任务切换</span><button class="gate-x" type="button">展开</button></div>
+        <div class="gate-body">
+          <div class="gsec"><h4>概念自测</h4><ol class="quiz">
+            <li><span class="qq">TSS 描述符 TYPE=9 和 TYPE=11 有什么区别?</span><button class="qa-x" type="button">看答案</button><div class="qa">B(Busy)位。9 是可用、11 是忙(任务正在运行或被嵌套)。跳到一个忙的 TSS 会触发 #GP,防止任务递归。</div></li>
+            <li><span class="qq">Windows 用硬件任务切换来做线程调度吗?那 KTSS 是干什么的?</span><button class="qa-x" type="button">看答案</button><div class="qa">不用——硬件切换太慢。Windows 只保留少数几个 TSS:主要给双重错误(#DF)和 NMI 用任务门切换,因为那时候栈可能已经不可用了。另外 ESP0 字段每次线程切换都要更新,用于 R3→R0 换栈。</div></li>
+            <li><span class="qq">任务切换时 CPU 会自动保存/恢复哪些东西?</span><button class="qa-x" type="button">看答案</button><div class="qa">全部通用寄存器、六个段寄存器、EFLAGS、EIP、LDTR、CR3。全部由硬件搬运,这就是&quot;硬件上下文切换&quot;。</div></li>
+            <li><span class="qq">NT 标志位在任务切换中起什么作用?</span><button class="qa-x" type="button">看答案</button><div class="qa">NT=1 表示当前任务是被嵌套调用进来的,新 TSS 的&quot;上一任务链接&quot;字段存着旧 TSS 选择子。此时执行 iret 不是普通返回,而是切回上一个任务。</div></li>
+          </ol></div>
+          <div class="gsec lab"><h4>动手任务</h4>
+            <p class="lab-task">在 WinDbg 里找出当前 CPU 的 TSS,解析出 ESP0,并验证它就是当前线程的内核栈顶。</p>
+            <ol class="lab-steps">
+              <li>r tr 取得任务寄存器里的选择子,dg &lt;tr值&gt; 找到 TSS 的基址。</li>
+              <li>dt nt!_KTSS &lt;TSS基址&gt; 展开结构。</li>
+              <li>记下 Esp0 的值。</li>
+              <li>!thread 看当前线程,对比 StackBase / StackLimit,确认 Esp0 落在这个范围内。</li>
+              <li>切换到另一个线程上下文再看一次 Esp0,确认它随线程变化。</li>
+            </ol>
+            <p class="lab-pass"><b>通过标准</b>Esp0 落在当前线程 StackLimit~StackBase 之间;并且你能说清楚&quot;为什么 R3 进 R0 时 CPU 知道该用哪个栈&quot;。</p>
+            <p class="lab-tip">提示 · dt nt!_KTSS 需要正确的符号,先 .reload /f 确保 nt 符号加载完整。</p>
+          </div>
+          <div class="gsec"><h4>常见坑</h4><ul class="pits">
+            <li><b>dt nt!_KTSS 找不到类型</b><span class="pit-c">原因 符号没加载,或者目标是 x64(x64 用 _KTSS64)。</span><span class="pit-f">怎么办 x64 下用 dt nt!_KTSS64,字段是 Rsp0 和 IST 数组。</span></li>
+            <li><b>试着做完整硬件任务切换,一跳就三重错误</b><span class="pit-c">原因 新 TSS 里的 CR3、LDT 选择子、各段选择子没有全部自洽。</span><span class="pit-f">怎么办 把新 TSS 的每个字段都填成一份可运行环境的完整快照;CR3 尤其不能随便填,页表里必须能映射到你的代码。</span></li>
+          </ul></div>
+          <div class="gsec help"><h4>卡住了怎么问</h4><p>贴出这四样东西,问题才问得清楚:<b>①</b> 你的目标(想验证什么)、<b>②</b> 实际操作(完整命令或代码)、<b>③</b> 实际输出(WinDbg/编译器原文,别转述)、<b>④</b> 你的假设(你认为应该是什么、为什么)。</p><ul class="links"><li><a href="https://bbs.kanxue.com/forum-2.htm" target="_blank" rel="noopener">看雪 · 驱动开发版块</a></li><li><a href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/" target="_blank" rel="noopener">WinDbg 官方文档</a></li><li><a href="https://stackoverflow.com/questions/tagged/windbg" target="_blank" rel="noopener">Stack Overflow · windbg</a></li></ul></div>
+        </div>
+      </div>
+      <div class="chapter"><span class="chapter-title">第六单元 · 分页机制</span><span class="chapter-n">19</span></div>
+      <ul class="lessons">
+        <li class="lesson has-res" data-id="L13_39">
           <span class="dot" title="标记完成"></span>
           <span class="lt">4.8 保护模式-分页设置以及内核解析</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_39"></div></div>
+          <div class="lpanel"><div class="lguide">CR0.PG 打开分页,CR3 存页目录基址。开分页那一刻起,所有地址都要过页表——包括取指令本身。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_02.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.2 页式地址转换</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s04_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 4.1 系统寄存器</a></li><li><a class="t-main" href="https://cloud.tencent.com/developer/article/1746324" target="_blank" rel="noopener"><i>主学</i>线性地址到物理地址的转换</a></li></ul></div><div class="lnote" data-note-id="L13_39"></div></div>
         </li>
-        <li class="lesson" data-id="L13_40">
+        <li class="lesson has-res" data-id="L13_40">
           <span class="dot" title="标记完成"></span>
           <span class="lt">4.9 保护模式-x86内存布局</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_40"></div></div>
+          <div class="lpanel"><div class="lguide">32 位 Windows:用户态 0~0x7FFFFFFF,内核态 0x80000000~0xFFFFFFFF。所有进程共享同一份内核映射。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/gettingstarted/virtual-address-spaces" target="_blank" rel="noopener"><i>主学</i>微软 · 驱动视角的虚拟地址空间</a></li><li><a class="t-ext" href="https://learn.microsoft.com/zh-cn/windows/win32/memory/virtual-address-space" target="_blank" rel="noopener"><i>延伸</i>微软 · 虚拟地址空间</a></li><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11143967.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 虚拟内存与物理内存</a></li></ul></div><div class="lnote" data-note-id="L13_40"></div></div>
         </li>
-        <li class="lesson" data-id="L13_41">
+        <li class="lesson has-res" data-id="L13_41">
           <span class="dot" title="标记完成"></span>
           <span class="lt">5.0 保护模式-10-10-12分页</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_41"></div></div>
+          <div class="lpanel"><div class="lguide">线性地址拆成 10(页目录索引)+10(页表索引)+12(页内偏移)。这是非 PAE 下的标准分页,先把它彻底搞熟。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/iBinary/p/13946059.html" target="_blank" rel="noopener"><i>主学</i>10-10-12 分页机制</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_02.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.2 页式地址转换</a></li><li><a class="t-main" href="https://cloud.tencent.com/developer/article/1746324" target="_blank" rel="noopener"><i>主学</i>线性地址到物理地址的转换</a></li></ul></div><div class="lnote" data-note-id="L13_41"></div></div>
         </li>
-        <li class="lesson" data-id="L13_42">
+        <li class="lesson has-res" data-id="L13_42">
           <span class="dot" title="标记完成"></span>
           <span class="lt">5.1 保护模式-线性地址与物理地址转换</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_42"></div></div>
+          <div class="lpanel"><div class="lguide">手动走一遍:CR3 → PDE → PTE → 物理页 + 偏移。然后用 !vtop 对答案,两边一致才算过。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/-vtop" target="_blank" rel="noopener"><i>实操</i>WinDbg · !vtop 虚拟转物理</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/-pte" target="_blank" rel="noopener"><i>实操</i>WinDbg · !pte 看页表项</a></li><li><a class="t-main" href="https://cloud.tencent.com/developer/article/1746324" target="_blank" rel="noopener"><i>主学</i>线性地址到物理地址的转换</a></li></ul></div><div class="lnote" data-note-id="L13_42"></div></div>
         </li>
-        <li class="lesson" data-id="L13_43">
+        <li class="lesson has-res" data-id="L13_43">
           <span class="dot" title="标记完成"></span>
           <span class="lt">5.2 保护模式-挂物理页过程</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_43"></div></div>
+          <div class="lpanel"><div class="lguide">PTE 的 P 位置 1、填上物理页框号,一个虚拟地址就&quot;有内存&quot;了。缺页异常的本质就是 P=0。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/-pte" target="_blank" rel="noopener"><i>实操</i>WinDbg · !pte 看页表项</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_02.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.2 页式地址转换</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s09_08.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 9.8 异常条件详解</a></li></ul></div><div class="lnote" data-note-id="L13_43"></div></div>
         </li>
-        <li class="lesson" data-id="L13_44">
+        <li class="lesson has-res" data-id="L13_44">
           <span class="dot" title="标记完成"></span>
           <span class="lt">5.3 保护模式-共享内存的本质</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_44"></div></div>
+          <div class="lpanel"><div class="lguide">两个进程的不同虚拟地址,PTE 指向同一个物理页框——共享内存就这么回事,没有任何魔法。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/hanhandaren/p/11146257.html" target="_blank" rel="noopener"><i>主学</i>汉大人 · 共享内存的申请与释放</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_02.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.2 页式地址转换</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/-pte" target="_blank" rel="noopener"><i>实操</i>WinDbg · !pte 看页表项</a></li></ul></div><div class="lnote" data-note-id="L13_44"></div></div>
         </li>
-        <li class="lesson" data-id="L13_45">
+        <li class="lesson has-res" data-id="L13_45">
           <span class="dot" title="标记完成"></span>
           <span class="lt">5.4 保护模式-不会生效的物理页</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_45"></div></div>
+          <div class="lpanel"><div class="lguide">PDE 的 P=0 时,整张页表都不可用;还有 PS 位、以及改了页表却不刷 TLB 导致的&quot;改了不生效&quot;。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_02.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.2 页式地址转换</a></li><li><a class="t-main" href="https://www.cnblogs.com/iBinary/p/13946059.html" target="_blank" rel="noopener"><i>主学</i>10-10-12 分页机制</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s04_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 4.1 系统寄存器</a></li></ul></div><div class="lnote" data-note-id="L13_45"></div></div>
         </li>
-        <li class="lesson" data-id="L13_46">
+        <li class="lesson has-res" data-id="L13_46">
           <span class="dot" title="标记完成"></span>
           <span class="lt">5.5 保护模式-物理页读写限制</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_46"></div></div>
+          <div class="lpanel"><div class="lguide">R/W 位控制可写,但 CR0.WP=0 时内核可以无视只读位写用户页——这是很多内核写内存手法的依据。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_04.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.4 页级保护</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s04_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 4.1 系统寄存器</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_02.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.2 页式地址转换</a></li></ul></div><div class="lnote" data-note-id="L13_46"></div></div>
         </li>
-        <li class="lesson" data-id="L13_47">
+        <li class="lesson has-res" data-id="L13_47">
           <span class="dot" title="标记完成"></span>
           <span class="lt">5.6 保护模式-物理页权限门槛</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_47"></div></div>
+          <div class="lpanel"><div class="lguide">U/S 位划分用户页与内核页。R3 访问 U/S=0 的页触发 #PF,错误码里能读出是权限问题还是缺页。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_04.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.4 页级保护</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s09_07.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 9.7 错误码</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_05.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.5 段页保护组合</a></li></ul></div><div class="lnote" data-note-id="L13_47"></div></div>
         </li>
-        <li class="lesson" data-id="L13_48">
+        <li class="lesson has-res" data-id="L13_48">
           <span class="dot" title="标记完成"></span>
           <span class="lt">5.7 保护模式-全局页刷新机制</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_48"></div></div>
+          <div class="lpanel"><div class="lguide">G 位标记全局页,切 CR3 时不刷出 TLB(内核页大多是全局页)。invlpg 与写 CR3 是两种粒度的刷新方式。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_02.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.2 页式地址转换</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s04_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 4.1 系统寄存器</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s04_02.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 4.2 系统指令</a></li></ul></div><div class="lnote" data-note-id="L13_48"></div></div>
         </li>
-        <li class="lesson" data-id="L13_49">
+        <li class="lesson has-res" data-id="L13_49">
           <span class="dot" title="标记完成"></span>
           <span class="lt">5.8 保护模式-大小物理页的区分</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_49"></div></div>
+          <div class="lpanel"><div class="lguide">PS=1 时 PDE 直接指向 4MB 大页,不再有页表这一级。看 !pte 输出时要能一眼认出大页。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_02.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.2 页式地址转换</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/-pte" target="_blank" rel="noopener"><i>实操</i>WinDbg · !pte 看页表项</a></li><li><a class="t-main" href="https://www.cnblogs.com/iBinary/p/13946059.html" target="_blank" rel="noopener"><i>主学</i>10-10-12 分页机制</a></li></ul></div><div class="lnote" data-note-id="L13_49"></div></div>
         </li>
-        <li class="lesson" data-id="L13_50">
+        <li class="lesson has-res" data-id="L13_50">
           <span class="dot" title="标记完成"></span>
           <span class="lt">5.9 保护模式-PDT&amp;PTT基地址</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_50"></div></div>
+          <div class="lpanel"><div class="lguide">Windows 把页目录自映射到 0xC0300000、页表映射到 0xC0000000——所以能用普通虚拟地址直接读写页表。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/iBinary/p/13946059.html" target="_blank" rel="noopener"><i>主学</i>10-10-12 分页机制</a></li><li><a class="t-ext" href="https://www.cnblogs.com/iBinary/p/16289502.html" target="_blank" rel="noopener"><i>延伸</i>x64 四级分页与页表自映射</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/-pte" target="_blank" rel="noopener"><i>实操</i>WinDbg · !pte 看页表项</a></li></ul></div><div class="lnote" data-note-id="L13_50"></div></div>
         </li>
-        <li class="lesson" data-id="L13_51">
+        <li class="lesson has-res" data-id="L13_51">
           <span class="dot" title="标记完成"></span>
           <span class="lt">6.0 保护模式-页目录表内存布局</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_51"></div></div>
+          <div class="lpanel"><div class="lguide">画出 0xC0000000~0xC03FFFFF 这 4MB 的自映射布局,理解&quot;页目录既是目录又是页表项&quot;这个自指结构。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/iBinary/p/13946059.html" target="_blank" rel="noopener"><i>主学</i>10-10-12 分页机制</a></li><li><a class="t-ext" href="https://www.cnblogs.com/iBinary/p/16289502.html" target="_blank" rel="noopener"><i>延伸</i>x64 四级分页与页表自映射</a></li><li><a class="t-ext" href="https://www.cnblogs.com/wf751620780/p/10447453.html" target="_blank" rel="noopener"><i>延伸</i>Windows XP x86 分页机制分析</a></li></ul></div><div class="lnote" data-note-id="L13_51"></div></div>
         </li>
-        <li class="lesson" data-id="L13_52">
+        <li class="lesson has-res" data-id="L13_52">
           <span class="dot" title="标记完成"></span>
           <span class="lt">6.1 保护模式-MmIsAddressValid逆向分析</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_52"></div></div>
+          <div class="lpanel"><div class="lguide">逆向这个函数:它就是查 PDE 的 P 位、再查 PTE 的 P 位。读懂它等于验收了整个分页知识。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/ddi/ntddk/nf-ntddk-mmisaddressvalid" target="_blank" rel="noopener"><i>原文</i>微软 · MmIsAddressValid</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/u--unassemble-" target="_blank" rel="noopener"><i>实操</i>WinDbg · u 反汇编</a></li><li><a class="t-main" href="https://www.cnblogs.com/iBinary/p/13946059.html" target="_blank" rel="noopener"><i>主学</i>10-10-12 分页机制</a></li></ul></div><div class="lnote" data-note-id="L13_52"></div></div>
         </li>
-        <li class="lesson" data-id="L13_53">
+        <li class="lesson has-res" data-id="L13_53">
           <span class="dot" title="标记完成"></span>
           <span class="lt">6.2 保护模式-2-9-9-12分页</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_53"></div></div>
+          <div class="lpanel"><div class="lguide">PAE 下线性地址拆成 2+9+9+12,PDPTE/PDE/PTE 每项 8 字节,物理地址扩到 36 位。现代 Windows 默认就是它。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/wingsummer/p/15364648.html" target="_blank" rel="noopener"><i>主学</i>羽夏 · PAE 分页</a></li><li><a class="t-lab" href="https://xia0ji233.pro/2024/11/09/WindowsKernel3/index.html" target="_blank" rel="noopener"><i>实操</i>2-9-9-12 分页实战</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_02.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.2 页式地址转换</a></li></ul></div><div class="lnote" data-note-id="L13_53"></div></div>
         </li>
-        <li class="lesson" data-id="L13_54">
+        <li class="lesson has-res" data-id="L13_54">
           <span class="dot" title="标记完成"></span>
           <span class="lt">6.3 保护模式-PAE模式下的物理地址</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_54"></div></div>
+          <div class="lpanel"><div class="lguide">8 字节项里物理页框号占 24 位,高位还有 NX 位。地址计算方式和 10-10-12 完全不同,别混用。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/wingsummer/p/15364648.html" target="_blank" rel="noopener"><i>主学</i>羽夏 · PAE 分页</a></li><li><a class="t-lab" href="https://xia0ji233.pro/2024/11/09/WindowsKernel3/index.html" target="_blank" rel="noopener"><i>实操</i>2-9-9-12 分页实战</a></li><li><a class="t-ext" href="https://www.cnblogs.com/wf751620780/p/10447453.html" target="_blank" rel="noopener"><i>延伸</i>Windows XP x86 分页机制分析</a></li></ul></div><div class="lnote" data-note-id="L13_54"></div></div>
         </li>
-        <li class="lesson" data-id="L13_55">
+        <li class="lesson has-res" data-id="L13_55">
           <span class="dot" title="标记完成"></span>
           <span class="lt">6.4 保护模式-物理扩展模式属性探测</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_55"></div></div>
+          <div class="lpanel"><div class="lguide">用 CPUID 查 PAE 支持、读 CR4.PAE 确认是否开启。先探测再动手,免得按错模型算地址。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/wingsummer/p/15364648.html" target="_blank" rel="noopener"><i>主学</i>羽夏 · PAE 分页</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s04_01.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 4.1 系统寄存器</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/r--registers-" target="_blank" rel="noopener"><i>实操</i>WinDbg · r 看/改寄存器</a></li></ul></div><div class="lnote" data-note-id="L13_55"></div></div>
         </li>
-        <li class="lesson" data-id="L13_56">
+        <li class="lesson has-res" data-id="L13_56">
           <span class="dot" title="标记完成"></span>
           <span class="lt">6.5-保护模式-PDT&amp;PTT基址定位</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_56"></div></div>
+          <div class="lpanel"><div class="lguide">在 PAE 模式下重新定位页目录与页表基址,自映射的位置和 10-10-12 不一样,要重新推。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://www.cnblogs.com/wingsummer/p/15364648.html" target="_blank" rel="noopener"><i>主学</i>羽夏 · PAE 分页</a></li><li><a class="t-lab" href="https://xia0ji233.pro/2024/11/09/WindowsKernel3/index.html" target="_blank" rel="noopener"><i>实操</i>2-9-9-12 分页实战</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/-pte" target="_blank" rel="noopener"><i>实操</i>WinDbg · !pte 看页表项</a></li></ul></div><div class="lnote" data-note-id="L13_56"></div></div>
         </li>
-        <li class="lesson" data-id="L13_57">
+        <li class="lesson has-res" data-id="L13_57">
           <span class="dot" title="标记完成"></span>
           <span class="lt">6.6-保护模式-阶段考核练习</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L13_57"></div></div>
+          <div class="lpanel"><div class="lguide">本课收尾:段 + 页两套机制串起来,从一个虚拟地址讲清楚它是怎么被检查、被翻译、被落到物理内存的。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s05_03.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 5.3 段页组合</a></li><li><a class="t-src" href="https://pdos.csail.mit.edu/6.828/2005/readings/i386/s06_05.htm" target="_blank" rel="noopener"><i>原文</i>80386 手册 · 6.5 段页保护组合</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/-vtop" target="_blank" rel="noopener"><i>实操</i>WinDbg · !vtop 虚拟转物理</a></li></ul></div><div class="lnote" data-note-id="L13_57"></div></div>
         </li>
       </ul>
+      <div class="gate" data-gate="G13_5">
+        <div class="gate-head"><span class="gate-dot" title="标记本关通过"></span><span class="gate-t">验收关卡 · 分页机制</span><button class="gate-x" type="button">展开</button></div>
+        <div class="gate-body">
+          <div class="gsec"><h4>概念自测</h4><ol class="quiz">
+            <li><span class="qq">10-10-12 分页下,线性地址 0x80401234 的 PDE 索引、PTE 索引、页内偏移分别是多少?</span><button class="qa-x" type="button">看答案</button><div class="qa">PDE 索引 = 高 10 位 = 0x80401234 &gt;&gt; 22 = 0x201;PTE 索引 = 中间 10 位 = (&gt;&gt;12) &amp; 0x3FF = 0x001;偏移 = 低 12 位 = 0x234。</div></li>
+            <li><span class="qq">32 位 Windows 里页目录自映射在哪个地址?为什么能这么做?</span><button class="qa-x" type="button">看答案</button><div class="qa">页表映射在 0xC0000000 起 4MB,页目录自身出现在 0xC0300000。做法是把页目录的第 0x300 项指向页目录自己的物理页,于是页目录既当目录又当页表被访问到。</div></li>
+            <li><span class="qq">CR0.WP 位为 0 时会发生什么?为什么内核代码关心它?</span><button class="qa-x" type="button">看答案</button><div class="qa">WP=0 时,Ring 0 代码可以写入 PTE 标记为只读的页。很多内核内存修改手法靠临时清 WP 实现(现代系统上还要绕过 PatchGuard)。</div></li>
+            <li><span class="qq">改了页表项之后地址访问行为没变,最可能是什么原因?</span><button class="qa-x" type="button">看答案</button><div class="qa">TLB 里还是旧的映射。要 invlpg 刷单页,或者重写 CR3 刷整个 TLB——但标记为 G(全局)的页写 CR3 也刷不掉,必须 invlpg。</div></li>
+            <li><span class="qq">PAE 的 2-9-9-12 和 10-10-12 在&quot;每项大小&quot;上有什么关键差异?会导致什么计算错误?</span><button class="qa-x" type="button">看答案</button><div class="qa">PAE 下每项是 8 字节而不是 4 字节。如果沿用 4 字节的步长去算 PTE 地址,会算到相邻项去,读出完全错误的物理页框。</div></li>
+            <li><span class="qq">MmIsAddressValid 内部到底做了什么?</span><button class="qa-x" type="button">看答案</button><div class="qa">先取该虚拟地址对应的 PDE,检查 P 位(顺带判断是不是大页),P=1 再取 PTE 检查 P 位。两级都在内存里就返回 TRUE。它不判断权限,也不保证下一刻还有效。</div></li>
+          </ol></div>
+          <div class="gsec lab"><h4>动手任务</h4>
+            <p class="lab-task">任选一个有效的虚拟地址,全程手算把它翻译成物理地址,再用 !vtop 验证结果完全一致。</p>
+            <ol class="lab-steps">
+              <li>!process 0 0 找一个进程,.process /r /p &lt;EPROCESS&gt; 切进它的地址空间。</li>
+              <li>r cr3 记下页目录物理基址(或从 EPROCESS 的 DirectoryTableBase 取)。</li>
+              <li>挑一个地址(比如某模块的入口),按 PAE 与否拆出各级索引。</li>
+              <li>用 !dd &lt;物理地址&gt; 或 !dq 逐级读出 PDE、PTE(注意 PAE 下是 8 字节项)。</li>
+              <li>取出页框号左移 12 位加上页内偏移,得到物理地址。</li>
+              <li>!vtop &lt;cr3&gt; &lt;虚拟地址&gt; 对答案;再用 !pte &lt;虚拟地址&gt; 看 WinDbg 解析出的 PDE/PTE 是否和你读到的一致。</li>
+            </ol>
+            <p class="lab-pass"><b>通过标准</b>手算的物理地址与 !vtop 输出逐位相同,并且你能说出这台机器当前是 10-10-12 还是 2-9-9-12,依据是什么。</p>
+            <p class="lab-tip">提示 · 读物理内存要用带 ! 的命令(!dd / !dq),普通 dd 读的是虚拟地址——这是最常见的一步错步步错。</p>
+          </div>
+          <div class="gsec"><h4>常见坑</h4><ul class="pits">
+            <li><b>算出来的物理地址一读全是 0 或乱码</b><span class="pit-c">原因 把 PAE 当成非 PAE 算了,项大小 4 vs 8 字节。</span><span class="pit-f">怎么办 先 r cr4 看 PAE 位(bit 5),或者直接 !pte 看 WinDbg 给出的 PDE/PTE 地址间距来反推。</span></li>
+            <li><b>用 dd 读物理地址读到别的东西</b><span class="pit-c">原因 dd 是虚拟地址,!dd 才是物理地址。</span><span class="pit-f">怎么办 涉及页表遍历一律用 !dd / !dq / !db。</span></li>
+            <li><b>切进目标进程后地址还是无效</b><span class="pit-c">原因 .process 没加 /r /p,用户态地址没有重载上下文。</span><span class="pit-f">怎么办 用 .process /r /p &lt;EPROCESS&gt;,并确认目标进程没有被换出(!process 看 状态)。</span></li>
+            <li><b>MmIsAddressValid 说有效,访问却还是崩</b><span class="pit-c">原因 它只查 P 位,不查权限,也不防竞态。</span><span class="pit-f">怎么办 这正是微软文档不推荐使用它的原因;真要安全访问用 MDL 或 ProbeForRead/Write + try/except。</span></li>
+          </ul></div>
+          <div class="gsec help"><h4>卡住了怎么问</h4><p>贴出这四样东西,问题才问得清楚:<b>①</b> 你的目标(想验证什么)、<b>②</b> 实际操作(完整命令或代码)、<b>③</b> 实际输出(WinDbg/编译器原文,别转述)、<b>④</b> 你的假设(你认为应该是什么、为什么)。</p><ul class="links"><li><a href="https://bbs.kanxue.com/forum-2.htm" target="_blank" rel="noopener">看雪 · 驱动开发版块</a></li><li><a href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/" target="_blank" rel="noopener">WinDbg 官方文档</a></li><li><a href="https://stackoverflow.com/questions/tagged/windbg" target="_blank" rel="noopener">Stack Overflow · windbg</a></li></ul></div>
+        </div>
+      </div>
       <div class="course-note" data-note-id="NC13"></div>
     </article>
     <article class="course" data-course="14">
@@ -26394,6 +26636,29 @@ main{padding:0 26px 80px;max-width:1000px}
   });
   document.querySelectorAll('.course').forEach(updateCourse);
   updateHeader();
+
+  // 验收关卡:展开/收起、自测答案、通过标记(通过状态与小节进度存同一份)
+  document.querySelectorAll('.gate').forEach(function(g){
+    var id=g.getAttribute('data-gate');
+    if(done.has(id)) g.classList.add('passed');
+    var btn=g.querySelector('.gate-x');
+    function sync(){ btn.textContent = g.classList.contains('open')?'收起':'展开'; }
+    btn.addEventListener('click',function(){ g.classList.toggle('open'); sync(); });
+    g.querySelector('.gate-t').addEventListener('click',function(){ g.classList.toggle('open'); sync(); });
+    g.querySelector('.gate-dot').addEventListener('click',function(e){
+      e.stopPropagation();
+      if(g.classList.toggle('passed')) done.add(id); else done.delete(id);
+      saveProg();
+    });
+    g.querySelectorAll('.quiz > li').forEach(function(li){
+      var b=li.querySelector('.qa-x');
+      b.addEventListener('click',function(){
+        li.classList.toggle('show');
+        b.textContent = li.classList.contains('show')?'收起':'看答案';
+      });
+    });
+    sync();
+  });
 
   // notes per course
   document.querySelectorAll('.course-note').forEach(function(box){

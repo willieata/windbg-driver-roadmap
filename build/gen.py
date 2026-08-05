@@ -26,8 +26,67 @@ ROUTE_DESC = {
     '驱动攻防': '保护模式 → 驱动开发 → 系统调用/进程线程 → 异步同步/内核对象/内存管理 → 调试异常(WinDbg/Dump/TTD) → 实战拓展',
 }
 
+# 资料分层标签 → CSS class(主学=先看这份,原文=一手权威,实操=能上手跑)
+TAG_CLS = {'主学': 't-main', '原文': 't-src', '实操': 't-lab', '延伸': 't-ext'}
+
+
 def esc(s):
     return html.escape(s, quote=True)
+
+
+def render_gate(gate, gid):
+    """章末验收关卡:概念自测 + 动手任务 + 常见坑 + 求助路径。"""
+    o = [f'      <div class="gate" data-gate="{gid}">']
+    o.append(f'        <div class="gate-head">'
+             f'<span class="gate-dot" title="标记本关通过"></span>'
+             f'<span class="gate-t">验收关卡 · {esc(gate.get("title", ""))}</span>'
+             f'<button class="gate-x" type="button">展开</button></div>')
+    o.append('        <div class="gate-body">')
+
+    quiz = gate.get('quiz') or []
+    if quiz:
+        o.append('          <div class="gsec"><h4>概念自测</h4><ol class="quiz">')
+        for q in quiz:
+            o.append(f'            <li><span class="qq">{esc(q["q"])}</span>'
+                     f'<button class="qa-x" type="button">看答案</button>'
+                     f'<div class="qa">{esc(q["a"])}</div></li>')
+        o.append('          </ol></div>')
+
+    lab = gate.get('lab')
+    if lab:
+        o.append('          <div class="gsec lab"><h4>动手任务</h4>')
+        o.append(f'            <p class="lab-task">{esc(lab["task"])}</p>')
+        if lab.get('steps'):
+            o.append('            <ol class="lab-steps">')
+            for s in lab['steps']:
+                o.append(f'              <li>{esc(s)}</li>')
+            o.append('            </ol>')
+        o.append(f'            <p class="lab-pass"><b>通过标准</b>{esc(lab["pass"])}</p>')
+        if lab.get('tip'):
+            o.append(f'            <p class="lab-tip">提示 · {esc(lab["tip"])}</p>')
+        o.append('          </div>')
+
+    pits = gate.get('pits') or []
+    if pits:
+        o.append('          <div class="gsec"><h4>常见坑</h4><ul class="pits">')
+        for p in pits:
+            o.append(f'            <li><b>{esc(p["s"])}</b>'
+                     f'<span class="pit-c">原因 {esc(p["c"])}</span>'
+                     f'<span class="pit-f">怎么办 {esc(p["f"])}</span></li>')
+        o.append('          </ul></div>')
+
+    o.append('          <div class="gsec help"><h4>卡住了怎么问</h4>'
+             '<p>贴出这四样东西,问题才问得清楚:<b>①</b> 你的目标(想验证什么)、'
+             '<b>②</b> 实际操作(完整命令或代码)、<b>③</b> 实际输出(WinDbg/编译器原文,别转述)、'
+             '<b>④</b> 你的假设(你认为应该是什么、为什么)。</p>'
+             '<ul class="links">'
+             '<li><a href="https://bbs.kanxue.com/forum-2.htm" target="_blank" rel="noopener">看雪 · 驱动开发版块</a></li>'
+             '<li><a href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/" target="_blank" rel="noopener">WinDbg 官方文档</a></li>'
+             '<li><a href="https://stackoverflow.com/questions/tagged/windbg" target="_blank" rel="noopener">Stack Overflow · windbg</a></li>'
+             '</ul></div>')
+    o.append('        </div>')
+    o.append('      </div>')
+    return '\n'.join(o)
 
 # group courses: route -> group -> [courses]
 from collections import OrderedDict
@@ -91,6 +150,7 @@ for gid, r, g, ncourse, nles in group_nav:
             main.append(f'      <div class="empty">（{msg}；上线后补充目录）</div>')
         else:
             idx = 0
+            chidx = 0
             for ch in chapters:
                 ct = ch.get('title', '课程目录')
                 lessons = ch.get('lessons', [])
@@ -104,20 +164,35 @@ for gid, r, g, ncourse, nles in group_nav:
                     if isinstance(ls, dict):
                         ltitle = ls.get('t') or ls.get('title') or ''
                         res = ls.get('r') or ls.get('res') or []
+                        guide = ls.get('w') or ''
                     else:
-                        ltitle = ls; res = []
-                    reshtml = ''
+                        ltitle = ls; res = []; guide = ''
+                    inner = ''
+                    if guide:
+                        inner += f'<div class="lguide">{esc(guide)}</div>'
                     if res:
-                        items = ''.join(f'<li><a href="{esc(u)}" target="_blank" rel="noopener">{esc(n)}</a></li>' for n, u in res)
-                        reshtml = f'<div class="lres"><span class="lres-h">学习资料</span><ul>{items}</ul></div>'
+                        items = ''
+                        for it in res:
+                            n, u = it[0], it[1]
+                            tag = it[2] if len(it) > 2 else ''
+                            cls = f' class="{TAG_CLS[tag]}"' if tag in TAG_CLS else ''
+                            lab = f'<i>{esc(tag)}</i>' if tag else ''
+                            items += (f'<li><a{cls} href="{esc(u)}" target="_blank" '
+                                      f'rel="noopener">{lab}{esc(n)}</a></li>')
+                        inner += f'<div class="lres"><span class="lres-h">学习资料</span><ul>{items}</ul></div>'
                     hasres = ' has-res' if res else ''
                     main.append(f'        <li class="lesson{hasres}" data-id="{lid}">')
                     main.append(f'          <span class="dot" title="标记完成"></span>')
                     main.append(f'          <span class="lt">{esc(ltitle)}</span>')
                     main.append(f'          <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>')
-                    main.append(f'          <div class="lpanel">{reshtml}<div class="lnote" data-note-id="{lid}"></div></div>')
+                    main.append(f'          <div class="lpanel">{inner}<div class="lnote" data-note-id="{lid}"></div></div>')
                     main.append(f'        </li>')
                 main.append(f'      </ul>')
+                gate = ch.get('gate')
+                if gate:
+                    gid_g = f'G{cid}_{chidx}'
+                    main.append(render_gate(gate, gid_g))
+                chidx += 1
         # per-course note placeholder
         main.append(f'      <div class="course-note" data-note-id="NC{cid}"></div>')
         main.append(f'    </article>')
@@ -211,12 +286,64 @@ main{{padding:0 26px 80px;max-width:1000px}}
 .lpanel{{display:none;flex-basis:100%;width:100%;margin:6px 0 6px 20px;padding:10px 12px;
   background:var(--panel2);border:1px solid var(--line);border-left:2px solid var(--cyan);border-radius:6px}}
 .lesson.open .lpanel{{display:block}}
+.lguide{{margin:0 0 8px;padding:6px 9px;background:rgba(167,139,250,.08);
+  border-left:2px solid var(--violet);border-radius:4px;color:var(--ink);font-size:12.5px}}
 .lres{{margin-bottom:8px}}
 .lres-h{{display:block;color:var(--amber);font-size:11px;letter-spacing:.5px;margin-bottom:4px}}
 .lres ul{{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 12px}}
 .lres li a{{display:inline-block;font-size:12px;padding:3px 9px;background:var(--panel);
   border:1px solid var(--line);border-radius:12px;color:var(--cyan)}}
 .lres li a:hover{{border-color:var(--cyan)}}
+.lres li a i{{font-style:normal;font-size:10px;margin-right:5px;padding:1px 5px;border-radius:8px;
+  background:var(--line);color:var(--dim)}}
+.lres li a.t-main{{border-color:var(--amber);color:var(--amber)}}
+.lres li a.t-main i{{background:var(--amber);color:#0b0f14}}
+.lres li a.t-src{{border-color:var(--violet);color:var(--violet)}}
+.lres li a.t-src i{{background:var(--violet);color:#0b0f14}}
+.lres li a.t-lab{{border-color:var(--green);color:var(--green)}}
+.lres li a.t-lab i{{background:var(--green);color:#0b0f14}}
+/* ---- 验收关卡 ---- */
+.gate{{margin:10px 0 4px;border:1px solid var(--line);border-left:3px solid var(--green);
+  border-radius:6px;background:var(--panel2)}}
+.gate-head{{display:flex;align-items:center;gap:9px;padding:8px 11px}}
+.gate-dot{{flex:none;width:12px;height:12px;border-radius:50%;border:2px solid var(--green);cursor:pointer}}
+.gate.passed .gate-dot{{background:var(--green);box-shadow:0 0 6px rgba(61,220,132,.6)}}
+.gate-t{{flex:1;font-size:13px;font-weight:600;color:var(--green)}}
+.gate.passed .gate-t::after{{content:" ✓ 已通过";color:var(--dim);font-weight:400;font-size:11px}}
+.gate-x{{background:none;border:1px solid var(--line);border-radius:5px;color:var(--dim);
+  padding:2px 9px;font-size:11px;cursor:pointer}}
+.gate-x:hover{{color:var(--green);border-color:var(--green)}}
+.gate-body{{display:none;padding:0 12px 12px}}
+.gate.open .gate-body{{display:block}}
+.gsec{{margin-top:12px}}
+.gsec h4{{margin:0 0 6px;font-size:12px;color:var(--amber);letter-spacing:.5px}}
+.quiz{{margin:0;padding-left:20px;color:var(--ink);font-size:12.5px}}
+.quiz li{{margin-bottom:7px}}
+.qq{{margin-right:8px}}
+.qa-x{{background:none;border:1px dashed var(--line);border-radius:5px;color:var(--dim);
+  padding:1px 7px;font-size:10.5px;cursor:pointer;vertical-align:1px}}
+.qa-x:hover{{color:var(--cyan);border-color:var(--cyan)}}
+.qa{{display:none;margin:5px 0 0;padding:6px 9px;background:var(--panel);
+  border-left:2px solid var(--cyan);border-radius:4px;color:var(--dim);font-size:12px}}
+.quiz li.show .qa{{display:block}}
+.lab{{padding:9px 11px;background:rgba(61,220,132,.06);border:1px solid rgba(61,220,132,.25);border-radius:6px}}
+.lab-task{{margin:0 0 6px;font-size:12.5px;color:var(--ink)}}
+.lab-steps{{margin:0 0 6px;padding-left:20px;font-size:12px;color:var(--dim)}}
+.lab-steps li{{margin-bottom:3px}}
+.lab-pass{{margin:6px 0 0;font-size:12px;color:var(--green)}}
+.lab-pass b{{margin-right:6px;padding:1px 6px;background:var(--green);color:#0b0f14;border-radius:4px;font-size:10.5px}}
+.lab-tip{{margin:5px 0 0;font-size:11.5px;color:var(--dim)}}
+.pits{{list-style:none;margin:0;padding:0;font-size:12px}}
+.pits li{{margin-bottom:7px;padding-left:11px;border-left:2px solid var(--red)}}
+.pits b{{display:block;color:var(--red);font-weight:600;margin-bottom:2px}}
+.pits span{{display:block;color:var(--dim)}}
+.pits span::before{{display:inline-block;min-width:38px;color:var(--line);content:""}}
+.pit-c b,.pit-f b{{display:inline}}
+.help p{{margin:0 0 6px;font-size:12px;color:var(--dim)}}
+.help p b{{color:var(--cyan);font-weight:600}}
+.help .links{{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 12px}}
+.help .links a{{font-size:11.5px;padding:2px 8px;border:1px solid var(--line);border-radius:10px}}
+.help .links a:hover{{border-color:var(--cyan)}}
 .lnote-area{{width:100%;background:var(--panel);color:var(--ink);border:1px solid var(--line);
   border-radius:6px;padding:7px 9px;font:12.5px/1.5 inherit;resize:vertical;min-height:56px}}
 .empty{{color:var(--dim);font-size:12px;padding:8px 0}}
@@ -328,6 +455,29 @@ main{{padding:0 26px 80px;max-width:1000px}}
   }});
   document.querySelectorAll('.course').forEach(updateCourse);
   updateHeader();
+
+  // 验收关卡:展开/收起、自测答案、通过标记(通过状态与小节进度存同一份)
+  document.querySelectorAll('.gate').forEach(function(g){{
+    var id=g.getAttribute('data-gate');
+    if(done.has(id)) g.classList.add('passed');
+    var btn=g.querySelector('.gate-x');
+    function sync(){{ btn.textContent = g.classList.contains('open')?'收起':'展开'; }}
+    btn.addEventListener('click',function(){{ g.classList.toggle('open'); sync(); }});
+    g.querySelector('.gate-t').addEventListener('click',function(){{ g.classList.toggle('open'); sync(); }});
+    g.querySelector('.gate-dot').addEventListener('click',function(e){{
+      e.stopPropagation();
+      if(g.classList.toggle('passed')) done.add(id); else done.delete(id);
+      saveProg();
+    }});
+    g.querySelectorAll('.quiz > li').forEach(function(li){{
+      var b=li.querySelector('.qa-x');
+      b.addEventListener('click',function(){{
+        li.classList.toggle('show');
+        b.textContent = li.classList.contains('show')?'收起':'看答案';
+      }});
+    }});
+    sync();
+  }});
 
   // notes per course
   document.querySelectorAll('.course-note').forEach(function(box){{

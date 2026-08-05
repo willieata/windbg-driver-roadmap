@@ -1,1 +1,37 @@
-{"id": 15, "name": "驱动内核之系统调用", "route": "驱动攻防", "group": "内核基础", "order": 47, "chapters": [], "note": "目录待抓取(网站限流)"}
+{
+  "id": 15,
+  "name": "驱动内核之系统调用",
+  "route": "驱动攻防",
+  "group": "内核基础",
+  "order": 47,
+  "chapters": [
+    {
+      "title": "【驱动安全攻防】系统调用",
+      "lessons": [
+        "1.0 系统调用-Windows-API",
+        "1.1 系统调用-API执行流程分析",
+        "1.2 系统调用-API功能逆向分析",
+        "1.3 系统调用-KUSER_SHARED_DATA",
+        "1.4 系统调用-SystemCall",
+        "1.5 系统调用-KiIntSystemCall",
+        "1.6 系统调用-KiFastSystemCall",
+        "1.7 系统调用-KTRAP_FRAME",
+        "1.8 系统调用-KPCR KPRCB",
+        "1.9 系统调用-KiSystemService保存数据",
+        "2.0 系统调用-KiSystemService环境设置",
+        "2.1 系统调用-KiFastCallEntry",
+        "2.2 系统调用-SystemServiceTable",
+        "2.3 系统调用-API调用全过程逆向分析",
+        "2.4 安全攻防-全局系统调用监控",
+        "2.5 安全攻防-过滤应用层钩子_1",
+        "2.6 安全攻防-过滤应用层钩子_2",
+        "2.7 安全攻防-过滤应用层钩子_3",
+        "2.8 安全攻防-全局内核钩子",
+        "2.9 安全攻防-模块内存映射",
+        "3.0 安全攻防-重载导出编号",
+        "3.1 安全攻防-SSDT_HOOK",
+        "3.2 安全攻防-保护进程"
+      ]
+    }
+  ]
+}

@@ -8,94 +8,982 @@
     {
       "title": "函数篇",
       "lessons": [
-        "0.0 基础-课程体系介绍与学习路线",
-        "0.1 函数-汇编眼中的函数",
-        "0.2 函数-裸函数(无参无返空实现)",
-        "0.3 函数-局部变量的体现",
-        "0.4 函数-裸函数(局部变量定义)",
-        "0.5 函数-返回值如何传递",
-        "0.6 函数-裸函数(接收返回值)",
-        "0.7 函数-分析参数的传递",
-        "0.8 函数-裸函数(读写参数)",
-        "0.9 函数-嵌套调用分析",
-        "1.0 函数-调用约定(__cdecl)",
-        "1.1 函数-调用约定(__stdcall)",
-        "1.2 函数-调用约定(__fastcall)",
-        "1.3 函数-函数堆栈结构总结",
-        "1.4 函数-堆栈回溯(EBP)",
-        "1.5 函数-堆栈回溯(ESP)"
+        {
+          "t": "0.0 基础-课程体系介绍与学习路线",
+          "r": [
+            [
+              "看雪 · 逆向学习路线",
+              "https://bbs.kanxue.com/thread-51839.htm"
+            ],
+            [
+              "阮一峰 · 汇编语言入门教程",
+              "https://www.ruanyifeng.com/blog/2018/01/assembly-language-primer.html"
+            ]
+          ]
+        },
+        {
+          "t": "0.1 函数-汇编眼中的函数",
+          "r": [
+            [
+              "阮一峰 · 汇编语言入门教程",
+              "https://www.ruanyifeng.com/blog/2018/01/assembly-language-primer.html"
+            ],
+            [
+              "菜鸟 · C 函数",
+              "https://www.runoob.com/cprogramming/c-functions.html"
+            ],
+            [
+              "x86 指令手册 · CALL",
+              "https://www.felixcloutier.com/x86/call"
+            ]
+          ]
+        },
+        {
+          "t": "0.2 函数-裸函数(无参无返空实现)",
+          "r": [
+            [
+              "MS · naked 函数",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/naked-cpp"
+            ],
+            [
+              "菜鸟 · C 函数",
+              "https://www.runoob.com/cprogramming/c-functions.html"
+            ]
+          ]
+        },
+        {
+          "t": "0.3 函数-局部变量的体现",
+          "r": [
+            [
+              "菜鸟 · C 变量",
+              "https://www.runoob.com/cprogramming/c-variables.html"
+            ],
+            [
+              "维基 · 调用栈",
+              "https://zh.wikipedia.org/wiki/%E8%B0%83%E7%94%A8%E6%A0%88"
+            ]
+          ]
+        },
+        {
+          "t": "0.4 函数-裸函数(局部变量定义)",
+          "r": [
+            [
+              "MS · naked 函数",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/naked-cpp"
+            ],
+            [
+              "维基 · 调用栈",
+              "https://zh.wikipedia.org/wiki/%E8%B0%83%E7%94%A8%E6%A0%88"
+            ]
+          ]
+        },
+        {
+          "t": "0.5 函数-返回值如何传递",
+          "r": [
+            [
+              "MS · 调用约定总览",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/calling-conventions"
+            ],
+            [
+              "菜鸟 · C 函数",
+              "https://www.runoob.com/cprogramming/c-functions.html"
+            ]
+          ]
+        },
+        {
+          "t": "0.6 函数-裸函数(接收返回值)",
+          "r": [
+            [
+              "MS · naked 函数",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/naked-cpp"
+            ],
+            [
+              "MS · 调用约定总览",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/calling-conventions"
+            ]
+          ]
+        },
+        {
+          "t": "0.7 函数-分析参数的传递",
+          "r": [
+            [
+              "MS · 参数传递与命名约定",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/argument-passing-and-naming-conventions"
+            ],
+            [
+              "MS · 调用约定总览",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/calling-conventions"
+            ]
+          ]
+        },
+        {
+          "t": "0.8 函数-裸函数(读写参数)",
+          "r": [
+            [
+              "MS · naked 函数",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/naked-cpp"
+            ],
+            [
+              "MS · 参数传递与命名约定",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/argument-passing-and-naming-conventions"
+            ]
+          ]
+        },
+        {
+          "t": "0.9 函数-嵌套调用分析",
+          "r": [
+            [
+              "维基 · 调用栈",
+              "https://zh.wikipedia.org/wiki/%E8%B0%83%E7%94%A8%E6%A0%88"
+            ],
+            [
+              "x86 指令手册 · CALL",
+              "https://www.felixcloutier.com/x86/call"
+            ],
+            [
+              "x86 指令手册 · RET",
+              "https://www.felixcloutier.com/x86/ret"
+            ]
+          ]
+        },
+        {
+          "t": "1.0 函数-调用约定(__cdecl)",
+          "r": [
+            [
+              "MS · __cdecl",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/cdecl"
+            ],
+            [
+              "MS · 调用约定总览",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/calling-conventions"
+            ]
+          ]
+        },
+        {
+          "t": "1.1 函数-调用约定(__stdcall)",
+          "r": [
+            [
+              "MS · __stdcall",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/stdcall"
+            ],
+            [
+              "MS · 调用约定总览",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/calling-conventions"
+            ]
+          ]
+        },
+        {
+          "t": "1.2 函数-调用约定(__fastcall)",
+          "r": [
+            [
+              "MS · __fastcall",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/fastcall"
+            ],
+            [
+              "MS · 调用约定总览",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/calling-conventions"
+            ]
+          ]
+        },
+        {
+          "t": "1.3 函数-函数堆栈结构总结",
+          "r": [
+            [
+              "维基 · 调用栈",
+              "https://zh.wikipedia.org/wiki/%E8%B0%83%E7%94%A8%E6%A0%88"
+            ],
+            [
+              "MS · 调用约定总览",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/calling-conventions"
+            ]
+          ]
+        },
+        {
+          "t": "1.4 函数-堆栈回溯(EBP)",
+          "r": [
+            [
+              "维基 · 调用栈",
+              "https://zh.wikipedia.org/wiki/%E8%B0%83%E7%94%A8%E6%A0%88"
+            ],
+            [
+              "MS · x86 架构(调试器文档)",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/x86-architecture"
+            ]
+          ]
+        },
+        {
+          "t": "1.5 函数-堆栈回溯(ESP)",
+          "r": [
+            [
+              "维基 · 调用栈",
+              "https://zh.wikipedia.org/wiki/%E8%B0%83%E7%94%A8%E6%A0%88"
+            ],
+            [
+              "MS · x86 架构(调试器文档)",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/x86-architecture"
+            ]
+          ]
+        }
       ]
     },
     {
       "title": "变量/数据篇",
       "lessons": [
-        "1.6 变量-局部变量特性",
-        "1.7 变量-全局变量特性(反汇编识别_定位)",
-        "1.8 变量-CE中的体现",
-        "1.9 常量-宏常量(替换规则)",
-        "2.0 常量-const常量(局部与全局常量突破编译器限制)",
-        "2.1 整型-存储规则_数据宽度",
-        "2.2 浮点数-编码规则(IEEE)",
-        "2.3 浮点数-不精准的浮点数",
-        "2.4 浮点数-浮点寄存器_常见指令",
-        "2.5 浮点数-浮点数作为参数(参数压栈规则)",
-        "2.6 浮点数-浮点数作为返回值(ST寄存器结构)",
-        "2.7 浮点数-CE中查找方案",
-        "2.8 字符-ASCII编码规则",
-        "2.9 字符-Unicode编码规则",
-        "3.0 布尔-判断规则",
-        "3.1 类型转换(无符号数)",
-        "3.2 类型转换(有符号数)",
-        "3.3 位运算(AND_OR_XOR_NOT)",
-        "3.4 位运算(SHL_SHR_SAL_SAR)",
-        "3.5 算术运算(ADD_SUB_INC_DEC_ADC)",
-        "3.6 算数运算(IMUL_IDIV)",
-        "3.7 算数运算(前置与后置递增分析)"
+        {
+          "t": "1.6 变量-局部变量特性",
+          "r": [
+            [
+              "菜鸟 · C 变量",
+              "https://www.runoob.com/cprogramming/c-variables.html"
+            ],
+            [
+              "维基 · 调用栈",
+              "https://zh.wikipedia.org/wiki/%E8%B0%83%E7%94%A8%E6%A0%88"
+            ]
+          ]
+        },
+        {
+          "t": "1.7 变量-全局变量特性(反汇编识别_定位)",
+          "r": [
+            [
+              "菜鸟 · C 变量",
+              "https://www.runoob.com/cprogramming/c-variables.html"
+            ],
+            [
+              "MS · 基本类型的存储",
+              "https://learn.microsoft.com/zh-cn/cpp/c-language/storage-of-basic-types"
+            ]
+          ]
+        },
+        {
+          "t": "1.8 变量-CE中的体现",
+          "r": [
+            [
+              "Cheat Engine 官网",
+              "https://www.cheatengine.org/"
+            ]
+          ]
+        },
+        {
+          "t": "1.9 常量-宏常量(替换规则)",
+          "r": [
+            [
+              "菜鸟 · C 常量",
+              "https://www.runoob.com/cprogramming/c-constants.html"
+            ]
+          ]
+        },
+        {
+          "t": "2.0 常量-const常量(局部与全局常量突破编译器限制)",
+          "r": [
+            [
+              "MS · const",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/const-cpp"
+            ],
+            [
+              "菜鸟 · C 常量",
+              "https://www.runoob.com/cprogramming/c-constants.html"
+            ]
+          ]
+        },
+        {
+          "t": "2.1 整型-存储规则_数据宽度",
+          "r": [
+            [
+              "cppreference · 算术类型",
+              "https://zh.cppreference.com/w/c/language/arithmetic_types"
+            ],
+            [
+              "MS · 基本类型的存储",
+              "https://learn.microsoft.com/zh-cn/cpp/c-language/storage-of-basic-types"
+            ]
+          ]
+        },
+        {
+          "t": "2.2 浮点数-编码规则(IEEE)",
+          "r": [
+            [
+              "维基 · IEEE 754",
+              "https://zh.wikipedia.org/wiki/IEEE_754"
+            ],
+            [
+              "MS · 浮点类型",
+              "https://learn.microsoft.com/zh-cn/cpp/c-language/type-float"
+            ]
+          ]
+        },
+        {
+          "t": "2.3 浮点数-不精准的浮点数",
+          "r": [
+            [
+              "维基 · IEEE 754",
+              "https://zh.wikipedia.org/wiki/IEEE_754"
+            ]
+          ]
+        },
+        {
+          "t": "2.4 浮点数-浮点寄存器_常见指令",
+          "r": [
+            [
+              "Wiki · x87 浮点单元",
+              "https://en.wikipedia.org/wiki/X87"
+            ],
+            [
+              "x86 指令手册 · FLD",
+              "https://www.felixcloutier.com/x86/fld"
+            ]
+          ]
+        },
+        {
+          "t": "2.5 浮点数-浮点数作为参数(参数压栈规则)",
+          "r": [
+            [
+              "Wiki · x87 浮点单元",
+              "https://en.wikipedia.org/wiki/X87"
+            ],
+            [
+              "MS · 参数传递与命名约定",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/argument-passing-and-naming-conventions"
+            ]
+          ]
+        },
+        {
+          "t": "2.6 浮点数-浮点数作为返回值(ST寄存器结构)",
+          "r": [
+            [
+              "Wiki · x87 浮点单元",
+              "https://en.wikipedia.org/wiki/X87"
+            ],
+            [
+              "x86 指令手册 · FST/FSTP",
+              "https://www.felixcloutier.com/x86/fst:fstp"
+            ]
+          ]
+        },
+        {
+          "t": "2.7 浮点数-CE中查找方案",
+          "r": [
+            [
+              "Cheat Engine 官网",
+              "https://www.cheatengine.org/"
+            ],
+            [
+              "维基 · IEEE 754",
+              "https://zh.wikipedia.org/wiki/IEEE_754"
+            ]
+          ]
+        },
+        {
+          "t": "2.8 字符-ASCII编码规则",
+          "r": [
+            [
+              "维基 · ASCII",
+              "https://zh.wikipedia.org/wiki/ASCII"
+            ]
+          ]
+        },
+        {
+          "t": "2.9 字符-Unicode编码规则",
+          "r": [
+            [
+              "维基 · Unicode",
+              "https://zh.wikipedia.org/wiki/Unicode"
+            ]
+          ]
+        },
+        {
+          "t": "3.0 布尔-判断规则",
+          "r": [
+            [
+              "菜鸟 · C 判断",
+              "https://www.runoob.com/cprogramming/c-decision.html"
+            ],
+            [
+              "x86 指令手册 · TEST",
+              "https://www.felixcloutier.com/x86/test"
+            ]
+          ]
+        },
+        {
+          "t": "3.1 类型转换(无符号数)",
+          "r": [
+            [
+              "MS · 常用算术转换",
+              "https://learn.microsoft.com/zh-cn/cpp/c-language/usual-arithmetic-conversions"
+            ],
+            [
+              "x86 指令手册 · MOVZX",
+              "https://www.felixcloutier.com/x86/movzx"
+            ]
+          ]
+        },
+        {
+          "t": "3.2 类型转换(有符号数)",
+          "r": [
+            [
+              "MS · 常用算术转换",
+              "https://learn.microsoft.com/zh-cn/cpp/c-language/usual-arithmetic-conversions"
+            ],
+            [
+              "x86 指令手册 · MOVSX",
+              "https://www.felixcloutier.com/x86/movsx:movsxd"
+            ]
+          ]
+        },
+        {
+          "t": "3.3 位运算(AND_OR_XOR_NOT)",
+          "r": [
+            [
+              "x86 指令手册 · AND",
+              "https://www.felixcloutier.com/x86/and"
+            ],
+            [
+              "x86 指令手册 · OR",
+              "https://www.felixcloutier.com/x86/or"
+            ],
+            [
+              "x86 指令手册 · XOR",
+              "https://www.felixcloutier.com/x86/xor"
+            ],
+            [
+              "维基 · 位操作",
+              "https://zh.wikipedia.org/wiki/%E4%BD%8D%E6%93%8D%E4%BD%9C"
+            ]
+          ]
+        },
+        {
+          "t": "3.4 位运算(SHL_SHR_SAL_SAR)",
+          "r": [
+            [
+              "x86 指令手册 · SHL/SHR/SAL/SAR",
+              "https://www.felixcloutier.com/x86/sal:sar:shl:shr"
+            ],
+            [
+              "维基 · 位操作",
+              "https://zh.wikipedia.org/wiki/%E4%BD%8D%E6%93%8D%E4%BD%9C"
+            ]
+          ]
+        },
+        {
+          "t": "3.5 算术运算(ADD_SUB_INC_DEC_ADC)",
+          "r": [
+            [
+              "x86 指令手册 · ADD",
+              "https://www.felixcloutier.com/x86/add"
+            ],
+            [
+              "x86 指令手册 · SUB",
+              "https://www.felixcloutier.com/x86/sub"
+            ],
+            [
+              "x86 指令手册 · ADC",
+              "https://www.felixcloutier.com/x86/adc"
+            ]
+          ]
+        },
+        {
+          "t": "3.6 算数运算(IMUL_IDIV)",
+          "r": [
+            [
+              "x86 指令手册 · IMUL",
+              "https://www.felixcloutier.com/x86/imul"
+            ],
+            [
+              "x86 指令手册 · IDIV",
+              "https://www.felixcloutier.com/x86/idiv"
+            ]
+          ]
+        },
+        {
+          "t": "3.7 算数运算(前置与后置递增分析)",
+          "r": [
+            [
+              "cppreference · 自增自减运算符",
+              "https://zh.cppreference.com/w/c/language/operator_incdec"
+            ],
+            [
+              "x86 指令手册 · INC",
+              "https://www.felixcloutier.com/x86/inc"
+            ]
+          ]
+        }
       ]
     },
     {
       "title": "数组/结构篇",
       "lessons": [
-        "3.8 选择结构-IF-单行IF格式反汇编分析",
-        "3.9 选择结构-IF-多行IF格式反汇编分析",
-        "4.0 选择结构-IF-多条件IF格式反汇编分析",
-        "4.1 选择结构-三目运算符-反汇编分析",
-        "4.2 选择结构-switch(3case反汇编表现)",
-        "4.3 选择结构-switch(跳转表机制)",
-        "4.4 选择结构-switch(大小表_索引表)",
-        "4.5 循环结构-while(流程分析)",
-        "4.6 循环结构-do...while(流程对比)",
-        "4.7 循环结构-for(结构体现)",
-        "4.8 循环结构-Break_continue_goto",
-        "4.9 数组-数组存储规则",
-        "5.0 数组-数组下标寻址",
-        "5.1 数组-数组参数传递",
-        "5.2 数组-多维数组内存体现",
-        "5.3 数组-多维数组寻址规律",
-        "5.4 数组-缓冲区溢出_数组越界",
-        "5.5 数组-字符_字符串区别及初始化",
-        "5.6 结构体-内存布局_内存对齐",
-        "5.7 结构体-结构体数组布局与寻址",
-        "5.8 结构体-结构体参数传递规则",
-        "5.9 结构体-typedef",
-        "6.0 结构体-union存储规则",
-        "6.1 结构体-enum"
+        {
+          "t": "3.8 选择结构-IF-单行IF格式反汇编分析",
+          "r": [
+            [
+              "菜鸟 · C 判断",
+              "https://www.runoob.com/cprogramming/c-decision.html"
+            ],
+            [
+              "x86 指令手册 · CMP",
+              "https://www.felixcloutier.com/x86/cmp"
+            ],
+            [
+              "x86 指令手册 · JCC",
+              "https://www.felixcloutier.com/x86/jcc"
+            ]
+          ]
+        },
+        {
+          "t": "3.9 选择结构-IF-多行IF格式反汇编分析",
+          "r": [
+            [
+              "菜鸟 · C 判断",
+              "https://www.runoob.com/cprogramming/c-decision.html"
+            ],
+            [
+              "x86 指令手册 · JCC",
+              "https://www.felixcloutier.com/x86/jcc"
+            ]
+          ]
+        },
+        {
+          "t": "4.0 选择结构-IF-多条件IF格式反汇编分析",
+          "r": [
+            [
+              "菜鸟 · C 判断",
+              "https://www.runoob.com/cprogramming/c-decision.html"
+            ],
+            [
+              "x86 指令手册 · CMP",
+              "https://www.felixcloutier.com/x86/cmp"
+            ],
+            [
+              "x86 指令手册 · JCC",
+              "https://www.felixcloutier.com/x86/jcc"
+            ]
+          ]
+        },
+        {
+          "t": "4.1 选择结构-三目运算符-反汇编分析",
+          "r": [
+            [
+              "菜鸟 · C 判断",
+              "https://www.runoob.com/cprogramming/c-decision.html"
+            ],
+            [
+              "x86 指令手册 · JCC",
+              "https://www.felixcloutier.com/x86/jcc"
+            ]
+          ]
+        },
+        {
+          "t": "4.2 选择结构-switch(3case反汇编表现)",
+          "r": [
+            [
+              "菜鸟 · C 判断",
+              "https://www.runoob.com/cprogramming/c-decision.html"
+            ],
+            [
+              "x86 指令手册 · CMP",
+              "https://www.felixcloutier.com/x86/cmp"
+            ]
+          ]
+        },
+        {
+          "t": "4.3 选择结构-switch(跳转表机制)",
+          "r": [
+            [
+              "维基 · 分支表(跳转表)",
+              "https://zh.wikipedia.org/wiki/%E5%88%86%E6%94%AF%E8%A1%A8"
+            ],
+            [
+              "x86 指令手册 · JMP",
+              "https://www.felixcloutier.com/x86/jmp"
+            ]
+          ]
+        },
+        {
+          "t": "4.4 选择结构-switch(大小表_索引表)",
+          "r": [
+            [
+              "维基 · 分支表(跳转表)",
+              "https://zh.wikipedia.org/wiki/%E5%88%86%E6%94%AF%E8%A1%A8"
+            ],
+            [
+              "x86 指令手册 · JMP",
+              "https://www.felixcloutier.com/x86/jmp"
+            ]
+          ]
+        },
+        {
+          "t": "4.5 循环结构-while(流程分析)",
+          "r": [
+            [
+              "菜鸟 · C 循环",
+              "https://www.runoob.com/cprogramming/c-loops.html"
+            ],
+            [
+              "x86 指令手册 · JCC",
+              "https://www.felixcloutier.com/x86/jcc"
+            ]
+          ]
+        },
+        {
+          "t": "4.6 循环结构-do...while(流程对比)",
+          "r": [
+            [
+              "菜鸟 · C 循环",
+              "https://www.runoob.com/cprogramming/c-loops.html"
+            ],
+            [
+              "x86 指令手册 · JCC",
+              "https://www.felixcloutier.com/x86/jcc"
+            ]
+          ]
+        },
+        {
+          "t": "4.7 循环结构-for(结构体现)",
+          "r": [
+            [
+              "菜鸟 · C 循环",
+              "https://www.runoob.com/cprogramming/c-loops.html"
+            ],
+            [
+              "x86 指令手册 · JCC",
+              "https://www.felixcloutier.com/x86/jcc"
+            ]
+          ]
+        },
+        {
+          "t": "4.8 循环结构-Break_continue_goto",
+          "r": [
+            [
+              "菜鸟 · C break 语句",
+              "https://www.runoob.com/cprogramming/c-break-statement.html"
+            ],
+            [
+              "菜鸟 · C continue 语句",
+              "https://www.runoob.com/cprogramming/c-continue-statement.html"
+            ],
+            [
+              "x86 指令手册 · JMP",
+              "https://www.felixcloutier.com/x86/jmp"
+            ]
+          ]
+        },
+        {
+          "t": "4.9 数组-数组存储规则",
+          "r": [
+            [
+              "菜鸟 · C 数组",
+              "https://www.runoob.com/cprogramming/c-arrays.html"
+            ]
+          ]
+        },
+        {
+          "t": "5.0 数组-数组下标寻址",
+          "r": [
+            [
+              "菜鸟 · C 数组",
+              "https://www.runoob.com/cprogramming/c-arrays.html"
+            ],
+            [
+              "x86 指令手册 · LEA",
+              "https://www.felixcloutier.com/x86/lea"
+            ]
+          ]
+        },
+        {
+          "t": "5.1 数组-数组参数传递",
+          "r": [
+            [
+              "菜鸟 · C 数组",
+              "https://www.runoob.com/cprogramming/c-arrays.html"
+            ],
+            [
+              "MS · C 指针",
+              "https://learn.microsoft.com/zh-cn/cpp/c-language/pointers"
+            ]
+          ]
+        },
+        {
+          "t": "5.2 数组-多维数组内存体现",
+          "r": [
+            [
+              "菜鸟 · C 数组",
+              "https://www.runoob.com/cprogramming/c-arrays.html"
+            ],
+            [
+              "cppreference · 数组",
+              "https://zh.cppreference.com/w/c/language/array"
+            ]
+          ]
+        },
+        {
+          "t": "5.3 数组-多维数组寻址规律",
+          "r": [
+            [
+              "菜鸟 · C 数组",
+              "https://www.runoob.com/cprogramming/c-arrays.html"
+            ],
+            [
+              "x86 指令手册 · LEA",
+              "https://www.felixcloutier.com/x86/lea"
+            ]
+          ]
+        },
+        {
+          "t": "5.4 数组-缓冲区溢出_数组越界",
+          "r": [
+            [
+              "维基 · 缓冲区溢出",
+              "https://zh.wikipedia.org/wiki/%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA"
+            ],
+            [
+              "看雪 · 逆向学习路线",
+              "https://bbs.kanxue.com/thread-51839.htm"
+            ]
+          ]
+        },
+        {
+          "t": "5.5 数组-字符_字符串区别及初始化",
+          "r": [
+            [
+              "菜鸟 · C 字符串",
+              "https://www.runoob.com/cprogramming/c-strings.html"
+            ],
+            [
+              "维基 · ASCII",
+              "https://zh.wikipedia.org/wiki/ASCII"
+            ]
+          ]
+        },
+        {
+          "t": "5.6 结构体-内存布局_内存对齐",
+          "r": [
+            [
+              "维基 · 数据结构对齐",
+              "https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E9%BD%90"
+            ],
+            [
+              "MS · pragma pack 结构体对齐",
+              "https://learn.microsoft.com/zh-cn/cpp/preprocessor/pack"
+            ],
+            [
+              "MS · C 对齐规则",
+              "https://learn.microsoft.com/zh-cn/cpp/c-language/alignment-c"
+            ]
+          ]
+        },
+        {
+          "t": "5.7 结构体-结构体数组布局与寻址",
+          "r": [
+            [
+              "菜鸟 · C 结构体",
+              "https://www.runoob.com/cprogramming/c-structs.html"
+            ],
+            [
+              "维基 · 数据结构对齐",
+              "https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E9%BD%90"
+            ]
+          ]
+        },
+        {
+          "t": "5.8 结构体-结构体参数传递规则",
+          "r": [
+            [
+              "菜鸟 · C 结构体",
+              "https://www.runoob.com/cprogramming/c-structs.html"
+            ],
+            [
+              "MS · 参数传递与命名约定",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/argument-passing-and-naming-conventions"
+            ]
+          ]
+        },
+        {
+          "t": "5.9 结构体-typedef",
+          "r": [
+            [
+              "菜鸟 · C typedef",
+              "https://www.runoob.com/cprogramming/c-typedef.html"
+            ],
+            [
+              "cppreference · typedef",
+              "https://zh.cppreference.com/w/c/language/typedef"
+            ]
+          ]
+        },
+        {
+          "t": "6.0 结构体-union存储规则",
+          "r": [
+            [
+              "菜鸟 · C 共用体 union",
+              "https://www.runoob.com/cprogramming/c-unions.html"
+            ],
+            [
+              "cppreference · union",
+              "https://zh.cppreference.com/w/c/language/union"
+            ]
+          ]
+        },
+        {
+          "t": "6.1 结构体-enum",
+          "r": [
+            [
+              "菜鸟 · C 枚举 enum",
+              "https://www.runoob.com/cprogramming/c-enum.html"
+            ],
+            [
+              "cppreference · enum",
+              "https://zh.cppreference.com/w/c/language/enum"
+            ]
+          ]
+        }
       ]
     },
     {
       "title": "指针/内存篇",
       "lessons": [
-        "6.2 指针-指针的本质",
-        "6.3 指针-多级指针特性",
-        "6.4 指针-运算规则",
-        "6.5 指针-数组与指针对应关系",
-        "6.6 指针-值传递与地址传递",
-        "6.7 指针-结构体指针",
-        "6.8 指针-指针数组",
-        "6.9 指针-指针函数",
-        "7.0 指针-函数指针",
-        "7.1 内存-内存分配_释放",
-        "7.2 内存-内存初始化_拷贝"
+        {
+          "t": "6.2 指针-指针的本质",
+          "r": [
+            [
+              "菜鸟 · C 指针",
+              "https://www.runoob.com/cprogramming/c-pointers.html"
+            ],
+            [
+              "MS · C 指针",
+              "https://learn.microsoft.com/zh-cn/cpp/c-language/pointers"
+            ]
+          ]
+        },
+        {
+          "t": "6.3 指针-多级指针特性",
+          "r": [
+            [
+              "菜鸟 · C 指针",
+              "https://www.runoob.com/cprogramming/c-pointers.html"
+            ],
+            [
+              "cppreference · 指针",
+              "https://zh.cppreference.com/w/c/language/pointer"
+            ]
+          ]
+        },
+        {
+          "t": "6.4 指针-运算规则",
+          "r": [
+            [
+              "菜鸟 · C 指针",
+              "https://www.runoob.com/cprogramming/c-pointers.html"
+            ],
+            [
+              "cppreference · 指针",
+              "https://zh.cppreference.com/w/c/language/pointer"
+            ]
+          ]
+        },
+        {
+          "t": "6.5 指针-数组与指针对应关系",
+          "r": [
+            [
+              "菜鸟 · C 指针",
+              "https://www.runoob.com/cprogramming/c-pointers.html"
+            ],
+            [
+              "菜鸟 · C 数组",
+              "https://www.runoob.com/cprogramming/c-arrays.html"
+            ]
+          ]
+        },
+        {
+          "t": "6.6 指针-值传递与地址传递",
+          "r": [
+            [
+              "菜鸟 · C 指针",
+              "https://www.runoob.com/cprogramming/c-pointers.html"
+            ],
+            [
+              "MS · 参数传递与命名约定",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/argument-passing-and-naming-conventions"
+            ]
+          ]
+        },
+        {
+          "t": "6.7 指针-结构体指针",
+          "r": [
+            [
+              "菜鸟 · C 结构体",
+              "https://www.runoob.com/cprogramming/c-structs.html"
+            ],
+            [
+              "菜鸟 · C 指针",
+              "https://www.runoob.com/cprogramming/c-pointers.html"
+            ]
+          ]
+        },
+        {
+          "t": "6.8 指针-指针数组",
+          "r": [
+            [
+              "菜鸟 · C 指针",
+              "https://www.runoob.com/cprogramming/c-pointers.html"
+            ],
+            [
+              "菜鸟 · C 数组",
+              "https://www.runoob.com/cprogramming/c-arrays.html"
+            ]
+          ]
+        },
+        {
+          "t": "6.9 指针-指针函数",
+          "r": [
+            [
+              "菜鸟 · C 指针",
+              "https://www.runoob.com/cprogramming/c-pointers.html"
+            ],
+            [
+              "菜鸟 · C 函数",
+              "https://www.runoob.com/cprogramming/c-functions.html"
+            ]
+          ]
+        },
+        {
+          "t": "7.0 指针-函数指针",
+          "r": [
+            [
+              "维基 · 函数指针",
+              "https://zh.wikipedia.org/wiki/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88"
+            ],
+            [
+              "菜鸟 · C 指针",
+              "https://www.runoob.com/cprogramming/c-pointers.html"
+            ]
+          ]
+        },
+        {
+          "t": "7.1 内存-内存分配_释放",
+          "r": [
+            [
+              "菜鸟 · C 内存管理",
+              "https://www.runoob.com/cprogramming/c-memory-management.html"
+            ],
+            [
+              "cppreference · 动态内存管理",
+              "https://zh.cppreference.com/w/c/memory"
+            ]
+          ]
+        },
+        {
+          "t": "7.2 内存-内存初始化_拷贝",
+          "r": [
+            [
+              "菜鸟 · C 内存管理",
+              "https://www.runoob.com/cprogramming/c-memory-management.html"
+            ],
+            [
+              "菜鸟 · C 字符串",
+              "https://www.runoob.com/cprogramming/c-strings.html"
+            ]
+          ]
+        }
       ]
     }
   ]

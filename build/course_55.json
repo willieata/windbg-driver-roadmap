@@ -8,43 +8,483 @@
     {
       "title": "汇编入门篇",
       "lessons": [
-        "0.1 x86汇编-基本概念",
-        "0.2 进制-进制定义",
-        "0.3 进制-进制运算",
-        "0.4 进制-进制对应关系",
-        "0.5 进制-进制转换(修改)",
-        "0.6 数据-数据宽度",
-        "0.7 数据-有符号数与无符号数",
-        "0.8 数据-整数编码规则",
-        "0.9 数据-位运算",
-        "1.0 x86汇编-常用工具",
-        "1.1 寄存器-32位寄存器",
-        "1.2 寄存器-16位寄存器",
-        "1.3 寄存器-8位寄存器",
-        "1.4 内存-内存概念",
-        "1.5 内存-内存寻址",
-        "1.6 内存-存储端序",
-        "1.7 指令-汇编指令样式",
-        "1.8 指令-LEA",
-        "1.9 指令-ADD",
-        "2.0 指令-SUB",
-        "2.1 寄存器-标志寄存器",
-        "2.2 标志位-CF",
-        "2.3 标志位-PF",
-        "2.4 标志位-AF",
-        "2.5 标志位-ZF",
-        "2.6 标志位-SF",
-        "2.7 标志位-OF",
-        "2.8 寄存器-指令指针寄存器",
-        "2.9 条件比较-CMP_TEST",
-        "3.0 条件跳转-JCC",
-        "3.1 指令-STOSB_STOSW_STOSD",
-        "3.2 指令-MOVSB_MOVSW_MOVSD",
-        "3.3 指令-REP",
-        "3.4 堆栈-堆栈结构",
-        "3.5 堆栈-PUSH_POP",
-        "3.6 堆栈-CALL_RET",
-        "3.7 汇编-总结"
+        {
+          "t": "0.1 x86汇编-基本概念",
+          "r": [
+            [
+              "阮一峰 · 汇编语言入门教程",
+              "https://www.ruanyifeng.com/blog/2018/01/assembly-language-primer.html"
+            ],
+            [
+              "维基 · x86",
+              "https://zh.wikipedia.org/wiki/X86"
+            ],
+            [
+              "MS · x86 架构(调试器文档)",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/x86-architecture"
+            ]
+          ]
+        },
+        {
+          "t": "0.2 进制-进制定义",
+          "r": [
+            [
+              "维基 · 二进制",
+              "https://zh.wikipedia.org/wiki/%E4%BA%8C%E8%BF%9B%E5%88%B6"
+            ],
+            [
+              "维基 · 十六进制",
+              "https://zh.wikipedia.org/wiki/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6"
+            ]
+          ]
+        },
+        {
+          "t": "0.3 进制-进制运算",
+          "r": [
+            [
+              "维基 · 二进制",
+              "https://zh.wikipedia.org/wiki/%E4%BA%8C%E8%BF%9B%E5%88%B6"
+            ]
+          ]
+        },
+        {
+          "t": "0.4 进制-进制对应关系",
+          "r": [
+            [
+              "维基 · 二进制",
+              "https://zh.wikipedia.org/wiki/%E4%BA%8C%E8%BF%9B%E5%88%B6"
+            ],
+            [
+              "维基 · 十六进制",
+              "https://zh.wikipedia.org/wiki/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6"
+            ]
+          ]
+        },
+        {
+          "t": "0.5 进制-进制转换(修改)",
+          "r": [
+            [
+              "维基 · 二进制",
+              "https://zh.wikipedia.org/wiki/%E4%BA%8C%E8%BF%9B%E5%88%B6"
+            ],
+            [
+              "维基 · 十六进制",
+              "https://zh.wikipedia.org/wiki/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6"
+            ]
+          ]
+        },
+        {
+          "t": "0.6 数据-数据宽度",
+          "r": [
+            [
+              "维基 · x86",
+              "https://zh.wikipedia.org/wiki/X86"
+            ],
+            [
+              "维基 · 寄存器",
+              "https://zh.wikipedia.org/wiki/%E5%AF%84%E5%AD%98%E5%99%A8"
+            ]
+          ]
+        },
+        {
+          "t": "0.7 数据-有符号数与无符号数",
+          "r": [
+            [
+              "维基 · 有符号数处理",
+              "https://zh.wikipedia.org/wiki/%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0"
+            ],
+            [
+              "维基 · 二补数(补码)",
+              "https://zh.wikipedia.org/wiki/%E4%BA%8C%E8%A3%9C%E6%95%B8"
+            ]
+          ]
+        },
+        {
+          "t": "0.8 数据-整数编码规则",
+          "r": [
+            [
+              "维基 · 二补数(补码)",
+              "https://zh.wikipedia.org/wiki/%E4%BA%8C%E8%A3%9C%E6%95%B8"
+            ],
+            [
+              "维基 · 有符号数处理",
+              "https://zh.wikipedia.org/wiki/%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0"
+            ]
+          ]
+        },
+        {
+          "t": "0.9 数据-位运算",
+          "r": [
+            [
+              "维基 · 位操作",
+              "https://zh.wikipedia.org/wiki/%E4%BD%8D%E6%93%8D%E4%BD%9C"
+            ],
+            [
+              "菜鸟 · 位运算总结",
+              "https://www.runoob.com/w3cnote/bit-operation.html"
+            ]
+          ]
+        },
+        {
+          "t": "1.0 x86汇编-常用工具",
+          "r": [
+            [
+              "x64dbg 官网",
+              "https://x64dbg.com/"
+            ],
+            [
+              "IDA Free 下载",
+              "https://hex-rays.com/ida-free"
+            ],
+            [
+              "看雪 · 逆向学习路线",
+              "https://bbs.kanxue.com/thread-51839.htm"
+            ]
+          ]
+        },
+        {
+          "t": "1.1 寄存器-32位寄存器",
+          "r": [
+            [
+              "MS · x86 架构(调试器文档)",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/x86-architecture"
+            ],
+            [
+              "维基 · 寄存器",
+              "https://zh.wikipedia.org/wiki/%E5%AF%84%E5%AD%98%E5%99%A8"
+            ],
+            [
+              "阮一峰 · 汇编语言入门教程",
+              "https://www.ruanyifeng.com/blog/2018/01/assembly-language-primer.html"
+            ]
+          ]
+        },
+        {
+          "t": "1.2 寄存器-16位寄存器",
+          "r": [
+            [
+              "MS · x86 架构(调试器文档)",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/x86-architecture"
+            ],
+            [
+              "维基 · 寄存器",
+              "https://zh.wikipedia.org/wiki/%E5%AF%84%E5%AD%98%E5%99%A8"
+            ]
+          ]
+        },
+        {
+          "t": "1.3 寄存器-8位寄存器",
+          "r": [
+            [
+              "MS · x86 架构(调试器文档)",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/x86-architecture"
+            ],
+            [
+              "维基 · 寄存器",
+              "https://zh.wikipedia.org/wiki/%E5%AF%84%E5%AD%98%E5%99%A8"
+            ]
+          ]
+        },
+        {
+          "t": "1.4 内存-内存概念",
+          "r": [
+            [
+              "维基 · 内存地址",
+              "https://zh.wikipedia.org/wiki/%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80"
+            ],
+            [
+              "阮一峰 · 汇编语言入门教程",
+              "https://www.ruanyifeng.com/blog/2018/01/assembly-language-primer.html"
+            ]
+          ]
+        },
+        {
+          "t": "1.5 内存-内存寻址",
+          "r": [
+            [
+              "维基 · 内存地址",
+              "https://zh.wikipedia.org/wiki/%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80"
+            ],
+            [
+              "MS · x86 架构(调试器文档)",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/x86-architecture"
+            ]
+          ]
+        },
+        {
+          "t": "1.6 内存-存储端序",
+          "r": [
+            [
+              "维基 · 字节序",
+              "https://zh.wikipedia.org/wiki/%E5%AD%97%E8%8A%82%E5%BA%8F"
+            ]
+          ]
+        },
+        {
+          "t": "1.7 指令-汇编指令样式",
+          "r": [
+            [
+              "阮一峰 · 汇编语言入门教程",
+              "https://www.ruanyifeng.com/blog/2018/01/assembly-language-primer.html"
+            ],
+            [
+              "x86 指令集索引(felixcloutier)",
+              "https://www.felixcloutier.com/x86/"
+            ]
+          ]
+        },
+        {
+          "t": "1.8 指令-LEA",
+          "r": [
+            [
+              "x86 指令手册 · LEA",
+              "https://www.felixcloutier.com/x86/lea"
+            ]
+          ]
+        },
+        {
+          "t": "1.9 指令-ADD",
+          "r": [
+            [
+              "x86 指令手册 · ADD",
+              "https://www.felixcloutier.com/x86/add"
+            ]
+          ]
+        },
+        {
+          "t": "2.0 指令-SUB",
+          "r": [
+            [
+              "x86 指令手册 · SUB",
+              "https://www.felixcloutier.com/x86/sub"
+            ]
+          ]
+        },
+        {
+          "t": "2.1 寄存器-标志寄存器",
+          "r": [
+            [
+              "维基 · 程序状态字",
+              "https://zh.wikipedia.org/wiki/%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97"
+            ],
+            [
+              "Wiki · FLAGS register(逐位说明)",
+              "https://en.wikipedia.org/wiki/FLAGS_register"
+            ],
+            [
+              "MS · x86 架构(调试器文档)",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/x86-architecture"
+            ]
+          ]
+        },
+        {
+          "t": "2.2 标志位-CF",
+          "r": [
+            [
+              "Wiki · FLAGS register(逐位说明)",
+              "https://en.wikipedia.org/wiki/FLAGS_register"
+            ],
+            [
+              "维基 · 程序状态字",
+              "https://zh.wikipedia.org/wiki/%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97"
+            ]
+          ]
+        },
+        {
+          "t": "2.3 标志位-PF",
+          "r": [
+            [
+              "Wiki · FLAGS register(逐位说明)",
+              "https://en.wikipedia.org/wiki/FLAGS_register"
+            ],
+            [
+              "维基 · 程序状态字",
+              "https://zh.wikipedia.org/wiki/%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97"
+            ]
+          ]
+        },
+        {
+          "t": "2.4 标志位-AF",
+          "r": [
+            [
+              "Wiki · FLAGS register(逐位说明)",
+              "https://en.wikipedia.org/wiki/FLAGS_register"
+            ],
+            [
+              "维基 · 程序状态字",
+              "https://zh.wikipedia.org/wiki/%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97"
+            ]
+          ]
+        },
+        {
+          "t": "2.5 标志位-ZF",
+          "r": [
+            [
+              "Wiki · FLAGS register(逐位说明)",
+              "https://en.wikipedia.org/wiki/FLAGS_register"
+            ],
+            [
+              "维基 · 程序状态字",
+              "https://zh.wikipedia.org/wiki/%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97"
+            ]
+          ]
+        },
+        {
+          "t": "2.6 标志位-SF",
+          "r": [
+            [
+              "Wiki · FLAGS register(逐位说明)",
+              "https://en.wikipedia.org/wiki/FLAGS_register"
+            ],
+            [
+              "维基 · 程序状态字",
+              "https://zh.wikipedia.org/wiki/%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97"
+            ]
+          ]
+        },
+        {
+          "t": "2.7 标志位-OF",
+          "r": [
+            [
+              "Wiki · FLAGS register(逐位说明)",
+              "https://en.wikipedia.org/wiki/FLAGS_register"
+            ],
+            [
+              "维基 · 二补数(补码)",
+              "https://zh.wikipedia.org/wiki/%E4%BA%8C%E8%A3%9C%E6%95%B8"
+            ]
+          ]
+        },
+        {
+          "t": "2.8 寄存器-指令指针寄存器",
+          "r": [
+            [
+              "MS · x86 架构(调试器文档)",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/x86-architecture"
+            ],
+            [
+              "维基 · 寄存器",
+              "https://zh.wikipedia.org/wiki/%E5%AF%84%E5%AD%98%E5%99%A8"
+            ]
+          ]
+        },
+        {
+          "t": "2.9 条件比较-CMP_TEST",
+          "r": [
+            [
+              "x86 指令手册 · CMP",
+              "https://www.felixcloutier.com/x86/cmp"
+            ],
+            [
+              "x86 指令手册 · TEST",
+              "https://www.felixcloutier.com/x86/test"
+            ]
+          ]
+        },
+        {
+          "t": "3.0 条件跳转-JCC",
+          "r": [
+            [
+              "x86 指令手册 · JCC",
+              "https://www.felixcloutier.com/x86/jcc"
+            ],
+            [
+              "x86 指令手册 · JMP",
+              "https://www.felixcloutier.com/x86/jmp"
+            ]
+          ]
+        },
+        {
+          "t": "3.1 指令-STOSB_STOSW_STOSD",
+          "r": [
+            [
+              "x86 指令手册 · STOS",
+              "https://www.felixcloutier.com/x86/stos:stosb:stosw:stosd:stosq"
+            ]
+          ]
+        },
+        {
+          "t": "3.2 指令-MOVSB_MOVSW_MOVSD",
+          "r": [
+            [
+              "x86 指令手册 · MOVS",
+              "https://www.felixcloutier.com/x86/movs:movsb:movsw:movsd:movsq"
+            ]
+          ]
+        },
+        {
+          "t": "3.3 指令-REP",
+          "r": [
+            [
+              "x86 指令手册 · REP",
+              "https://www.felixcloutier.com/x86/rep:repe:repz:repne:repnz"
+            ]
+          ]
+        },
+        {
+          "t": "3.4 堆栈-堆栈结构",
+          "r": [
+            [
+              "维基 · 调用栈",
+              "https://zh.wikipedia.org/wiki/%E8%B0%83%E7%94%A8%E6%A0%88"
+            ],
+            [
+              "维基 · 堆栈",
+              "https://zh.wikipedia.org/wiki/%E5%A0%86%E6%A0%88"
+            ]
+          ]
+        },
+        {
+          "t": "3.5 堆栈-PUSH_POP",
+          "r": [
+            [
+              "x86 指令手册 · PUSH",
+              "https://www.felixcloutier.com/x86/push"
+            ],
+            [
+              "x86 指令手册 · POP",
+              "https://www.felixcloutier.com/x86/pop"
+            ],
+            [
+              "维基 · 调用栈",
+              "https://zh.wikipedia.org/wiki/%E8%B0%83%E7%94%A8%E6%A0%88"
+            ]
+          ]
+        },
+        {
+          "t": "3.6 堆栈-CALL_RET",
+          "r": [
+            [
+              "x86 指令手册 · CALL",
+              "https://www.felixcloutier.com/x86/call"
+            ],
+            [
+              "x86 指令手册 · RET",
+              "https://www.felixcloutier.com/x86/ret"
+            ],
+            [
+              "维基 · 调用栈",
+              "https://zh.wikipedia.org/wiki/%E8%B0%83%E7%94%A8%E6%A0%88"
+            ]
+          ]
+        },
+        {
+          "t": "3.7 汇编-总结",
+          "r": [
+            [
+              "x86 指令集索引(felixcloutier)",
+              "https://www.felixcloutier.com/x86/"
+            ],
+            [
+              "阮一峰 · 汇编语言入门教程",
+              "https://www.ruanyifeng.com/blog/2018/01/assembly-language-primer.html"
+            ],
+            [
+              "看雪 · 逆向学习路线",
+              "https://bbs.kanxue.com/thread-51839.htm"
+            ]
+          ]
+        }
       ]
     }
   ]

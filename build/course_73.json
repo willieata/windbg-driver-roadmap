@@ -1,1 +1,491 @@
-{"id": 73, "name": "全栈安全-逆向攻防篇", "route": "全栈安全", "group": "逆向篇", "order": 42, "chapters": [], "note": "目录待抓取(网站限流)"}
+{
+  "id": 73,
+  "name": "全栈安全-逆向攻防篇",
+  "route": "全栈安全",
+  "group": "逆向篇",
+  "order": 42,
+  "chapters": [
+    {
+      "title": "前言与基础概念",
+      "lessons": [
+        "01.0 前言-Windows逆向攻防篇前置要求_1.mp4",
+        "01.1 前言-Windows逆向攻防篇前置要求_2.mp4",
+        "01.2 注入原理-Windows平台应用层注入基本概念.mp4",
+        "01.3 注入原理-注入框架思路及PE加载修复流程.mp4"
+      ]
+    },
+    {
+      "title": "注入框架开发",
+      "lessons": [
+        "01.4 注入框架-注入系统控制台版本开发思路.mp4",
+        "01.5 注入框架-控制台程序属性初始化.mp4",
+        "01.6 注入框架-控制台程序输出标题润色封装.mp4",
+        "01.7 注入框架-控制台程序模拟进度加载过程.mp4",
+        "01.8 注入框架-用户交互及输入信息流程构建.mp4",
+        "01.9 注入框架-业务功能统一显示模板.mp4"
+      ]
+    },
+    {
+      "title": "远程线程注入",
+      "lessons": [
+        "02.0 远程线程注入-远程线程注入思路.mp4",
+        "02.1 远程线程注入-通用代码框架封装.mp4",
+        "02.2 远程线程注入-远程线程注入实现.mp4",
+        "02.3 远程线程注入-跨进程调试及执行数据分析.mp4"
+      ]
+    },
+    {
+      "title": "劫持线程注入",
+      "lessons": [
+        "02.4 劫持线程注入-劫持线程注入思路.mp4",
+        "02.5 劫持线程注入-线程上下文环境修改与shellcode搭建.mp4",
+        "02.6 劫持线程注入-劫持线程注入执行流程.mp4"
+      ]
+    },
+    {
+      "title": "异步调用注入",
+      "lessons": [
+        "02.7 异步调用注入-APC调用触发机制.mp4",
+        "02.8 异步调用注入-添加用户层APC队列完成注入.mp4",
+        "02.9 异步调用注入-基于线程简易注入汇总.mp4"
+      ]
+    },
+    {
+      "title": "进程早鸟注入",
+      "lessons": [
+        "03.0 进程早鸟注入-进程挂起执行及对应安全检测.mp4",
+        "03.1 进程早鸟注入-早鸟执行实现原理与流程.mp4"
+      ]
+    },
+    {
+      "title": "全局注册注入",
+      "lessons": [
+        "03.2 全局注册注入-AppInit_DLLs.mp4",
+        "03.3 全局注册注入-注册表操作与REG文件定义.mp4",
+        "03.4 全局注册注入-键值写入与命令行验证方法使用.mp4"
+      ]
+    },
+    {
+      "title": "全局钩子注入",
+      "lessons": [
+        "03.5 全局钩子注入-Windowshook挂钩监听消息.mp4",
+        "03.6 全局钩子注入-跨进程钩子注入消息映射回调原理.mp4",
+        "03.7 全局钩子注入-主线程与窗口句柄获取及消息队列.mp4",
+        "03.8 全局钩子注入-注入触发回调及释放全过程.mp4"
+      ]
+    },
+    {
+      "title": "内存映射注入",
+      "lessons": [
+        "03.9 内存映射注入-共享内存映射完成跨进程注入思路.mp4",
+        "04.0 内存映射注入-ShellCode构建.mp4",
+        "04.1 内存映射注入-ShellCode压缩.mp4",
+        "04.2 内存映射注入-ShellCode修正.mp4",
+        "04.3 内存映射注入-Shellcode通用执行方式思路.mp4",
+        "04.4 内存映射注入-代码无申请附加注入执行方案.mp4"
+      ]
+    },
+    {
+      "title": "系统调用",
+      "lessons": [
+        "04.5 系统调用-API执行调用路线及高级调用.mp4",
+        "04.6 系统调用-过滤系统调用通用思路.mp4",
+        "04.7 系统调用-ntdll跳板过滤应用层系统调用彻底脱钩.mp4",
+        "04.8 系统调用-用户APC强制唤醒触发调度思路.mp4",
+        "04.9 系统调用-session会话隔离突破.mp4",
+        "05.0 系统调用-进程访问令牌与权限提升.mp4",
+        "05.1 系统调用-高级远程线程注入.mp4"
+      ]
+    },
+    {
+      "title": "Shellcode开发",
+      "lessons": [
+        "05.2 shellcode-x64shellcode通用C语言框架.mp4",
+        "05.3 shellcode-x64汇编定位模块特征及数据比对.mp4",
+        "05.4 shellcode-x64汇编解析PE结构及数据关联.mp4",
+        "05.5 shellcode-x64汇编字符串匹配通用模板.mp4",
+        "05.6 shellcode-x64汇编框架远程执行测试.mp4",
+        "05.7 shellcode-通用shellcode框架搭建及项目构成.mp4",
+        "05.8 shellcode-双版本兼容开发实例与特征混淆.mp4",
+        "05.9 shellcode-字符串哈希处理及快速匹配.mp4",
+        "06.0 shellcode-封装后的提取思路与编译器生成顺序.mp4",
+        "06.1 shellcode-编译器与语法强制平坦化及双版本模式下测试.mp4"
+      ]
+    },
+    {
+      "title": "Shellcode工具开发",
+      "lessons": [
+        "06.2 shellcode-搭建shellcode生成提取注入工具框架.mp4",
+        "06.3 shellcode-完善哈希生成框架.mp4",
+        "06.4 shellcode-硬编码数据转储提取并转换数组使用.mp4",
+        "06.5 shellcode-编译器优化策略对代码布局影响.mp4",
+        "06.6 shellcode-二进制数据提取与对接语言数组.mp4",
+        "06.7 shellcode-本地部署执行环境用户对接.mp4",
+        "06.8 shellcode-本地执行内置shellcode封装.mp4",
+        "06.9 shellcode-本地执行文件shellcode测试.mp4",
+        "07.0 shellcode-远程注入shellcode用户对接.mp4",
+        "07.1 shellcode-远程部署文件与数据提取及执行注入.mp4",
+        "07.2 shellcode-项目完结及常见攻防思路样式.mp4"
+      ]
+    },
+    {
+      "title": "进程伪装隐藏",
+      "lessons": [
+        "07.3 进程伪装隐藏-Process Hollowing.mp4",
+        "07.4 进程伪装隐藏-NT函数导出调用及文件属性获取封装.mp4",
+        "07.5 进程伪装隐藏-(内核初探)函数执行流程分析与数据写回返回判定.mp4",
+        "07.6 进程伪装隐藏-狸猫换太子.mp4",
+        "07.7 进程伪装隐藏-文件对象属性回溯极火绒剑测试伪装效果.mp4",
+        "07.8 进程伪装隐藏-免杀基础及过滤思路.mp4",
+        "07.9 进程伪装隐藏-免杀通用框架搭建.mp4",
+        "08.0 进程伪装隐藏-文件对象使用.mp4",
+        "08.1 进程伪装隐藏-文件磁盘数据特征过滤.mp4",
+        "08.2 进程伪装隐藏-节对象数据映射.mp4",
+        "08.3 进程伪装隐藏-PEB信息定位与劫持修改.mp4",
+        "08.4 进程伪装隐藏-数据二次保护策略及杀软测试.mp4",
+        "08.5 进程伪装隐藏-代码结构优化及双版本兼容实现.mp4"
+      ]
+    },
+    {
+      "title": "反射式注入",
+      "lessons": [
+        "08.6 反射式注入-ReflectiveDLL.mp4",
+        "08.7 反射式注入-注入主框架与导出函数执行.mp4",
+        "08.8 反射式注入-定位执行地址回溯模块头部.mp4",
+        "08.9 反射式注入-哈希计算与匹配及导出表数据对接.mp4",
+        "09.0 反射式注入-映像动态拉伸拷贝及导入表数据修复.mp4",
+        "09.1 反射式注入-重定位修正及入口点执行.mp4"
+      ]
+    },
+    {
+      "title": "特征码搜索",
+      "lessons": [
+        "09.2 特征码搜索-硬编码数据基本格式及可变动量.mp4",
+        "09.3 特征码搜索-通配符的使用及模糊搜索思路.mp4",
+        "09.4 特征码搜索-程序框架设计与数据管理封装.mp4",
+        "09.5 特征码搜索-文件结构扫描解析管理.mp4",
+        "09.6 特征码搜索-特征码字符串提取转换格式.mp4",
+        "09.7 特征码搜索-pattern匹配数组封装.mp4",
+        "09.8 特征码搜索-扫描模式搭建及回调过滤.mp4",
+        "09.9 特征码搜索-特征码数据匹配及结果写回.mp4",
+        "10.0 特征码搜索-结果解析及效率测试.mp4"
+      ]
+    },
+    {
+      "title": "Hook技术",
+      "lessons": [
+        "10.1 hook-hook基本概念及分类样式.mp4",
+        "10.2 hook-iat_hook构建基本思路及PE关联.mp4",
+        "10.3 hook-iat_hookAPI调用拦截测试及安装卸载完善.mp4",
+        "10.4 hook-iat_hook检测手法与思路.mp4",
+        "10.5 hook-iat_hook拦截IAT修改事件与双向监听思路.mp4"
+      ]
+    },
+    {
+      "title": "Inline Hook",
+      "lessons": [
+        "10.6 hook-inline_hook底层逻辑与实现原理.mp4",
+        "10.7 hook-inline_hook拦截函数参数及传统钩子框架流程.mp4",
+        "10.8 hook-inline_hook标准模板化钩子框架搭建.mp4",
+        "10.9 hook-inline_hook转发函数判断与指令完整性.mp4",
+        "11.0 hook-inline_hook指令边界对齐及破坏修复.mp4",
+        "11.1 hook-inline_hook中转函数万能拦截及通用性兼容.mp4",
+        "11.2 hook-inline_hook任意函数拦截测试及代码优化拓展.mp4",
+        "11.3 hook-inline_hook常规API转发API自用大栈通用性测试.mp4",
+        "11.4 hook-inline_hook框架优化与卸载处理.mp4"
+      ]
+    },
+    {
+      "title": "X64 Hook技术",
+      "lessons": [
+        "11.5 hook-x64万能跳转方案及环境保护策略.mp4",
+        "11.6 hook-x64通用化模板框架搭建.mp4",
+        "11.7 hook-x64stub环境保存.mp4",
+        "11.8 hook-x64寄存器参数获取及堆栈定位参数地址.mp4",
+        "11.9 hook-x64中汇编实现中转函数及拦截与默认返回.mp4",
+        "12.0 hook-x64模板化钩子框架完结.mp4"
+      ]
+    },
+    {
+      "title": "Hook框架与反汇编",
+      "lessons": [
+        "12.1 hook-minhook.mp4",
+        "12.2 hook-自旋锁独享操作与多线程兼容处理.mp4",
+        "12.3 hook-hde_disasm.mp4",
+        "12.4 hook-sib_base_index_scale.mp4"
+      ]
+    },
+    {
+      "title": "反汇编引擎",
+      "lessons": [
+        "12.5 asm-capstone.mp4",
+        "12.6 asm-用户数据交互及输入结构解析.mp4",
+        "12.7 asm-数据转换及安全性检查.mp4",
+        "12.8 asm-反汇编数据解析及格式输出.mp4",
+        "12.9 asm-硬编码反汇编转换.mp4",
+        "13.0 asm-反汇编引擎双版本兼容性处理.mp4",
+        "13.1 asm-XEDParse.mp4"
+      ]
+    },
+    {
+      "title": "高级Hook技术",
+      "lessons": [
+        "13.2 hook-vtablehook.mp4",
+        "13.3 hook-veh异常注册处理拦截.mp4",
+        "13.4 hook-硬件断点及无痕hook.mp4",
+        "13.5 hook-无痕钩子实现及瞬时执行.mp4"
+      ]
+    },
+    {
+      "title": "事件跟踪ETW",
+      "lessons": [
+        "13.6 etw-Event Tracing for Windows.mp4",
+        "13.7 etw-日志信息记录管理.mp4",
+        "13.8 etw-主线程交互框架及初始化流程.mp4",
+        "13.9 etw-事件跟踪记录初始化.mp4",
+        "14.0 etw-管理事件启动与释放资源.mp4",
+        "14.1 etw-进程事件监听及回调消息处理.mp4",
+        "14.2 etw-监听回调派遣及opcode过滤.mp4",
+        "14.3 etw-进程监听及event数据提取.mp4"
+      ]
+    },
+    {
+      "title": "Windows管理规范WMI",
+      "lessons": [
+        "14.4 wmi-Windows Management Instrumentation.mp4",
+        "14.5 wmi-QueryInterface & Indicate.mp4",
+        "14.6 wmi-CoCreateInstance & ConnectServer.mp4",
+        "14.7 wmi-InstanceCreationEvent.mp4"
+      ]
+    },
+    {
+      "title": "反调试技术",
+      "lessons": [
+        "14.8 anti_debug-调试器开发与静态动态反调试思路.mp4",
+        "14.9 anti_debug-调试器附加进程执行分析.mp4",
+        "15.0 anti_debug-内核调试对象创建及调试进程句柄写回.mp4",
+        "15.1 anti_debug-被调试进程与调试对象关联.mp4",
+        "15.2 anti_debug-调试消息封装派遣与调度机制.mp4",
+        "15.3 anti_debug-应用层反调试思路及检测方向.mp4"
+      ]
+    },
+    {
+      "title": "调试标志位检测",
+      "lessons": [
+        "15.4 anti_debug-调试标志位反调试检测_1(beingdebug).mp4",
+        "15.5 anti_debug-调试标志位反调试检测_2(debugport).mp4",
+        "15.6 anti_debug-调试标志位反调试检测_3(invalidhandle).mp4",
+        "15.7 anti_debug-调试标志位反调试检测_4(wudf).mp4",
+        "15.8 anti_debug-调试标志位反调试检测_5(globalflag).mp4",
+        "15.9 anti_debug-调试标志位反调试检测_6(heapflags).mp4"
+      ]
+    },
+    {
+      "title": "断点反调试检测",
+      "lessons": [
+        "16.0 anti_debug-断点反调试检测_1(hardware).mp4",
+        "16.1 anti_debug-断点反调试检测_2(software).mp4",
+        "16.2 anti_debug-断点反调试检测_3(memory).mp4",
+        "16.3 anti_debug-断点反调试检测_4(动态监测与反反调试).mp4"
+      ]
+    },
+    {
+      "title": "异常反调试检测",
+      "lessons": [
+        "16.4 anti_debug-异常反调试检测_1(filter).mp4",
+        "16.5 anti_debug-异常反调试检测_2(interrupt).mp4",
+        "16.6 anti_debug-异常反调试检测_3(interrupt).mp4",
+        "16.7 anti_debug-异常反调试检测_4(trap).mp4",
+        "16.8 anti_debug-异常反调试检测_5(guard).mp4"
+      ]
+    },
+    {
+      "title": "对象查询反调试检测",
+      "lessons": [
+        "16.9 anti_debug-对象查询反调试检测_1(dbgport).mp4",
+        "17.0 anti_debug-对象查询反调试检测_2(dbgflags).mp4",
+        "17.1 anti_debug-对象查询反调试检测_3(dbghandle).mp4",
+        "17.2 anti_debug-对象查询反调试检测_4(objhandle).mp4",
+        "17.3 anti_debug-对象查询反调试检测_5(objtype).mp4",
+        "17.4 anti_debug-对象查询反调试检测_6(alltypes).mp4",
+        "17.5 anti_debug-对象查询反调试检测_7(totaltype).mp4"
+      ]
+    },
+    {
+      "title": "系统环境反调试检测",
+      "lessons": [
+        "17.6 anti_debug-系统环境反调试检测_1(kddbgflag).mp4",
+        "17.7 anti_debug-系统环境反调试检测_2(shareddata).mp4",
+        "17.8 anti_debug-系统环境反调试检测_3(dbgenable).mp4",
+        "17.9 anti_debug-堆保护标志反调试检测.mp4",
+        "18.0 anti_debug-补丁与反补丁统一思路.mp4"
+      ]
+    },
+    {
+      "title": "反静态分析技术",
+      "lessons": [
+        "18.1 anti_disasm-静态分析对抗之花指令与代码混淆.mp4",
+        "18.2 anti_disasm-代码混淆跳转执行.mp4",
+        "18.3 anti_disasm-same_target.mp4",
+        "18.4 anti_disasm-constant_condtion.mp4",
+        "18.5 anti_disasm-jmp_self.mp4",
+        "18.6 anti_disasm-modify_return_pointer.mp4",
+        "18.7 anti_disasm-opaque_predicate.mp4"
+      ]
+    },
+    {
+      "title": "代码变换技术",
+      "lessons": [
+        "18.8 anti_diaasm-code_transposition_1.mp4",
+        "18.9 anti_disasm-code_transposition_2.mp4",
+        "19.0 anti_disasm-code_transposition_3.mp4",
+        "19.1 anti_disasm-code_transposition_4.mp4",
+        "19.2 anti_disasm-code_transposition_5.mp4",
+        "19.3 anti_disasm-code_transposition_6.mp4",
+        "19.4 anti_disasm-code_transposition_7.mp4",
+        "19.5 anti_disasm-code_transposition_8.mp4",
+        "19.6 anti_disasm-register_reassignment.mp4"
+      ]
+    },
+    {
+      "title": "垃圾代码技术",
+      "lessons": [
+        "19.7 anti_disasm-junk_code_garbage.mp4",
+        "19.8 anti_disasm-junk_code_conditional.mp4",
+        "19.9 anti_disasm-junk_code_fakecall.mp4",
+        "20.0 anti_diaasm-junk_code_mazejmp.mp4",
+        "20.1 anti_disasm-junk_code_loop.mp4",
+        "20.2 anti_disasm-junk_code_dynamic.mp4"
+      ]
+    },
+    {
+      "title": "调用陷阱技术",
+      "lessons": [
+        "20.3 anti_disasm-call_trap_basic.mp4",
+        "20.4 anti_disasm-call_trap_dyn.mp4",
+        "20.5 anti_disasm-call_trap_nested.mp4",
+        "20.6 anti_diaasm-syscall_api.mp4"
+      ]
+    },
+    {
+      "title": "反监控技术进程篇",
+      "lessons": [
+        "20.7 anti_monitor-process_1.mp4",
+        "20.8 anti_monitor-process_2.mp4",
+        "20.9 anti_monitor-process_3.mp4",
+        "21.0 anti_monitor-process_4.mp4",
+        "21.1 anti_monitor-process_5.mp4",
+        "21.2 anti_monitor-process_6.mp4",
+        "21.3 anti_monitor-process_7.mp4"
+      ]
+    },
+    {
+      "title": "进程隐藏技术",
+      "lessons": [
+        "21.4 anti_monitor-process_hide_1.mp4",
+        "21.5 anti_monitor-process_hide_2.mp4",
+        "21.6 anti_monitor-process_hide_3.mp4",
+        "21.7 anti_monitor-process_hide_4.mp4"
+      ]
+    },
+    {
+      "title": "反监控技术文件篇",
+      "lessons": [
+        "21.8 anti_monitor-file_1.mp4",
+        "21.9 anti_monitor-file_2.mp4",
+        "22.0 anti_monitor-file_3.mp4",
+        "22.1 anti_monitor-file_4.mp4",
+        "22.2 anti_monitor-file_5.mp4",
+        "22.3 anti_monitor_file_6.mp4"
+      ]
+    },
+    {
+      "title": "磁盘驱动监控",
+      "lessons": [
+        "22.4 anti_monitor_drive_1.mp4",
+        "22.5 anti_monitor_drive_2.mp4",
+        "22.6 anti_monitor_drive_3.mp4",
+        "22.7 anti_monitor_file_7.mp4"
+      ]
+    },
+    {
+      "title": "文件数据隐藏",
+      "lessons": [
+        "22.8 anti_monitor_filedata_hide_1.mp4",
+        "22.9 anti_monitor_filedata_hide_2.mp4",
+        "23.0 anti_monitor_filedata_hide_3.mp4",
+        "23.1 anti_monitor_filedata_hide_4.mp4",
+        "23.2 anti_monitor_filedata_hide_5.mp4",
+        "23.3 anti_monitor_filedata_hide_6.mp4"
+      ]
+    },
+    {
+      "title": "注册表监控",
+      "lessons": [
+        "23.4 anti_monitor_regedit_1.mp4",
+        "23.5 anti_monitor_regedit_2.mp4",
+        "23.6 anti_monitor_regedit_3.mp4",
+        "23.7 anti_monitor_regedit_4.mp4",
+        "23.8 anti_monitor_regedit_5.mp4"
+      ]
+    },
+    {
+      "title": "服务监控",
+      "lessons": [
+        "23.9 anti_monitor_service_1.mp4",
+        "24.0 anti_monitor_service_2.mp4",
+        "24.1 anti_monitor_service_3.mp4",
+        "24.2 anti_monitor_service_4.mp4",
+        "24.3 anti_monitor_service_5.mp4"
+      ]
+    },
+    {
+      "title": "窗口监控",
+      "lessons": [
+        "24.4 anti_monitor_window_1.mp4",
+        "24.5 anti_monitor_window_2.mp4",
+        "24.6 anti_monitor_window_3.mp4",
+        "24.7 anti_monitor_window_4.mp4",
+        "24.8 anti_monitor_window_5.mp4",
+        "24.9 anti_monitor_window_6.mp4",
+        "25.0 anti_monitor_window_7.mp4",
+        "25.1 anti_monitor_window_8.mp4",
+        "25.2 anti_monitor_window_9.mp4"
+      ]
+    },
+    {
+      "title": "脱钩技术EDR对抗",
+      "lessons": [
+        "25.3 unhooking-EDR挂钩检测与防御技术深度实战.mp4",
+        "25.4 unhooking-挂钩技术原理与实现机制.mp4",
+        "25.5 unhooking-磁盘数据解析与函数定位.mp4",
+        "25.6 unhooking-系统调用链与不同架构下进入内核方式.mp4",
+        "25.7 unhooking-heaven's gate与WOW64转换层分析.mp4",
+        "25.8 unhooking-项目基本交互框架及数据初始化.mp4",
+        "25.9 unhooking-模块导出数据定位获取解析.mp4",
+        "26.0 unhooking-磁盘文件数据定位获取_1.mp4",
+        "26.1 unhooking-磁盘文件数据定位获取_2.mp4",
+        "26.2 unhooking-系统模块交互链接与调度关联.mp4"
+      ]
+    },
+    {
+      "title": "Hook检测技术",
+      "lessons": [
+        "26.3 unhooking-状态比对与钩子检测算法.mp4",
+        "26.4 unhooking-模块inline钩子过滤测试.mp4",
+        "26.5 unhooking-inline hook健壮性测试与错误优化.mp4",
+        "26.6 unhooking-iat hook拦截检测方案落地.mp4",
+        "26.7 unhooking-hardware hook检测实施.mp4"
+      ]
+    },
+    {
+      "title": "堆栈回溯检测",
+      "lessons": [
+        "26.8 unhooking-stack walk堆栈回溯检测攻防.mp4",
+        "26.9 unhooking-堆栈符号信息初始化.mp4",
+        "27.0 unhooking-地址转换模块及有效性验证.mp4",
+        "27.1 unhooking-调用堆栈信息结果汇总.mp4"
+      ]
+    }
+  ]
+}

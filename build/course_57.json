@@ -8,106 +8,1038 @@
     {
       "title": "基础篇",
       "lessons": [
-        "0.0 基础-C++控制台程序",
-        "0.1 基础-C++特效初探",
-        "0.2 基础-标准输入输出流",
-        "0.3 基础-基本数据类型_1",
-        "0.4 基础-基本数据类型_2",
-        "0.5 基础-自定义数据类型",
-        "0.6 基础-auto&typeid",
-        "0.7 基础-隐式转换与显示转换",
-        "0.8 基础-ascii_unicode_utf_16_utf_32",
-        "0.9 基础-enum&class",
-        "1.0 基础-namespace",
-        "1.1 基础-using",
-        "1.2 基础-变量作用域",
-        "1.3 基础-string_1",
-        "1.4 基础-string_2",
-        "1.5 基础-string_3",
-        "1.6 基础_string_4"
+        {
+          "t": "0.0 基础-C++控制台程序",
+          "r": [
+            [
+              "菜鸟 · C++ 基本语法",
+              "https://www.runoob.com/cplusplus/cpp-basic-syntax.html"
+            ],
+            [
+              "MS · 安装 Visual Studio C++",
+              "https://learn.microsoft.com/zh-cn/cpp/build/vscpp-step-0-installation"
+            ]
+          ]
+        },
+        {
+          "t": "0.1 基础-C++特效初探",
+          "r": [
+            [
+              "菜鸟 · C++ 基本语法",
+              "https://www.runoob.com/cplusplus/cpp-basic-syntax.html"
+            ],
+            [
+              "菜鸟 · C++ 基本输入输出",
+              "https://www.runoob.com/cplusplus/cpp-basic-input-output.html"
+            ]
+          ]
+        },
+        {
+          "t": "0.2 基础-标准输入输出流",
+          "r": [
+            [
+              "菜鸟 · C++ 基本输入输出",
+              "https://www.runoob.com/cplusplus/cpp-basic-input-output.html"
+            ]
+          ]
+        },
+        {
+          "t": "0.3 基础-基本数据类型_1",
+          "r": [
+            [
+              "菜鸟 · C++ 数据类型",
+              "https://www.runoob.com/cplusplus/cpp-data-types.html"
+            ],
+            [
+              "菜鸟 · C++ 变量类型",
+              "https://www.runoob.com/cplusplus/cpp-variable-types.html"
+            ]
+          ]
+        },
+        {
+          "t": "0.4 基础-基本数据类型_2",
+          "r": [
+            [
+              "菜鸟 · C++ 数据类型",
+              "https://www.runoob.com/cplusplus/cpp-data-types.html"
+            ],
+            [
+              "菜鸟 · C++ 变量类型",
+              "https://www.runoob.com/cplusplus/cpp-variable-types.html"
+            ]
+          ]
+        },
+        {
+          "t": "0.5 基础-自定义数据类型",
+          "r": [
+            [
+              "菜鸟 · C++ 数据结构",
+              "https://www.runoob.com/cplusplus/cpp-data-structures.html"
+            ],
+            [
+              "菜鸟 · C++ 类与对象",
+              "https://www.runoob.com/cplusplus/cpp-classes-objects.html"
+            ]
+          ]
+        },
+        {
+          "t": "0.6 基础-auto&typeid",
+          "r": [
+            [
+              "MS · auto 关键字",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/auto-cpp"
+            ],
+            [
+              "MS · typeid 运算符",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/typeid-operator"
+            ]
+          ]
+        },
+        {
+          "t": "0.7 基础-隐式转换与显示转换",
+          "r": [
+            [
+              "MS · 强制转换(casting)",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/casting"
+            ],
+            [
+              "MS · 常用算术转换",
+              "https://learn.microsoft.com/zh-cn/cpp/c-language/usual-arithmetic-conversions"
+            ]
+          ]
+        },
+        {
+          "t": "0.8 基础-ascii_unicode_utf_16_utf_32",
+          "r": [
+            [
+              "维基 · ASCII",
+              "https://zh.wikipedia.org/wiki/ASCII"
+            ],
+            [
+              "维基 · Unicode",
+              "https://zh.wikipedia.org/wiki/Unicode"
+            ],
+            [
+              "维基 · UTF-16",
+              "https://zh.wikipedia.org/wiki/UTF-16"
+            ],
+            [
+              "维基 · UTF-32",
+              "https://zh.wikipedia.org/wiki/UTF-32"
+            ]
+          ]
+        },
+        {
+          "t": "0.9 基础-enum&class",
+          "r": [
+            [
+              "MS · 枚举 enum class",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/enumerations-cpp"
+            ],
+            [
+              "菜鸟 · C++ 类与对象",
+              "https://www.runoob.com/cplusplus/cpp-classes-objects.html"
+            ]
+          ]
+        },
+        {
+          "t": "1.0 基础-namespace",
+          "r": [
+            [
+              "菜鸟 · C++ 命名空间",
+              "https://www.runoob.com/cplusplus/cpp-namespaces.html"
+            ]
+          ]
+        },
+        {
+          "t": "1.1 基础-using",
+          "r": [
+            [
+              "MS · using 声明",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/using-declaration"
+            ],
+            [
+              "菜鸟 · C++ 命名空间",
+              "https://www.runoob.com/cplusplus/cpp-namespaces.html"
+            ]
+          ]
+        },
+        {
+          "t": "1.2 基础-变量作用域",
+          "r": [
+            [
+              "菜鸟 · C++ 变量作用域",
+              "https://www.runoob.com/cplusplus/cpp-variable-scope.html"
+            ]
+          ]
+        },
+        {
+          "t": "1.3 基础-string_1",
+          "r": [
+            [
+              "菜鸟 · C++ 字符串",
+              "https://www.runoob.com/cplusplus/cpp-strings.html"
+            ],
+            [
+              "cppreference · std::basic_string",
+              "https://zh.cppreference.com/w/cpp/string/basic_string"
+            ]
+          ]
+        },
+        {
+          "t": "1.4 基础-string_2",
+          "r": [
+            [
+              "菜鸟 · C++ 字符串",
+              "https://www.runoob.com/cplusplus/cpp-strings.html"
+            ],
+            [
+              "cppreference · std::basic_string",
+              "https://zh.cppreference.com/w/cpp/string/basic_string"
+            ]
+          ]
+        },
+        {
+          "t": "1.5 基础-string_3",
+          "r": [
+            [
+              "菜鸟 · C++ 字符串",
+              "https://www.runoob.com/cplusplus/cpp-strings.html"
+            ],
+            [
+              "cppreference · std::basic_string",
+              "https://zh.cppreference.com/w/cpp/string/basic_string"
+            ]
+          ]
+        },
+        {
+          "t": "1.6 基础_string_4",
+          "r": [
+            [
+              "菜鸟 · C++ 字符串",
+              "https://www.runoob.com/cplusplus/cpp-strings.html"
+            ],
+            [
+              "cppreference · std::basic_string",
+              "https://zh.cppreference.com/w/cpp/string/basic_string"
+            ]
+          ]
+        }
       ]
     },
     {
       "title": "入门篇",
       "lessons": [
-        "1.7 运算_算术&赋值运算",
-        "1.8 判断-比较运算符&IF",
-        "1.9 判断-逻辑运算&三目运算",
-        "2.0 判断-switch",
-        "2.1 判断-c++17特性探究",
-        "2.2 循环-for",
-        "2.3 循环-while&dowhile",
-        "2.4 数组-c++特性探究",
-        "2.5 数组-array",
-        "2.6 数组-vector",
-        "2.7 指针-指针特性_1",
-        "2.8 指针-指针特性_2",
-        "2.9 指针-指针特性_3",
-        "3.0 引用-引用特性",
-        "3.1 内存-内存管理_1",
-        "3.2 内存-内存管理_2",
-        "3.3 内存-内存管理_3",
-        "3.4 函数-函数特性",
-        "3.5 函数-宏函数",
-        "3.6 函数-内联函数",
-        "3.7 函数-函数指针与指针函数",
-        "3.8 函数-回调函数",
-        "3.9 函数-值传递&地址传递",
-        "4.0 函数-数组参数传递",
-        "4.1 函数-引用参数本质",
-        "4.2 函数-函数默认参数",
-        "4.3 函数-不定量参数_1",
-        "4.4 函数-不定量参数_2",
-        "4.5 函数-函数重载",
-        "4.6 函数-函数模板",
-        "4.7 函数-函数总结(学习思路)",
-        "4.8 进阶-预处理指令",
-        "4.9 进阶-预定义宏"
+        {
+          "t": "1.7 运算_算术&赋值运算",
+          "r": [
+            [
+              "菜鸟 · C++ 运算符",
+              "https://www.runoob.com/cplusplus/cpp-operators.html"
+            ]
+          ]
+        },
+        {
+          "t": "1.8 判断-比较运算符&IF",
+          "r": [
+            [
+              "菜鸟 · C++ 运算符",
+              "https://www.runoob.com/cplusplus/cpp-operators.html"
+            ],
+            [
+              "菜鸟 · C++ 判断语句",
+              "https://www.runoob.com/cplusplus/cpp-decision.html"
+            ]
+          ]
+        },
+        {
+          "t": "1.9 判断-逻辑运算&三目运算",
+          "r": [
+            [
+              "菜鸟 · C++ 运算符",
+              "https://www.runoob.com/cplusplus/cpp-operators.html"
+            ],
+            [
+              "菜鸟 · C++ 判断语句",
+              "https://www.runoob.com/cplusplus/cpp-decision.html"
+            ]
+          ]
+        },
+        {
+          "t": "2.0 判断-switch",
+          "r": [
+            [
+              "菜鸟 · C++ 判断语句",
+              "https://www.runoob.com/cplusplus/cpp-decision.html"
+            ]
+          ]
+        },
+        {
+          "t": "2.1 判断-c++17特性探究",
+          "r": [
+            [
+              "MS · C++ 标准符合性改进(C++17)",
+              "https://learn.microsoft.com/zh-cn/cpp/overview/cpp-conformance-improvements"
+            ]
+          ]
+        },
+        {
+          "t": "2.2 循环-for",
+          "r": [
+            [
+              "菜鸟 · C++ for 循环",
+              "https://www.runoob.com/cplusplus/cpp-for-loop.html"
+            ]
+          ]
+        },
+        {
+          "t": "2.3 循环-while&dowhile",
+          "r": [
+            [
+              "菜鸟 · C++ while 循环",
+              "https://www.runoob.com/cplusplus/cpp-while-loop.html"
+            ],
+            [
+              "菜鸟 · C++ do...while 循环",
+              "https://www.runoob.com/cplusplus/cpp-do-while-loop.html"
+            ]
+          ]
+        },
+        {
+          "t": "2.4 数组-c++特性探究",
+          "r": [
+            [
+              "菜鸟 · C++ 数组",
+              "https://www.runoob.com/cplusplus/cpp-arrays.html"
+            ]
+          ]
+        },
+        {
+          "t": "2.5 数组-array",
+          "r": [
+            [
+              "cppreference · std::array",
+              "https://zh.cppreference.com/w/cpp/container/array"
+            ],
+            [
+              "菜鸟 · C++ 数组",
+              "https://www.runoob.com/cplusplus/cpp-arrays.html"
+            ]
+          ]
+        },
+        {
+          "t": "2.6 数组-vector",
+          "r": [
+            [
+              "cppreference · std::vector",
+              "https://zh.cppreference.com/w/cpp/container/vector"
+            ],
+            [
+              "菜鸟 · C++ STL 教程",
+              "https://www.runoob.com/cplusplus/cpp-stl-tutorial.html"
+            ]
+          ]
+        },
+        {
+          "t": "2.7 指针-指针特性_1",
+          "r": [
+            [
+              "菜鸟 · C++ 指针",
+              "https://www.runoob.com/cplusplus/cpp-pointers.html"
+            ]
+          ]
+        },
+        {
+          "t": "2.8 指针-指针特性_2",
+          "r": [
+            [
+              "菜鸟 · C++ 指针",
+              "https://www.runoob.com/cplusplus/cpp-pointers.html"
+            ]
+          ]
+        },
+        {
+          "t": "2.9 指针-指针特性_3",
+          "r": [
+            [
+              "菜鸟 · C++ 指针",
+              "https://www.runoob.com/cplusplus/cpp-pointers.html"
+            ]
+          ]
+        },
+        {
+          "t": "3.0 引用-引用特性",
+          "r": [
+            [
+              "菜鸟 · C++ 引用",
+              "https://www.runoob.com/cplusplus/cpp-references.html"
+            ]
+          ]
+        },
+        {
+          "t": "3.1 内存-内存管理_1",
+          "r": [
+            [
+              "菜鸟 · C++ 动态内存",
+              "https://www.runoob.com/cplusplus/cpp-dynamic-memory.html"
+            ]
+          ]
+        },
+        {
+          "t": "3.2 内存-内存管理_2",
+          "r": [
+            [
+              "菜鸟 · C++ 动态内存",
+              "https://www.runoob.com/cplusplus/cpp-dynamic-memory.html"
+            ]
+          ]
+        },
+        {
+          "t": "3.3 内存-内存管理_3",
+          "r": [
+            [
+              "菜鸟 · C++ 动态内存",
+              "https://www.runoob.com/cplusplus/cpp-dynamic-memory.html"
+            ]
+          ]
+        },
+        {
+          "t": "3.4 函数-函数特性",
+          "r": [
+            [
+              "菜鸟 · C++ 函数",
+              "https://www.runoob.com/cplusplus/cpp-functions.html"
+            ]
+          ]
+        },
+        {
+          "t": "3.5 函数-宏函数",
+          "r": [
+            [
+              "菜鸟 · C++ 预处理器",
+              "https://www.runoob.com/cplusplus/cpp-preprocessor.html"
+            ]
+          ]
+        },
+        {
+          "t": "3.6 函数-内联函数",
+          "r": [
+            [
+              "菜鸟 · C++ 内联函数",
+              "https://www.runoob.com/cplusplus/cpp-inline-functions.html"
+            ]
+          ]
+        },
+        {
+          "t": "3.7 函数-函数指针与指针函数",
+          "r": [
+            [
+              "维基 · 函数指针",
+              "https://zh.wikipedia.org/wiki/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88"
+            ],
+            [
+              "菜鸟 · C++ 指针",
+              "https://www.runoob.com/cplusplus/cpp-pointers.html"
+            ]
+          ]
+        },
+        {
+          "t": "3.8 函数-回调函数",
+          "r": [
+            [
+              "维基 · 回调函数",
+              "https://zh.wikipedia.org/wiki/%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"
+            ],
+            [
+              "维基 · 函数指针",
+              "https://zh.wikipedia.org/wiki/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88"
+            ]
+          ]
+        },
+        {
+          "t": "3.9 函数-值传递&地址传递",
+          "r": [
+            [
+              "菜鸟 · C++ 函数",
+              "https://www.runoob.com/cplusplus/cpp-functions.html"
+            ],
+            [
+              "菜鸟 · C++ 指针",
+              "https://www.runoob.com/cplusplus/cpp-pointers.html"
+            ]
+          ]
+        },
+        {
+          "t": "4.0 函数-数组参数传递",
+          "r": [
+            [
+              "菜鸟 · C++ 数组",
+              "https://www.runoob.com/cplusplus/cpp-arrays.html"
+            ],
+            [
+              "菜鸟 · C++ 函数",
+              "https://www.runoob.com/cplusplus/cpp-functions.html"
+            ]
+          ]
+        },
+        {
+          "t": "4.1 函数-引用参数本质",
+          "r": [
+            [
+              "菜鸟 · C++ 引用",
+              "https://www.runoob.com/cplusplus/cpp-references.html"
+            ],
+            [
+              "菜鸟 · C++ 函数",
+              "https://www.runoob.com/cplusplus/cpp-functions.html"
+            ]
+          ]
+        },
+        {
+          "t": "4.2 函数-函数默认参数",
+          "r": [
+            [
+              "MS · 默认参数",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/default-arguments"
+            ],
+            [
+              "菜鸟 · C++ 函数",
+              "https://www.runoob.com/cplusplus/cpp-functions.html"
+            ]
+          ]
+        },
+        {
+          "t": "4.3 函数-不定量参数_1",
+          "r": [
+            [
+              "cppreference · 变参数函数",
+              "https://zh.cppreference.com/w/cpp/language/variadic_arguments"
+            ],
+            [
+              "菜鸟 · C++ 函数",
+              "https://www.runoob.com/cplusplus/cpp-functions.html"
+            ]
+          ]
+        },
+        {
+          "t": "4.4 函数-不定量参数_2",
+          "r": [
+            [
+              "cppreference · 变参数函数",
+              "https://zh.cppreference.com/w/cpp/language/variadic_arguments"
+            ],
+            [
+              "菜鸟 · C++ 模板",
+              "https://www.runoob.com/cplusplus/cpp-templates.html"
+            ]
+          ]
+        },
+        {
+          "t": "4.5 函数-函数重载",
+          "r": [
+            [
+              "菜鸟 · C++ 重载(函数与运算符)",
+              "https://www.runoob.com/cplusplus/cpp-overloading.html"
+            ]
+          ]
+        },
+        {
+          "t": "4.6 函数-函数模板",
+          "r": [
+            [
+              "菜鸟 · C++ 模板",
+              "https://www.runoob.com/cplusplus/cpp-templates.html"
+            ]
+          ]
+        },
+        {
+          "t": "4.7 函数-函数总结(学习思路)",
+          "r": [
+            [
+              "菜鸟 · C++ 函数",
+              "https://www.runoob.com/cplusplus/cpp-functions.html"
+            ]
+          ]
+        },
+        {
+          "t": "4.8 进阶-预处理指令",
+          "r": [
+            [
+              "菜鸟 · C++ 预处理器",
+              "https://www.runoob.com/cplusplus/cpp-preprocessor.html"
+            ]
+          ]
+        },
+        {
+          "t": "4.9 进阶-预定义宏",
+          "r": [
+            [
+              "MS · 预定义宏",
+              "https://learn.microsoft.com/zh-cn/cpp/preprocessor/predefined-macros"
+            ],
+            [
+              "菜鸟 · C++ 预处理器",
+              "https://www.runoob.com/cplusplus/cpp-preprocessor.html"
+            ]
+          ]
+        }
       ]
     },
     {
       "title": "进阶篇",
       "lessons": [
-        "5.0 class-面向对象",
-        "5.1 class-权限控制",
-        "5.2 class-构造函数&析构函数",
-        "5.3 class-默认&有参&拷贝构造函数",
-        "5.4 class-拷贝构造函数触发机制",
-        "5.5 class-默认构造析构拷贝机制",
-        "5.6 class-深拷贝与浅拷贝",
-        "5.7 class-初始化列表",
-        "5.8 class-嵌套类对象",
-        "5.9 class-静态成员变量",
-        "6.0 class-静态成员函数",
-        "6.1 class-内存布局",
-        "6.2 class-this指针",
-        "6.3 class-class&const",
-        "6.4 class-友元_全局函数",
-        "6.5 class-友元_类",
-        "6.6 class-友元_类成员函数",
-        "6.7 class-运算符重载_类成员函数",
-        "6.8 class-运算符重载_全局函数",
-        "6.9 class-运算符重载_左移",
-        "7.0 class-运算符重载_递增",
-        "7.1 class-运算符重载_赋值",
-        "7.2 class-运算符重载_比较",
-        "7.3 class-继承特性",
-        "7.4 class-继承方式",
-        "7.5 class-继承内存布局",
-        "7.6 class-继承构造析构机制",
-        "7.7 class-多层继承",
-        "7.8 class-多重继承",
-        "7.9 class-继承同名处理_1",
-        "8.0 class-继承同名处理_2",
-        "8.1 class-多态触发机制",
-        "8.2 class-多态底层原理",
-        "8.3 class-抽象类&纯虚函数",
-        "8.4 class-虚析构函数",
-        "8.5 class-纯虚析构函数",
-        "8.6 文件-文件概念",
-        "8.7 文件-文件打开与关闭_C",
-        "8.8 文件-文件读取与写入_C",
-        "8.9 文件-文件操作_C++"
+        {
+          "t": "5.0 class-面向对象",
+          "r": [
+            [
+              "菜鸟 · C++ 类与对象",
+              "https://www.runoob.com/cplusplus/cpp-classes-objects.html"
+            ],
+            [
+              "菜鸟 · C++ 数据抽象",
+              "https://www.runoob.com/cplusplus/cpp-data-abstraction.html"
+            ]
+          ]
+        },
+        {
+          "t": "5.1 class-权限控制",
+          "r": [
+            [
+              "菜鸟 · C++ 数据封装",
+              "https://www.runoob.com/cplusplus/cpp-data-encapsulation.html"
+            ],
+            [
+              "菜鸟 · C++ 类与对象",
+              "https://www.runoob.com/cplusplus/cpp-classes-objects.html"
+            ]
+          ]
+        },
+        {
+          "t": "5.2 class-构造函数&析构函数",
+          "r": [
+            [
+              "菜鸟 · C++ 构造函数与析构函数",
+              "https://www.runoob.com/cplusplus/cpp-constructor-destructor.html"
+            ]
+          ]
+        },
+        {
+          "t": "5.3 class-默认&有参&拷贝构造函数",
+          "r": [
+            [
+              "菜鸟 · C++ 构造函数与析构函数",
+              "https://www.runoob.com/cplusplus/cpp-constructor-destructor.html"
+            ],
+            [
+              "菜鸟 · C++ 拷贝构造函数",
+              "https://www.runoob.com/cplusplus/cpp-copy-constructor.html"
+            ]
+          ]
+        },
+        {
+          "t": "5.4 class-拷贝构造函数触发机制",
+          "r": [
+            [
+              "菜鸟 · C++ 拷贝构造函数",
+              "https://www.runoob.com/cplusplus/cpp-copy-constructor.html"
+            ]
+          ]
+        },
+        {
+          "t": "5.5 class-默认构造析构拷贝机制",
+          "r": [
+            [
+              "菜鸟 · C++ 构造函数与析构函数",
+              "https://www.runoob.com/cplusplus/cpp-constructor-destructor.html"
+            ],
+            [
+              "菜鸟 · C++ 拷贝构造函数",
+              "https://www.runoob.com/cplusplus/cpp-copy-constructor.html"
+            ]
+          ]
+        },
+        {
+          "t": "5.6 class-深拷贝与浅拷贝",
+          "r": [
+            [
+              "菜鸟 · C++ 拷贝构造函数",
+              "https://www.runoob.com/cplusplus/cpp-copy-constructor.html"
+            ]
+          ]
+        },
+        {
+          "t": "5.7 class-初始化列表",
+          "r": [
+            [
+              "MS · 构造函数(含初始化列表)",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/constructors-cpp"
+            ],
+            [
+              "菜鸟 · C++ 构造函数与析构函数",
+              "https://www.runoob.com/cplusplus/cpp-constructor-destructor.html"
+            ]
+          ]
+        },
+        {
+          "t": "5.8 class-嵌套类对象",
+          "r": [
+            [
+              "MS · 嵌套类声明",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/nested-class-declarations"
+            ],
+            [
+              "菜鸟 · C++ 类与对象",
+              "https://www.runoob.com/cplusplus/cpp-classes-objects.html"
+            ]
+          ]
+        },
+        {
+          "t": "5.9 class-静态成员变量",
+          "r": [
+            [
+              "菜鸟 · C++ 类的静态成员",
+              "https://www.runoob.com/cplusplus/cpp-static-members.html"
+            ]
+          ]
+        },
+        {
+          "t": "6.0 class-静态成员函数",
+          "r": [
+            [
+              "菜鸟 · C++ 类的静态成员",
+              "https://www.runoob.com/cplusplus/cpp-static-members.html"
+            ],
+            [
+              "菜鸟 · C++ 类成员函数",
+              "https://www.runoob.com/cplusplus/cpp-class-member-functions.html"
+            ]
+          ]
+        },
+        {
+          "t": "6.1 class-内存布局",
+          "r": [
+            [
+              "维基 · 数据结构对齐",
+              "https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E9%BD%90"
+            ],
+            [
+              "菜鸟 · C++ 类与对象",
+              "https://www.runoob.com/cplusplus/cpp-classes-objects.html"
+            ]
+          ]
+        },
+        {
+          "t": "6.2 class-this指针",
+          "r": [
+            [
+              "菜鸟 · C++ this 指针",
+              "https://www.runoob.com/cplusplus/cpp-this-pointer.html"
+            ]
+          ]
+        },
+        {
+          "t": "6.3 class-class&const",
+          "r": [
+            [
+              "MS · const",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/const-cpp"
+            ],
+            [
+              "菜鸟 · C++ 类成员函数",
+              "https://www.runoob.com/cplusplus/cpp-class-member-functions.html"
+            ]
+          ]
+        },
+        {
+          "t": "6.4 class-友元_全局函数",
+          "r": [
+            [
+              "菜鸟 · C++ 友元函数",
+              "https://www.runoob.com/cplusplus/cpp-friend-functions.html"
+            ]
+          ]
+        },
+        {
+          "t": "6.5 class-友元_类",
+          "r": [
+            [
+              "菜鸟 · C++ 友元函数",
+              "https://www.runoob.com/cplusplus/cpp-friend-functions.html"
+            ]
+          ]
+        },
+        {
+          "t": "6.6 class-友元_类成员函数",
+          "r": [
+            [
+              "菜鸟 · C++ 友元函数",
+              "https://www.runoob.com/cplusplus/cpp-friend-functions.html"
+            ],
+            [
+              "菜鸟 · C++ 类成员函数",
+              "https://www.runoob.com/cplusplus/cpp-class-member-functions.html"
+            ]
+          ]
+        },
+        {
+          "t": "6.7 class-运算符重载_类成员函数",
+          "r": [
+            [
+              "MS · 运算符重载",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/operator-overloading"
+            ],
+            [
+              "菜鸟 · C++ 重载(函数与运算符)",
+              "https://www.runoob.com/cplusplus/cpp-overloading.html"
+            ]
+          ]
+        },
+        {
+          "t": "6.8 class-运算符重载_全局函数",
+          "r": [
+            [
+              "MS · 运算符重载",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/operator-overloading"
+            ],
+            [
+              "菜鸟 · C++ 重载(函数与运算符)",
+              "https://www.runoob.com/cplusplus/cpp-overloading.html"
+            ]
+          ]
+        },
+        {
+          "t": "6.9 class-运算符重载_左移",
+          "r": [
+            [
+              "MS · 运算符重载",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/operator-overloading"
+            ],
+            [
+              "菜鸟 · C++ 基本输入输出",
+              "https://www.runoob.com/cplusplus/cpp-basic-input-output.html"
+            ]
+          ]
+        },
+        {
+          "t": "7.0 class-运算符重载_递增",
+          "r": [
+            [
+              "MS · 运算符重载",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/operator-overloading"
+            ],
+            [
+              "菜鸟 · C++ 重载(函数与运算符)",
+              "https://www.runoob.com/cplusplus/cpp-overloading.html"
+            ]
+          ]
+        },
+        {
+          "t": "7.1 class-运算符重载_赋值",
+          "r": [
+            [
+              "MS · 运算符重载",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/operator-overloading"
+            ],
+            [
+              "菜鸟 · C++ 拷贝构造函数",
+              "https://www.runoob.com/cplusplus/cpp-copy-constructor.html"
+            ]
+          ]
+        },
+        {
+          "t": "7.2 class-运算符重载_比较",
+          "r": [
+            [
+              "MS · 运算符重载",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/operator-overloading"
+            ],
+            [
+              "菜鸟 · C++ 重载(函数与运算符)",
+              "https://www.runoob.com/cplusplus/cpp-overloading.html"
+            ]
+          ]
+        },
+        {
+          "t": "7.3 class-继承特性",
+          "r": [
+            [
+              "菜鸟 · C++ 继承",
+              "https://www.runoob.com/cplusplus/cpp-inheritance.html"
+            ]
+          ]
+        },
+        {
+          "t": "7.4 class-继承方式",
+          "r": [
+            [
+              "菜鸟 · C++ 继承",
+              "https://www.runoob.com/cplusplus/cpp-inheritance.html"
+            ]
+          ]
+        },
+        {
+          "t": "7.5 class-继承内存布局",
+          "r": [
+            [
+              "菜鸟 · C++ 继承",
+              "https://www.runoob.com/cplusplus/cpp-inheritance.html"
+            ],
+            [
+              "维基 · 数据结构对齐",
+              "https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E9%BD%90"
+            ]
+          ]
+        },
+        {
+          "t": "7.6 class-继承构造析构机制",
+          "r": [
+            [
+              "菜鸟 · C++ 继承",
+              "https://www.runoob.com/cplusplus/cpp-inheritance.html"
+            ],
+            [
+              "菜鸟 · C++ 构造函数与析构函数",
+              "https://www.runoob.com/cplusplus/cpp-constructor-destructor.html"
+            ]
+          ]
+        },
+        {
+          "t": "7.7 class-多层继承",
+          "r": [
+            [
+              "菜鸟 · C++ 继承",
+              "https://www.runoob.com/cplusplus/cpp-inheritance.html"
+            ]
+          ]
+        },
+        {
+          "t": "7.8 class-多重继承",
+          "r": [
+            [
+              "菜鸟 · C++ 继承",
+              "https://www.runoob.com/cplusplus/cpp-inheritance.html"
+            ]
+          ]
+        },
+        {
+          "t": "7.9 class-继承同名处理_1",
+          "r": [
+            [
+              "菜鸟 · C++ 继承",
+              "https://www.runoob.com/cplusplus/cpp-inheritance.html"
+            ]
+          ]
+        },
+        {
+          "t": "8.0 class-继承同名处理_2",
+          "r": [
+            [
+              "菜鸟 · C++ 继承",
+              "https://www.runoob.com/cplusplus/cpp-inheritance.html"
+            ]
+          ]
+        },
+        {
+          "t": "8.1 class-多态触发机制",
+          "r": [
+            [
+              "菜鸟 · C++ 多态",
+              "https://www.runoob.com/cplusplus/cpp-polymorphism.html"
+            ],
+            [
+              "MS · 虚函数",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/virtual-functions"
+            ]
+          ]
+        },
+        {
+          "t": "8.2 class-多态底层原理",
+          "r": [
+            [
+              "菜鸟 · C++ 多态",
+              "https://www.runoob.com/cplusplus/cpp-polymorphism.html"
+            ],
+            [
+              "MS · 虚函数",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/virtual-functions"
+            ]
+          ]
+        },
+        {
+          "t": "8.3 class-抽象类&纯虚函数",
+          "r": [
+            [
+              "菜鸟 · C++ 接口(抽象类)",
+              "https://www.runoob.com/cplusplus/cpp-interfaces.html"
+            ],
+            [
+              "菜鸟 · C++ 多态",
+              "https://www.runoob.com/cplusplus/cpp-polymorphism.html"
+            ]
+          ]
+        },
+        {
+          "t": "8.4 class-虚析构函数",
+          "r": [
+            [
+              "MS · 虚函数",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/virtual-functions"
+            ],
+            [
+              "菜鸟 · C++ 构造函数与析构函数",
+              "https://www.runoob.com/cplusplus/cpp-constructor-destructor.html"
+            ]
+          ]
+        },
+        {
+          "t": "8.5 class-纯虚析构函数",
+          "r": [
+            [
+              "菜鸟 · C++ 接口(抽象类)",
+              "https://www.runoob.com/cplusplus/cpp-interfaces.html"
+            ],
+            [
+              "MS · 虚函数",
+              "https://learn.microsoft.com/zh-cn/cpp/cpp/virtual-functions"
+            ]
+          ]
+        },
+        {
+          "t": "8.6 文件-文件概念",
+          "r": [
+            [
+              "菜鸟 · C++ 文件和流",
+              "https://www.runoob.com/cplusplus/cpp-files-streams.html"
+            ]
+          ]
+        },
+        {
+          "t": "8.7 文件-文件打开与关闭_C",
+          "r": [
+            [
+              "菜鸟 · C 文件读写",
+              "https://www.runoob.com/cprogramming/c-file-io.html"
+            ]
+          ]
+        },
+        {
+          "t": "8.8 文件-文件读取与写入_C",
+          "r": [
+            [
+              "菜鸟 · C 文件读写",
+              "https://www.runoob.com/cprogramming/c-file-io.html"
+            ]
+          ]
+        },
+        {
+          "t": "8.9 文件-文件操作_C++",
+          "r": [
+            [
+              "菜鸟 · C++ 文件和流",
+              "https://www.runoob.com/cplusplus/cpp-files-streams.html"
+            ]
+          ]
+        }
       ]
     }
   ]

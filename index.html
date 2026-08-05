@@ -25328,144 +25328,197 @@ main{padding:0 26px 80px;max-width:1000px}
         <a class="course-title" href="https://ferrycofc.com/index/course/show/id/16.html" target="_blank" rel="noopener">驱动内核之进程线程</a>
         <span class="course-prog" data-course-total="22">0 / 22</span>
       </div>
-      <div class="chapter"><span class="chapter-title">【驱动安全攻防】线程机制</span><span class="chapter-n">13</span></div>
+      <div class="chapter"><span class="chapter-title">第一单元 · 线程机制与调度</span><span class="chapter-n">13</span></div>
       <ul class="lessons">
-        <li class="lesson" data-id="L16_0">
+        <li class="lesson has-res" data-id="L16_0">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.0 线程原理-线程运行环境</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_0"></div></div>
+          <div class="lpanel"><div class="lguide">线程才是 CPU 真正调度的单位——它有自己的栈、寄存器上下文和优先级,进程只是它们共享的地址空间和资源容器。先把&quot;进程是壳、线程是魂&quot;这层关系立住,后面的调度和切换才有落点。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://learn.microsoft.com/zh-cn/windows/win32/procthread/about-processes-and-threads" target="_blank" rel="noopener"><i>主学</i>微软 · 关于进程和线程</a></li><li><a class="t-ext" href="https://bbs.kanxue.com/thread-267258.htm" target="_blank" rel="noopener"><i>延伸</i>看雪 · Windows 线程运行环境剖析</a></li></ul></div><div class="lnote" data-note-id="L16_0"></div></div>
         </li>
-        <li class="lesson" data-id="L16_1">
+        <li class="lesson has-res" data-id="L16_1">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.1 线程原理-KTHREAD &amp; ETHREAD</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_1"></div></div>
+          <div class="lpanel"><div class="lguide">内核里一个线程是两层结构:KTHREAD(调度用的核心:状态、优先级、上下文、内核栈指针)嵌在 ETHREAD(完整信息:所属进程、起始地址、Cid)最前面。看懂这两张结构表,就能在内核里任意读取线程信息。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://www.geoffchappell.com/studies/windows/km/ntoskrnl/inc/ntos/ps/ethread/index.htm" target="_blank" rel="noopener"><i>原文</i>Geoff Chappell · ETHREAD / KTHREAD 结构</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/-thread" target="_blank" rel="noopener"><i>实操</i>WinDbg · !thread 显示线程结构</a></li></ul></div><div class="lnote" data-note-id="L16_1"></div></div>
         </li>
-        <li class="lesson" data-id="L16_2">
+        <li class="lesson has-res" data-id="L16_2">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.2 线程原理-KiFindReadyThread_1</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_2"></div></div>
+          <div class="lpanel"><div class="lguide">调度器要选下一个跑谁,第一站是 KiFindReadyThread:按优先级从就绪队列(KiDispatcherReadyListHead 位图)里挑最高优先级的就绪线程。这节先看它怎么用就绪位图快速定位非空队列。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://bbs.kanxue.com/thread-271878.htm" target="_blank" rel="noopener"><i>主学</i>看雪 · KiFindReadyThread 就绪线程查找</a></li><li><a class="t-src" href="https://learn.microsoft.com/zh-cn/windows/win32/procthread/scheduling-priorities" target="_blank" rel="noopener"><i>原文</i>微软 · 线程调度优先级</a></li></ul></div><div class="lnote" data-note-id="L16_2"></div></div>
         </li>
-        <li class="lesson" data-id="L16_3">
+        <li class="lesson has-res" data-id="L16_3">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.3 线程原理-KiFindReadyThread-2</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_3"></div></div>
+          <div class="lpanel"><div class="lguide">接着看 KiFindReadyThread 的细节:亲和性(affinity)过滤、同优先级内的轮转、以及找不到时的回退。理解这些才知道&quot;为什么我绑核的线程不会被随便挪走&quot;。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://bbs.kanxue.com/thread-271878.htm" target="_blank" rel="noopener"><i>主学</i>看雪 · 就绪队列与亲和性处理</a></li><li><a class="t-ext" href="https://learn.microsoft.com/zh-cn/windows/win32/procthread/processor-groups" target="_blank" rel="noopener"><i>延伸</i>微软 · 处理器亲和性(affinity)</a></li></ul></div><div class="lnote" data-note-id="L16_3"></div></div>
         </li>
-        <li class="lesson" data-id="L16_4">
+        <li class="lesson has-res" data-id="L16_4">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.4 线程原理-KiSearchForNewThread</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_4"></div></div>
+          <div class="lpanel"><div class="lguide">当前核空了要主动找活干:KiSearchForNewThread 在本核就绪队列为空时,尝试从别的核&quot;偷&quot;就绪线程(负载均衡)。这是多核调度不让 CPU 闲着的机制。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://bbs.kanxue.com/thread-271878.htm" target="_blank" rel="noopener"><i>主学</i>看雪 · KiSearchForNewThread 分析</a></li><li><a class="t-ext" href="https://learn.microsoft.com/zh-cn/windows/win32/procthread/multiple-processors" target="_blank" rel="noopener"><i>延伸</i>微软 · 多处理器调度概述</a></li></ul></div><div class="lnote" data-note-id="L16_4"></div></div>
         </li>
-        <li class="lesson" data-id="L16_5">
+        <li class="lesson has-res" data-id="L16_5">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.5 线程原理-KiSelectReadyThread</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_5"></div></div>
+          <div class="lpanel"><div class="lguide">把&quot;挑线程&quot;的逻辑收口:KiSelectReadyThread 综合优先级、亲和性、上次运行核给出最终人选。看它如何把前几节的碎片拼成一次完整选择。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://bbs.kanxue.com/thread-271878.htm" target="_blank" rel="noopener"><i>主学</i>看雪 · KiSelectReadyThread 选择逻辑</a></li></ul></div><div class="lnote" data-note-id="L16_5"></div></div>
         </li>
-        <li class="lesson" data-id="L16_6">
+        <li class="lesson has-res" data-id="L16_6">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.6 线程原理-线程调度机制</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_6"></div></div>
+          <div class="lpanel"><div class="lguide">把调度全景串起来:时间片到期、主动让出、抢占三种触发,如何汇入&quot;选新线程→切换&quot;的统一流程。这节是本单元的地图,之后进入真正的切换实现。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://bbs.kanxue.com/thread-267258.htm" target="_blank" rel="noopener"><i>主学</i>看雪 · Windows 线程调度全景</a></li><li><a class="t-src" href="https://learn.microsoft.com/zh-cn/windows/win32/procthread/context-switches" target="_blank" rel="noopener"><i>原文</i>微软 · 上下文切换与调度</a></li></ul></div><div class="lnote" data-note-id="L16_6"></div></div>
         </li>
-        <li class="lesson" data-id="L16_7">
+        <li class="lesson has-res" data-id="L16_7">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.7 线程切换-KiSwapThread</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_7"></div></div>
+          <div class="lpanel"><div class="lguide">KiSwapThread 是切换的调度侧入口:选好新线程后,它负责把当前线程状态改成非运行、挂回队列,再调 SwapContext 换现场。它是&quot;决定换&quot;和&quot;动手换&quot;之间的桥。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://bbs.kanxue.com/thread-271878.htm" target="_blank" rel="noopener"><i>主学</i>看雪 · KiSwapThread 切换流程</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/-running" target="_blank" rel="noopener"><i>实操</i>WinDbg · !running 查看各核运行线程</a></li></ul></div><div class="lnote" data-note-id="L16_7"></div></div>
         </li>
-        <li class="lesson" data-id="L16_8">
+        <li class="lesson has-res" data-id="L16_8">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.8 线程切换-SwapContext</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_8"></div></div>
+          <div class="lpanel"><div class="lguide">真正动手的地方:SwapContext 保存旧线程的非易失寄存器和栈指针,加载新线程的,并切换内核栈——这是纯汇编的核心。逆它就是逆&quot;一个 CPU 怎么从跑 A 变成跑 B&quot;。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://bbs.kanxue.com/thread-271878.htm" target="_blank" rel="noopener"><i>主学</i>看雪 · SwapContext 汇编级逆向</a></li><li><a class="t-src" href="https://www.felixcloutier.com/x86/mov" target="_blank" rel="noopener"><i>原文</i>felixcloutier · MOV / PUSH / POP(切换现场)</a></li></ul></div><div class="lnote" data-note-id="L16_8"></div></div>
         </li>
-        <li class="lesson" data-id="L16_9">
+        <li class="lesson has-res" data-id="L16_9">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.9 线程切换-KernelStack &amp; Cr3</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_9"></div></div>
+          <div class="lpanel"><div class="lguide">切线程一定切内核栈(KTHREAD.KernelStack);切进程才切页表(CR3=新进程 DirectoryTableBase)。同进程内换线程不动 CR3——理解这条,才明白线程切换为什么比进程切换便宜。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://bbs.kanxue.com/thread-271878.htm" target="_blank" rel="noopener"><i>主学</i>看雪 · 内核栈切换与 CR3 换页表</a></li><li><a class="t-src" href="https://www.felixcloutier.com/x86/mov-1" target="_blank" rel="noopener"><i>原文</i>felixcloutier · MOV CR3(切换地址空间)</a></li></ul></div><div class="lnote" data-note-id="L16_9"></div></div>
         </li>
-        <li class="lesson" data-id="L16_10">
+        <li class="lesson has-res" data-id="L16_10">
           <span class="dot" title="标记完成"></span>
           <span class="lt">2.0 线程切换-线程切换机制</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_10"></div></div>
+          <div class="lpanel"><div class="lguide">收官:把 KiSwapThread → SwapContext → 栈/CR3 更新完整拼成一次切换,并区分&quot;线程切换&quot;和&quot;进程切换&quot;的代价差异。跟通这条链,内核调度对你就透明了。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://bbs.kanxue.com/thread-267258.htm" target="_blank" rel="noopener"><i>主学</i>看雪 · 一次完整的线程切换</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/-thread--set-register-context-" target="_blank" rel="noopener"><i>实操</i>WinDbg · .thread 切换线程上下文</a></li></ul></div><div class="lnote" data-note-id="L16_10"></div></div>
         </li>
-        <li class="lesson" data-id="L16_11">
+        <li class="lesson has-res" data-id="L16_11">
           <span class="dot" title="标记完成"></span>
           <span class="lt">2.1 安全攻防-暴力枚举线程</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_11"></div></div>
+          <div class="lpanel"><div class="lguide">常规 API(如 CreateToolhelp32Snapshot)枚举线程可被 hook 隐藏。内核里可以绕开这些:遍历 PspCidTable(Cid 句柄表)或扫内存特征找 ETHREAD,把藏起来的线程也挖出来。这是反隐藏的第一招。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://bbs.kanxue.com/thread-271878.htm" target="_blank" rel="noopener"><i>主学</i>看雪 · 遍历 PspCidTable 枚举线程</a></li><li><a class="t-src" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/ddi/ntddk/nf-ntddk-psgetcurrentthreadid" target="_blank" rel="noopener"><i>原文</i>微软 · PsGetCurrentThreadId / 线程标识</a></li></ul></div><div class="lnote" data-note-id="L16_11"></div></div>
         </li>
-        <li class="lesson" data-id="L16_12">
+        <li class="lesson has-res" data-id="L16_12">
           <span class="dot" title="标记完成"></span>
           <span class="lt">2.2 安全攻防-隐藏活跃线程</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_12"></div></div>
+          <div class="lpanel"><div class="lguide">反过来做攻方:把线程从常规枚举路径上摘掉(如从相关链表/Cid 表断链)让它&quot;隐身&quot;仍在跑。做过一遍隐藏,你才真正理解上一节的检测为什么要绕开 API 直接扫结构。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://bbs.kanxue.com/thread-271878.htm" target="_blank" rel="noopener"><i>主学</i>看雪 · 线程隐藏与断链技术</a></li><li><a class="t-ext" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/ddi/ntddk/nf-ntddk-pssetcreatethreadnotifyroutine" target="_blank" rel="noopener"><i>延伸</i>微软 · 内核回调:PsSetCreateThreadNotifyRoutine</a></li></ul></div><div class="lnote" data-note-id="L16_12"></div></div>
         </li>
       </ul>
-      <div class="chapter"><span class="chapter-title">【驱动安全攻防】进程原理</span><span class="chapter-n">9</span></div>
+      <div class="gate" data-gate="G16_0">
+        <div class="gate-head"><span class="gate-dot" title="标记本关通过"></span><span class="gate-t">验收关卡 · 线程机制与调度</span><button class="gate-x" type="button">展开</button></div>
+        <div class="gate-body">
+          <div class="gsec"><h4>概念自测</h4><ol class="quiz">
+            <li><span class="qq">KTHREAD 和 ETHREAD 是什么关系?为什么调度只碰 KTHREAD?</span><button class="qa-x" type="button">看答案</button><div class="qa">ETHREAD 是线程的完整内核结构,它的第一个成员 Tcb 就是 KTHREAD;KTHREAD 是调度器需要的核心子集(线程状态、优先级、上下文、内核栈指针、等待信息)。调度是热路径,只需 KTHREAD 这部分,放在最前面便于 Ke 层直接用;ETHREAD 里进程归属、起始地址、Cid 等是 Ps 层管理用的外围信息。给一个 ETHREAD 指针,强转成 KTHREAD 就能拿调度字段。</div></li>
+            <li><span class="qq">线程切换和进程切换的核心区别是什么?哪个更贵,为什么?</span><button class="qa-x" type="button">看答案</button><div class="qa">线程切换一定切内核栈和寄存器上下文(SwapContext 干的);只有当新线程属于不同进程时,才额外切 CR3(换页表/地址空间)并可能刷 TLB。所以同进程内换线程不动 CR3、更便宜;跨进程切换要换地址空间、TLB 冷启动,更贵。这也是&quot;线程比进程轻&quot;的底层原因。</div></li>
+            <li><span class="qq">为什么用户态 API 枚举线程可能漏掉一些线程?内核里怎么更可靠地枚举?</span><button class="qa-x" type="button">看答案</button><div class="qa">用户态枚举(ToolHelp/NtQuerySystemInformation)走的路径容易被 ring3/ring0 hook 过滤,恶意代码可把自己从结果里抹掉。内核里可绕开这些接口,直接遍历 PspCidTable(所有进程/线程 Cid 的句柄表)或按 ETHREAD 特征扫内存,把被隐藏的线程也找出来——因为它只要还能被调度运行,就一定还在某些内核结构里。</div></li>
+          </ol></div>
+          <div class="gsec lab"><h4>动手任务</h4>
+            <p class="lab-task">用 WinDbg 观察一次真实的线程切换:找到 SwapContext,看切换前后 KernelStack 和(跨进程时)CR3 的变化。</p>
+            <ol class="lab-steps">
+              <li>内核调试,`bp nt!SwapContext`,让目标机正常跑触发切换后断下。</li>
+              <li>`!thread` 看当前线程,记录它的 KTHREAD.KernelStack;`r cr3` 记录当前 CR3。</li>
+              <li>`p` 越过切换,再次 `!thread` / `r cr3`,对比:内核栈变了,若切到别的进程 CR3 也变。</li>
+              <li>对同进程两个线程和跨进程两个线程各测一次,确认&quot;同进程 CR3 不变、跨进程 CR3 变&quot;。</li>
+            </ol>
+            <p class="lab-pass"><b>通过标准</b>能演示切换后内核栈一定变化,并用同进程/跨进程两组数据说明 CR3 何时变、何时不变。</p>
+            <p class="lab-tip">提示 · SwapContext 极热,无条件断点会让机器巨慢;可先只断一次(`bp /1`)或用 `ba` 硬件断点观察特定线程的 KernelStack 被写。</p>
+          </div>
+          <div class="gsec"><h4>常见坑</h4><ul class="pits">
+            <li><b>bp nt!SwapContext 后目标机几乎不动</b><span class="pit-c">原因 每次线程切换都过该函数,断点太热。</span><span class="pit-f">怎么办 用一次性断点 `bp /1 nt!SwapContext`,或加条件只在目标线程/进程命中。</span></li>
+            <li><b>!thread 报当前不是线程上下文/字段乱码</b><span class="pit-c">原因 在错误的处理器上下文或未 .reload 内核符号。</span><span class="pit-f">怎么办 `~` 选对核、`.reload /f nt` 重载符号后再看;必要时 `.thread &lt;ETHREAD&gt;` 显式指定线程。</span></li>
+          </ul></div>
+          <div class="gsec help"><h4>卡住了怎么问</h4><p>贴出这四样东西,问题才问得清楚:<b>①</b> 你的目标(想验证什么)、<b>②</b> 实际操作(完整命令或代码)、<b>③</b> 实际输出(WinDbg/编译器原文,别转述)、<b>④</b> 你的假设(你认为应该是什么、为什么)。</p><ul class="links"><li><a href="https://bbs.kanxue.com/forum-2.htm" target="_blank" rel="noopener">看雪 · 驱动开发版块</a></li><li><a href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/" target="_blank" rel="noopener">WinDbg 官方文档</a></li><li><a href="https://stackoverflow.com/questions/tagged/windbg" target="_blank" rel="noopener">Stack Overflow · windbg</a></li></ul></div>
+        </div>
+      </div>
+      <div class="chapter"><span class="chapter-title">第二单元 · 进程本质与进程保护</span><span class="chapter-n">9</span></div>
       <ul class="lessons">
-        <li class="lesson" data-id="L16_13">
+        <li class="lesson has-res" data-id="L16_13">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.0 进程原理-进程本质</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_13"></div></div>
+          <div class="lpanel"><div class="lguide">进程本质是&quot;一套私有虚拟地址空间 + 一组资源(句柄表、内存、线程列表)&quot;的容器,它自己不执行——执行的是里面的线程。理解这点,才明白为什么&quot;结束进程&quot;其实是干掉它所有线程并回收资源。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://learn.microsoft.com/zh-cn/windows/win32/procthread/about-processes-and-threads" target="_blank" rel="noopener"><i>主学</i>微软 · 进程与线程概念</a></li><li><a class="t-ext" href="https://bbs.kanxue.com/thread-267258.htm" target="_blank" rel="noopener"><i>延伸</i>看雪 · Windows 进程本质剖析</a></li></ul></div><div class="lnote" data-note-id="L16_13"></div></div>
         </li>
-        <li class="lesson" data-id="L16_14">
+        <li class="lesson has-res" data-id="L16_14">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.1 进程原理-EPROCESS</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_14"></div></div>
+          <div class="lpanel"><div class="lguide">EPROCESS 是进程的完整内核档案:PID、映像名(ImageFileName)、父进程、句柄表、VAD 树、活动进程链表(ActiveProcessLinks)全在这。它是内核里操作进程的总入口,后面枚举/隐藏/保护都围着它转。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://www.geoffchappell.com/studies/windows/km/ntoskrnl/inc/ntos/ps/eprocess/index.htm" target="_blank" rel="noopener"><i>原文</i>Geoff Chappell · EPROCESS 结构</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/-process" target="_blank" rel="noopener"><i>实操</i>WinDbg · !process 显示进程结构</a></li></ul></div><div class="lnote" data-note-id="L16_14"></div></div>
         </li>
-        <li class="lesson" data-id="L16_15">
+        <li class="lesson has-res" data-id="L16_15">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.2 进程原理-KPROCESS</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_15"></div></div>
+          <div class="lpanel"><div class="lguide">EPROCESS 最前面嵌着 KPROCESS(Pcb):调度器视角的进程核心,存 DirectoryTableBase(就是要装进 CR3 的页表基址)、线程列表、进程级优先级。切进程换的那个 CR3 就来自这里。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://www.geoffchappell.com/studies/windows/km/ntoskrnl/inc/ntos/ke/kprocess.htm" target="_blank" rel="noopener"><i>原文</i>Geoff Chappell · KPROCESS 结构</a></li><li><a class="t-main" href="https://bbs.kanxue.com/thread-271878.htm" target="_blank" rel="noopener"><i>主学</i>看雪 · KPROCESS 与 DirectoryTableBase</a></li></ul></div><div class="lnote" data-note-id="L16_15"></div></div>
         </li>
-        <li class="lesson" data-id="L16_16">
+        <li class="lesson has-res" data-id="L16_16">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.3 进程原理-内核进程API</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_16"></div></div>
+          <div class="lpanel"><div class="lguide">内核给驱动的进程操作工具箱:PsLookupProcessByProcessId 拿 EPROCESS、PsGetProcessImageFileName 取名、KeStackAttachProcess 挂进目标地址空间读写。掌握这套 API 就能在内核里&quot;进出&quot;任意进程。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-src" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/ddi/ntifs/nf-ntifs-pslookupprocessbyprocessid" target="_blank" rel="noopener"><i>原文</i>微软 · PsLookupProcessByProcessId</a></li><li><a class="t-lab" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/ddi/ntddk/nf-ntddk-kestackattachprocess" target="_blank" rel="noopener"><i>实操</i>微软 · KeStackAttachProcess 挂入进程空间</a></li></ul></div><div class="lnote" data-note-id="L16_16"></div></div>
         </li>
-        <li class="lesson" data-id="L16_17">
+        <li class="lesson has-res" data-id="L16_17">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.4 安全攻防-暴力特征内核进程</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_17"></div></div>
+          <div class="lpanel"><div class="lguide">进程能被从活动链表断链隐藏,但只要它有线程在跑、有页表在用,就抹不干净。暴力枚举:扫内核内存找 EPROCESS 特征(如 DISPATCHER_HEADER 类型值 + 合理 PID),把断链隐藏的进程也挖出来。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://bbs.kanxue.com/thread-271878.htm" target="_blank" rel="noopener"><i>主学</i>看雪 · 内存特征扫描枚举 EPROCESS</a></li><li><a class="t-src" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/ddi/ntddk/nf-ntddk-psgetprocessid" target="_blank" rel="noopener"><i>原文</i>微软 · PsGetProcessId / 进程标识</a></li></ul></div><div class="lnote" data-note-id="L16_17"></div></div>
         </li>
-        <li class="lesson" data-id="L16_18">
+        <li class="lesson has-res" data-id="L16_18">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.5 安全攻防-进程回溯文件对象</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_18"></div></div>
+          <div class="lpanel"><div class="lguide">从 EPROCESS 顺藤摸瓜找到它的映像文件:经 SectionObject/映像 FILE_OBJECT 拿到磁盘路径。用于确认&quot;这个可疑进程到底是哪个 exe 起来的&quot;,也是取证和白名单校验的基础。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://bbs.kanxue.com/thread-267258.htm" target="_blank" rel="noopener"><i>主学</i>看雪 · 从 EPROCESS 回溯映像文件路径</a></li><li><a class="t-src" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/ddi/wdm/ns-wdm-_file_object" target="_blank" rel="noopener"><i>原文</i>微软 · FILE_OBJECT 结构</a></li></ul></div><div class="lnote" data-note-id="L16_18"></div></div>
         </li>
-        <li class="lesson" data-id="L16_19">
+        <li class="lesson has-res" data-id="L16_19">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.6 安全攻防-隐藏进程信息</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_19"></div></div>
+          <div class="lpanel"><div class="lguide">攻方视角:把 EPROCESS 从 ActiveProcessLinks 双向链表里摘掉,任务管理器/EnumProcesses 就看不到它,但线程照跑。做一遍你就懂了上面&quot;暴力扫特征&quot;为什么必要——因为断链骗不过内存扫描。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://bbs.kanxue.com/thread-271878.htm" target="_blank" rel="noopener"><i>主学</i>看雪 · ActiveProcessLinks 断链隐藏</a></li><li><a class="t-ext" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/ddi/ntddk/nf-ntddk-pssetcreateprocessnotifyroutineex" target="_blank" rel="noopener"><i>延伸</i>微软 · 内核回调:PsSetCreateProcessNotifyRoutineEx</a></li></ul></div><div class="lnote" data-note-id="L16_19"></div></div>
         </li>
-        <li class="lesson" data-id="L16_20">
+        <li class="lesson has-res" data-id="L16_20">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.7 安全攻防-进程权限限制</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_20"></div></div>
+          <div class="lpanel"><div class="lguide">不隐藏也能保护:通过对象回调(ObRegisterCallbacks)在别人 OpenProcess 拿句柄时,剥掉 PROCESS_TERMINATE/VM_WRITE 等危险权限,让对方&quot;打得开但动不了&quot;。这是比 SSDT HOOK 更官方、x64 也能用的保护手法。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/ddi/wdm/nf-wdm-obregistercallbacks" target="_blank" rel="noopener"><i>主学</i>微软 · ObRegisterCallbacks 对象回调</a></li><li><a class="t-src" href="https://learn.microsoft.com/zh-cn/windows/win32/procthread/process-security-and-access-rights" target="_blank" rel="noopener"><i>原文</i>微软 · 进程访问权限常量</a></li></ul></div><div class="lnote" data-note-id="L16_20"></div></div>
         </li>
-        <li class="lesson" data-id="L16_21">
+        <li class="lesson has-res" data-id="L16_21">
           <span class="dot" title="标记完成"></span>
           <span class="lt">1.8 安全攻防-强杀保护进程</span>
           <button class="lx" type="button" aria-label="展开笔记与资料">＋</button>
-          <div class="lpanel"><div class="lnote" data-note-id="L16_21"></div></div>
+          <div class="lpanel"><div class="lguide">本课集大成的攻方实操:面对有保护的进程,从内核直接释放其资源/结束其线程来&quot;强杀&quot;。做完这节,你就完整体验了进程攻防的两端——怎么保护,以及保护如何被更高权限绕过。</div><div class="lres"><span class="lres-h">学习资料</span><ul><li><a class="t-main" href="https://bbs.kanxue.com/thread-267258.htm" target="_blank" rel="noopener"><i>主学</i>看雪 · 内核强制结束进程技术</a></li><li><a class="t-ext" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/ddi/ntddk/nf-ntddk-zwterminateprocess" target="_blank" rel="noopener"><i>延伸</i>微软 · ZwTerminateProcess / 结束进程</a></li></ul></div><div class="lnote" data-note-id="L16_21"></div></div>
         </li>
       </ul>
+      <div class="gate" data-gate="G16_1">
+        <div class="gate-head"><span class="gate-dot" title="标记本关通过"></span><span class="gate-t">验收关卡 · 进程本质与进程保护</span><button class="gate-x" type="button">展开</button></div>
+        <div class="gate-body">
+          <div class="gsec"><h4>概念自测</h4><ol class="quiz">
+            <li><span class="qq">EPROCESS 和 KPROCESS 是什么关系?CR3 该装的值从哪来?</span><button class="qa-x" type="button">看答案</button><div class="qa">KPROCESS(即 EPROCESS.Pcb)嵌在 EPROCESS 最前面,是调度器视角的进程核心。切换到某进程的线程时,要装进 CR3 的页表基址就是 KPROCESS.DirectoryTableBase[0]。EPROCESS 则在其外包了 PID、映像名、父进程、句柄表、VAD、ActiveProcessLinks 等完整管理信息。</div></li>
+            <li><span class="qq">断链隐藏进程(从 ActiveProcessLinks 摘除)为什么骗不过内核暴力枚举?</span><button class="qa-x" type="button">看答案</button><div class="qa">ActiveProcessLinks 只是给&quot;遍历进程列表&quot;这类 API 用的一条链;把 EPROCESS 从链上摘掉,列表枚举就看不到它,但进程要能运行,它的 EPROCESS、页表、线程的 ETHREAD 都还实实在在在内核内存里。暴力枚举不走那条链,而是扫内存找 EPROCESS 的特征(DISPATCHER_HEADER 类型、合法 PID/句柄表指针等),所以断链藏不住。</div></li>
+            <li><span class="qq">用 ObRegisterCallbacks 做进程保护,和 SSDT HOOK 相比好在哪?</span><button class="qa-x" type="button">看答案</button><div class="qa">对象回调是微软官方提供的扩展点:在句柄创建/复制时被调用,可以合法地剥掉危险权限(去掉 PROCESS_TERMINATE 等)。它不改内核代码或 SSDT,因此不会触发 PatchGuard,在 x64 上也能稳定使用,兼容性和稳定性都远好于硬改 SSDT 的 HOOK 手法。</div></li>
+          </ol></div>
+          <div class="gsec lab"><h4>动手任务</h4>
+            <p class="lab-task">写驱动用 ObRegisterCallbacks 保护一个指定 PID:别人 OpenProcess 时剥掉 TERMINATE/VM_WRITE 权限,使其杀不掉、注不进。</p>
+            <ol class="lab-steps">
+              <li>用 PsLookupProcessByProcessId 确认目标 PID 存在,记住要保护的 EPROCESS。</li>
+              <li>ObRegisterCallbacks 注册 PsProcessType 的 pre-operation 回调。</li>
+              <li>回调里判断 TargetProcess 是否为受保护进程:是→从 DesiredAccess 里清掉 PROCESS_TERMINATE / PROCESS_VM_WRITE / PROCESS_VM_OPERATION。</li>
+              <li>加载后用任务管理器结束、或写个 OpenProcess+TerminateProcess 的小程序验证被拒。</li>
+              <li>Unload 里 ObUnRegisterCallbacks 注销,否则卸载后回调地址失效=蓝屏。</li>
+            </ol>
+            <p class="lab-pass"><b>通过标准</b>受保护进程无法被结束/写入,普通进程不受影响;驱动可正常加载卸载,卸载后保护解除。</p>
+            <p class="lab-tip">提示 · 注册对象回调需要驱动有正确的 IRQL 和(正式发布时)带 EV 证书的签名;实验用测试签名即可。别忘了在回调里放行系统关键调用者,否则可能影响系统稳定。</p>
+          </div>
+          <div class="gsec"><h4>常见坑</h4><ul class="pits">
+            <li><b>ObRegisterCallbacks 返回 STATUS_ACCESS_DENIED</b><span class="pit-c">原因 驱动映像未按要求签名(对象回调对签名有额外要求),或 Altitude 字符串冲突/格式不对。</span><span class="pit-f">怎么办 实验机开测试签名;给 OB_CALLBACK_REGISTRATION 填唯一且格式合法的 Altitude(如 &quot;321000&quot;),确认驱动已签名。</span></li>
+            <li><b>卸载驱动后蓝屏</b><span class="pit-c">原因 Unload 没调 ObUnRegisterCallbacks,系统仍会调用已释放的回调函数。</span><span class="pit-f">怎么办 保存注册返回的句柄,Unload 里第一时间 ObUnRegisterCallbacks 注销回调再退出。</span></li>
+          </ul></div>
+          <div class="gsec help"><h4>卡住了怎么问</h4><p>贴出这四样东西,问题才问得清楚:<b>①</b> 你的目标(想验证什么)、<b>②</b> 实际操作(完整命令或代码)、<b>③</b> 实际输出(WinDbg/编译器原文,别转述)、<b>④</b> 你的假设(你认为应该是什么、为什么)。</p><ul class="links"><li><a href="https://bbs.kanxue.com/forum-2.htm" target="_blank" rel="noopener">看雪 · 驱动开发版块</a></li><li><a href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/" target="_blank" rel="noopener">WinDbg 官方文档</a></li><li><a href="https://stackoverflow.com/questions/tagged/windbg" target="_blank" rel="noopener">Stack Overflow · windbg</a></li></ul></div>
+        </div>
+      </div>
       <div class="course-note" data-note-id="NC16"></div>
     </article>
   </section>

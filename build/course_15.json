@@ -6,32 +6,518 @@
   "order": 47,
   "chapters": [
     {
-      "title": "【驱动安全攻防】系统调用",
+      "title": "第一单元 · 系统调用原理与执行流程",
       "lessons": [
-        "1.0 系统调用-Windows-API",
-        "1.1 系统调用-API执行流程分析",
-        "1.2 系统调用-API功能逆向分析",
-        "1.3 系统调用-KUSER_SHARED_DATA",
-        "1.4 系统调用-SystemCall",
-        "1.5 系统调用-KiIntSystemCall",
-        "1.6 系统调用-KiFastSystemCall",
-        "1.7 系统调用-KTRAP_FRAME",
-        "1.8 系统调用-KPCR KPRCB",
-        "1.9 系统调用-KiSystemService保存数据",
-        "2.0 系统调用-KiSystemService环境设置",
-        "2.1 系统调用-KiFastCallEntry",
-        "2.2 系统调用-SystemServiceTable",
-        "2.3 系统调用-API调用全过程逆向分析",
-        "2.4 安全攻防-全局系统调用监控",
-        "2.5 安全攻防-过滤应用层钩子_1",
-        "2.6 安全攻防-过滤应用层钩子_2",
-        "2.7 安全攻防-过滤应用层钩子_3",
-        "2.8 安全攻防-全局内核钩子",
-        "2.9 安全攻防-模块内存映射",
-        "3.0 安全攻防-重载导出编号",
-        "3.1 安全攻防-SSDT_HOOK",
-        "3.2 安全攻防-保护进程"
-      ]
+        {
+          "t": "1.0 系统调用-Windows-API",
+          "w": "Win32 API 不是一层——kernel32/user32 只是门面,真正干活的是 ntdll 里的 Nt/Zw 桩函数,它们负责把请求送进内核。先建立\"API 是分层的、越往下越接近系统调用\"这张地图,后面每节都在往下钻。",
+          "r": [
+            [
+              "微软 · Windows API 索引",
+              "https://learn.microsoft.com/zh-cn/windows/win32/apiindex/windows-api-list",
+              "主学"
+            ],
+            [
+              "看雪 · Windows 系统调用机制详解",
+              "https://bbs.kanxue.com/thread-225380.htm",
+              "延伸"
+            ],
+            [
+              "微软 · Zw 与 Nt 版本例程的区别",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/kernel/using-nt-and-zw-versions-of-the-native-system-services-routines",
+              "原文"
+            ]
+          ]
+        },
+        {
+          "t": "1.1 系统调用-API执行流程分析",
+          "w": "一次 ReadFile 从 ring3 走到 ring0 到底经过谁:kernel32.ReadFile → ntdll.NtReadFile(桩)→ 触发系统调用指令 → 内核 KiSystemService/KiFastCallEntry → 真正的 nt!NtReadFile。这一节把整条路径画出来,是全课的骨架。",
+          "r": [
+            [
+              "看雪 · 从 API 到内核的调用流程",
+              "https://bbs.kanxue.com/thread-267258.htm",
+              "主学"
+            ],
+            [
+              "微软 · 用户模式与内核模式",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode",
+              "原文"
+            ]
+          ]
+        },
+        {
+          "t": "1.2 系统调用-API功能逆向分析",
+          "w": "会用工具把一个 API 逆到底:在 IDA/x64dbg 里跟进 kernel32 的导出,看它怎么调 ntdll 的 Nt* 桩,再用 WinDbg 的 u/uf 反汇编确认桩里那个 eax=服务号、edx=参数指针的固定套路。这是逆向内核 API 的基本功。",
+          "r": [
+            [
+              "WinDbg · u(反汇编)命令",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/u--unassemble-",
+              "实操"
+            ],
+            [
+              "看雪 · ntdll 系统调用桩逆向",
+              "https://bbs.kanxue.com/thread-271878.htm",
+              "主学"
+            ]
+          ]
+        },
+        {
+          "t": "1.3 系统调用-KUSER_SHARED_DATA",
+          "w": "有一页内存同时映射进每个进程的用户空间(固定 0x7FFE0000)和内核空间——KUSER_SHARED_DATA。它免陷入就能让 ring3 读到系统时间、版本号,以及关键的 SystemCall 字段。理解它是理解\"为什么系统调用入口能动态选择\"的前提。",
+          "r": [
+            [
+              "微软 · KUSER_SHARED_DATA 结构",
+              "https://learn.microsoft.com/zh-cn/windows/win32/api/ntddk/ns-ntddk-kuser_shared_data",
+              "原文"
+            ],
+            [
+              "Geoff Chappell · KUSER_SHARED_DATA 字段详解",
+              "https://www.geoffchappell.com/studies/windows/km/ntoskrnl/inc/api/ntexapi_x/kuser_shared_data/index.htm",
+              "延伸"
+            ]
+          ]
+        }
+      ],
+      "gate": {
+        "title": "系统调用原理与执行流程",
+        "quiz": [
+          {
+            "q": "Win32 API(如 kernel32!ReadFile)和 ntdll 里的 Nt/Zw 函数是什么关系?谁真正触发进内核?",
+            "a": "kernel32/user32 等是子系统 DLL,做参数校验和格式转换后调用 ntdll 里对应的 Nt* 桩函数。ntdll 的桩函数才是用户态最后一站:它把系统服务号放 eax、参数指针放 edx,然后执行 sysenter(或 int 2e)真正陷入内核。所以\"触发系统调用\"这一步发生在 ntdll,不在 kernel32。"
+          },
+          {
+            "q": "KUSER_SHARED_DATA 有什么特别之处?它在系统调用里起什么作用?",
+            "a": "它是一页同时映射到每个进程用户空间(固定虚拟地址 0x7FFE0000,只读)和内核空间的共享数据,ring3 不用陷入内核就能读到时间/版本等高频信息。其中 SystemCall 字段(偏移 0x300)保存着系统调用入口地址,ntdll 桩会读它来决定用 int 2e 还是 sysenter——这就是入口能随 CPU 能力动态切换的原因。"
+          },
+          {
+            "q": "逆向一个 API 时,怎么快速定位到它对应的内核 Nt 函数和服务号?",
+            "a": "在 WinDbg/IDA 里反汇编 ntdll 中的 Nt* 桩,看开头 `mov eax, <立即数>`——这个立即数就是 SSDT 服务号;随后的 sysenter/int 2e 即陷入点。拿到服务号后可在内核里用 SSDT 表基址 + 号*4 找到真正的 nt!Nt* 实现地址。"
+          }
+        ],
+        "lab": {
+          "task": "用 WinDbg 反汇编 ntdll!NtReadFile(或任一 Nt* 桩),读出它的系统服务号,并说明它用的是 int 2e 还是 sysenter。",
+          "steps": [
+            "用户态 WinDbg 附加任意进程(或内核调试),`u ntdll!NtReadFile L5` 看头几条指令。",
+            "记下 `mov eax, XXX` 里的 XXX——这是服务号;观察紧跟的是 `sysenter` 还是 `int 2Eh`。",
+            "`dd nt!KeServiceDescriptorTable`(内核态)找到 SSDT 基址,基址 + 服务号*4 即该服务函数地址。",
+            "对比不同 API(NtClose/NtCreateFile)的服务号,体会号是按导出顺序连续分配的。"
+          ],
+          "pass": "能读出某个 Nt* 桩的服务号、指出陷入指令、并从 SSDT 定位到内核实现地址。",
+          "tip": "x64 下 ntdll 桩是 `mov r10,rcx; mov eax,号; syscall`,没有 int 2e;本课多为 x86 语境,若在 64 位机上实验记得区分 WOW64 桩(会先跳 wow64 转换层)。"
+        },
+        "pits": [
+          {
+            "s": "u ntdll!NtReadFile 看到的不是 mov eax 而是一堆 jmp",
+            "c": "命中了 WOW64 环境下的 32 位桩,它要先跳到 wow64cpu 做位数转换。",
+            "f": "改用纯 64 位进程,或直接分析 SysWOW64\\ntdll 与 System32\\ntdll 的差异,认清当前是哪套桩。"
+          },
+          {
+            "s": "找不到 KeServiceDescriptorTable 符号",
+            "c": "未加载内核符号,或在用户态会话里查内核符号。",
+            "f": "内核调试会话里 `.reload /f nt`,或用 `x nt!KeServiceDescriptorTable*` 确认符号已解析。"
+          }
+        ]
+      }
+    },
+    {
+      "title": "第二单元 · 陷入内核:从指令到 SSDT 分发",
+      "lessons": [
+        {
+          "t": "1.4 系统调用-SystemCall",
+          "w": "KUSER_SHARED_DATA 里的 SystemCall 字段是个函数指针,系统启动时按 CPU 是否支持 sysenter 填成 KiFastSystemCall 或 KiIntSystemCall。ntdll 桩间接 call 它——这就是\"同一份 ntdll 在老 CPU 走中断、新 CPU 走快速调用\"的开关。",
+          "r": [
+            [
+              "看雪 · SharedUserData!SystemCall 机制",
+              "https://bbs.kanxue.com/thread-225380.htm",
+              "主学"
+            ],
+            [
+              "felixcloutier · SYSENTER 指令",
+              "https://www.felixcloutier.com/x86/sysenter",
+              "原文"
+            ]
+          ]
+        },
+        {
+          "t": "1.5 系统调用-KiIntSystemCall",
+          "w": "老式路径:KiIntSystemCall 执行 int 2Eh,通过 IDT 里 0x2E 号中断门跳到 KiSystemService。中断门方式会自动切栈、压入完整现场,慢但通用。理解它才能看懂 XP 之前以及禁用 sysenter 时的调用链。",
+          "r": [
+            [
+              "felixcloutier · INT n / 中断调用",
+              "https://www.felixcloutier.com/x86/intn:into:int3:int1",
+              "原文"
+            ],
+            [
+              "看雪 · int 2e 系统调用分发",
+              "https://bbs.kanxue.com/thread-267258.htm",
+              "主学"
+            ]
+          ]
+        },
+        {
+          "t": "1.6 系统调用-KiFastSystemCall",
+          "w": "现代路径:KiFastSystemCall 执行 sysenter,CPU 直接从 MSR(SYSENTER_CS/ESP/EIP)取内核 cs:esp:eip 跳到 KiFastCallEntry,不查 IDT、不切栈、极快。代价是现场要软件自己保存。这是 Win7 上最常见的入口。",
+          "r": [
+            [
+              "felixcloutier · SYSENTER / SYSEXIT",
+              "https://www.felixcloutier.com/x86/sysenter",
+              "原文"
+            ],
+            [
+              "看雪 · sysenter 快速系统调用详解",
+              "https://bbs.kanxue.com/thread-271878.htm",
+              "主学"
+            ]
+          ]
+        },
+        {
+          "t": "1.7 系统调用-KTRAP_FRAME",
+          "w": "陷入内核瞬间,ring3 的寄存器现场被保存成一个 KTRAP_FRAME 压在内核栈上——它就是\"从内核回用户态时该恢复成什么样\"的快照,也是内核读取用户参数、逆向调用来源的关键结构。",
+          "r": [
+            [
+              "Geoff Chappell · KTRAP_FRAME 结构",
+              "https://www.geoffchappell.com/studies/windows/km/ntoskrnl/inc/ntos/ke/ktrap_frame.htm",
+              "原文"
+            ],
+            [
+              "WinDbg · .trap 切换到陷阱帧上下文",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/-trap--display-trap-frame-",
+              "实操"
+            ]
+          ]
+        },
+        {
+          "t": "1.8 系统调用-KPCR KPRCB",
+          "w": "每个 CPU 有一个 KPCR(内核处理器控制区),fs/gs 段就指向它;里面嵌着 KPRCB,存当前线程、就绪队列、SSDT 指针等。\"当前线程是谁\"\"这个核在跑什么\"都从这里读——它是内核态的\"此时此地\"。",
+          "r": [
+            [
+              "Geoff Chappell · KPCR / KPRCB 结构",
+              "https://www.geoffchappell.com/studies/windows/km/ntoskrnl/inc/ntos/ke/kpcr.htm",
+              "原文"
+            ],
+            [
+              "WinDbg · !pcr 显示处理器控制区",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/-pcr",
+              "实操"
+            ]
+          ]
+        },
+        {
+          "t": "1.9 系统调用-KiSystemService保存数据",
+          "w": "进内核第一件事是保命:KiSystemService 把段寄存器、旧 esp、现场压栈构造 KTRAP_FRAME,记录 PreviousMode(标记调用来自 ring3 还是 ring0)。这一步决定了后续参数校验的严格程度。",
+          "r": [
+            [
+              "看雪 · KiSystemService 现场保存分析",
+              "https://bbs.kanxue.com/thread-267258.htm",
+              "主学"
+            ],
+            [
+              "微软 · KeGetPreviousMode / 之前模式",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/ddi/wdm/nf-wdm-kegetpreviousmode",
+              "原文"
+            ]
+          ]
+        },
+        {
+          "t": "2.0 系统调用-KiSystemService环境设置",
+          "w": "现场保存后,内核要按服务号从 SSDT 查出目标函数和参数字节数,再把用户栈上的参数成块拷进内核栈(ProbeForRead 校验用户指针)。这一步是\"把 ring3 的调用意图翻译成一次内核函数调用\"。",
+          "r": [
+            [
+              "看雪 · SSDT 参数拷贝与分发",
+              "https://bbs.kanxue.com/thread-267258.htm",
+              "主学"
+            ],
+            [
+              "微软 · ProbeForRead 校验用户缓冲区",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/ddi/wdm/nf-wdm-probeforread",
+              "原文"
+            ]
+          ]
+        },
+        {
+          "t": "2.1 系统调用-KiFastCallEntry",
+          "w": "sysenter 落地的真正入口。KiFastCallEntry 手工重建 sysenter 没自动做的部分(切内核栈、构造 KTRAP_FRAME),然后汇入和 int 2e 相同的 KiSystemService 分发逻辑。逆它能看清快速调用省了哪些、又补了哪些。",
+          "r": [
+            [
+              "看雪 · KiFastCallEntry 完整逆向",
+              "https://bbs.kanxue.com/thread-271878.htm",
+              "主学"
+            ],
+            [
+              "WinDbg · uf 反汇编整个函数",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/uf--unassemble-function-",
+              "实操"
+            ]
+          ]
+        },
+        {
+          "t": "2.2 系统调用-SystemServiceTable",
+          "w": "SSDT(KeServiceDescriptorTable)是系统调用的总电话簿:一个描述符里有函数地址表 ServiceTable、参数字节数表 ArgumentTable、服务数量 Limit。服务号就是这张表的下标——SSDT HOOK 的一切都从改这张表开始。",
+          "r": [
+            [
+              "看雪 · SSDT 结构与 KeServiceDescriptorTable",
+              "https://bbs.kanxue.com/thread-225380.htm",
+              "主学"
+            ],
+            [
+              "Geoff Chappell · KiServiceTable / SSDT",
+              "https://www.geoffchappell.com/studies/windows/km/ntoskrnl/inc/ntos/ke/kservicedescriptortable.htm",
+              "延伸"
+            ]
+          ]
+        },
+        {
+          "t": "2.3 系统调用-API调用全过程逆向分析",
+          "w": "本单元收官:选一个 API,从 ntdll 桩 → SystemCall → sysenter → KiFastCallEntry → KiSystemService → SSDT 查表 → nt!Nt* 完整跟一遍,每一步都在 WinDbg 里落到寄存器和栈上。跟通了,系统调用对你就不再是黑盒。",
+          "r": [
+            [
+              "看雪 · 一次系统调用的完整旅程",
+              "https://bbs.kanxue.com/thread-267258.htm",
+              "主学"
+            ],
+            [
+              "WinDbg · 内核态断点与单步",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/getting-started-with-windbg--kernel-mode-",
+              "实操"
+            ]
+          ]
+        }
+      ],
+      "gate": {
+        "title": "陷入内核:从指令到 SSDT 分发",
+        "quiz": [
+          {
+            "q": "int 2e 方式(KiIntSystemCall)和 sysenter 方式(KiFastSystemCall)进内核有什么本质区别?为什么后者快?",
+            "a": "int 2e 走 IDT 的 0x2E 号中断门,CPU 自动查表、切换栈并压入完整现场(cs/eip/eflags/ss/esp),通用但慢。sysenter 直接从 IA32_SYSENTER_CS/ESP/EIP 三个 MSR 取内核 cs:esp:eip 跳转,不查 IDT、不做自动压栈,所以快;代价是切栈和保存现场要靠 KiFastCallEntry 用软件补上。选哪种由 KUSER_SHARED_DATA.SystemCall 指向的入口决定。"
+          },
+          {
+            "q": "KTRAP_FRAME 是什么?PreviousMode 有什么用?",
+            "a": "KTRAP_FRAME 是陷入内核瞬间保存在内核栈上的 ring3 现场快照(通用寄存器、段、eip、esp、eflags 等),返回用户态时据它恢复。PreviousMode 记录本次陷入来自 UserMode 还是 KernelMode:若来自 UserMode,内核对传入的指针/缓冲区会用 ProbeForRead/Write 严格校验,防止 ring3 用非法地址骗内核读写——这是内核安全边界的关键。"
+          },
+          {
+            "q": "SSDT 由哪几部分组成?服务号在其中扮演什么角色?",
+            "a": "SSDT(由 KeServiceDescriptorTable 描述)含四项:ServiceTable(函数地址数组)、CounterTable、Limit(服务数量上限)、ArgumentTable(每个服务的参数字节数)。服务号就是数组下标:分发时 `函数地址 = ServiceTable[服务号]`,参数字节数 = ArgumentTable[服务号] 用于从用户栈拷参数。改写 ServiceTable[号] 即 SSDT HOOK。"
+          }
+        ],
+        "lab": {
+          "task": "在内核 WinDbg 里对某个 Nt 服务下断,观察一次系统调用从 KiFastCallEntry 到 nt!Nt* 的完整栈和寄存器变化。",
+          "steps": [
+            "内核调试连上目标机,`bp nt!KiFastCallEntry`(或对具体 nt!NtClose 下断)。",
+            "在目标机触发对应操作命中断点,`r` 看 eax(服务号)、edx(用户参数指针)。",
+            "`dds nt!KeServiceDescriptorTable` 取 ServiceTable 基址,`dd 基址+eax*4` 验证正好是即将调用的 nt!Nt* 地址。",
+            "`.trap` 或 `k` 观察 KTRAP_FRAME 与调用栈,确认能回溯到 ring3 的返回地址。"
+          ],
+          "pass": "能指出断点处 eax 是服务号、并手工用 SSDT 基址+号*4 算出与实际调用一致的目标函数地址。",
+          "tip": "KiFastCallEntry 断点非常热(每次系统调用都过),会让目标机极慢;用条件断点 `bp nt!KiFastCallEntry \".if(eax==0x号){}.else{gc}\"` 只在目标服务号停。"
+        },
+        "pits": [
+          {
+            "s": "bp KiFastCallEntry 后目标机卡死/几乎不动",
+            "c": "该函数每次系统调用都执行,无条件断点等于每次系统调用都陷调试器。",
+            "f": "改用条件断点只匹配目标服务号,或直接对具体 nt!Nt* 下断而非公共入口。"
+          },
+          {
+            "s": "dd SSDT 基址+号*4 算出的地址不是预期函数",
+            "c": "把 KeServiceDescriptorTable 描述符地址当成了 ServiceTable 数组地址(前者第一个字段才指向后者)。",
+            "f": "先 `dds KeServiceDescriptorTable L1` 取出 ServiceTable 指针,再对该指针做 +号*4。"
+          }
+        ]
+      }
+    },
+    {
+      "title": "第三单元 · 安全攻防:监控、钩子与保护",
+      "lessons": [
+        {
+          "t": "2.4 安全攻防-全局系统调用监控",
+          "w": "掌握了分发链,就能在 SSDT 分发点插桩,记录\"哪个进程调了哪个服务、参数是什么\"——这是行为监控/沙箱/HIPS 的核心手法。先从被动记录做起,不改变原调用行为。",
+          "r": [
+            [
+              "看雪 · SSDT 全局系统调用监控实现",
+              "https://bbs.kanxue.com/thread-225380.htm",
+              "主学"
+            ],
+            [
+              "微软 · 内核态回调 vs 直接 hook 的取舍",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/kernel/filtering-registry-calls",
+              "延伸"
+            ]
+          ]
+        },
+        {
+          "t": "2.5 安全攻防-过滤应用层钩子_1",
+          "w": "很多外挂/恶意代码在 ring3 对 ntdll 桩做 inline hook 拦截调用。这一节先学怎么\"看见\"它:对比进程内存里的 ntdll 代码和磁盘干净副本,首字节被改成 jmp 就是 inline hook 的指纹。",
+          "r": [
+            [
+              "看雪 · inline hook 检测原理",
+              "https://bbs.kanxue.com/thread-267258.htm",
+              "主学"
+            ],
+            [
+              "felixcloutier · JMP 指令(hook 常用)",
+              "https://www.felixcloutier.com/x86/jmp",
+              "原文"
+            ]
+          ]
+        },
+        {
+          "t": "2.6 安全攻防-过滤应用层钩子_2",
+          "w": "看见之后是\"绕过\":从内核直接调用底层实现,或用磁盘干净副本还原被 hook 的字节,让自己的调用不经过 ring3 钩子。这一节落地绕过逻辑。",
+          "r": [
+            [
+              "看雪 · 绕过应用层 inline hook",
+              "https://bbs.kanxue.com/thread-271878.htm",
+              "主学"
+            ],
+            [
+              "微软 · MmCopyVirtualMemory 跨进程读内存",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/ddi/ntddk/nf-ntddk-mmcopyvirtualmemory",
+              "原文"
+            ]
+          ]
+        },
+        {
+          "t": "2.7 安全攻防-过滤应用层钩子_3",
+          "w": "把检测+还原做成通用流程:遍历目标模块导出、逐个比对、批量修复,并处理 hot-patch/多级跳板等变形。收尾成一个能实战用的\"反 ring3 hook\"小工具。",
+          "r": [
+            [
+              "看雪 · 通用反 hook 工具实现",
+              "https://bbs.kanxue.com/thread-225380.htm",
+              "主学"
+            ],
+            [
+              "微软 · PE 导出表结构(定位待修复函数)",
+              "https://learn.microsoft.com/zh-cn/windows/win32/debug/pe-format",
+              "延伸"
+            ]
+          ]
+        },
+        {
+          "t": "2.8 安全攻防-全局内核钩子",
+          "w": "战场上移到内核:对 nt!Nt* 函数本体做 inline hook,或改 SSDT 指针,拦截所有进程的该类操作。威力大、风险也大——PatchGuard 会盯着这些,理解边界很重要。",
+          "r": [
+            [
+              "看雪 · 内核 inline hook 与 SSDT hook 对比",
+              "https://bbs.kanxue.com/thread-225380.htm",
+              "主学"
+            ],
+            [
+              "微软 · 内核补丁保护(PatchGuard)概述",
+              "https://learn.microsoft.com/zh-cn/windows-hardware/drivers/kernel/patchguard",
+              "延伸"
+            ]
+          ]
+        },
+        {
+          "t": "2.9 安全攻防-模块内存映射",
+          "w": "要拿到\"干净的\"内核模块副本做比对或重定位,可以把 ntoskrnl 等从磁盘手动映射进内存并做重定位修复。这样得到的镜像没被任何 hook 污染,是反 hook 和取真实服务号的基础设施。",
+          "r": [
+            [
+              "看雪 · 手动映射内核模块",
+              "https://bbs.kanxue.com/thread-271878.htm",
+              "主学"
+            ],
+            [
+              "微软 · PE 基址重定位(.reloc)",
+              "https://learn.microsoft.com/zh-cn/windows/win32/debug/pe-format",
+              "原文"
+            ]
+          ]
+        },
+        {
+          "t": "3.0 安全攻防-重载导出编号",
+          "w": "有了磁盘干净副本,就能重新解析它的导出表和 SSDT,拿到未被篡改的服务号与函数地址——即使系统里的 SSDT 已被 hook,你手上也有一份\"原版真值\"用于检测和还原。",
+          "r": [
+            [
+              "看雪 · 从干净模块重建 SSDT",
+              "https://bbs.kanxue.com/thread-225380.htm",
+              "主学"
+            ],
+            [
+              "微软 · 解析 PE 导出表",
+              "https://learn.microsoft.com/zh-cn/windows/win32/debug/pe-format",
+              "原文"
+            ]
+          ]
+        },
+        {
+          "t": "3.1 安全攻防-SSDT_HOOK",
+          "w": "经典 SSDT HOOK 完整实现:关中断/清 CR0 写保护位 → 备份原 ServiceTable[号] → 换成自己的代理函数 → 代理里做过滤后再调原函数。这是本课的集大成实操,也是理解主动防御/主动攻击的分水岭。",
+          "r": [
+            [
+              "看雪 · SSDT HOOK 完整代码解析",
+              "https://bbs.kanxue.com/thread-225380.htm",
+              "主学"
+            ],
+            [
+              "felixcloutier · MOV CR0(清写保护位)",
+              "https://www.felixcloutier.com/x86/mov-1",
+              "原文"
+            ]
+          ]
+        },
+        {
+          "t": "3.2 安全攻防-保护进程",
+          "w": "把前面所有拼起来做一个实战靶子:HOOK NtOpenProcess/NtTerminateProcess 等,拦截对目标进程的打开/结束请求,实现\"杀不掉、注不进\"的进程保护。做完你就完整走了一遍\"监控→过滤→保护\"的攻防闭环。",
+          "r": [
+            [
+              "看雪 · SSDT HOOK 实现进程保护",
+              "https://bbs.kanxue.com/thread-267258.htm",
+              "主学"
+            ],
+            [
+              "微软 · NtOpenProcess / 进程访问权限",
+              "https://learn.microsoft.com/zh-cn/windows/win32/procthread/process-security-and-access-rights",
+              "延伸"
+            ]
+          ]
+        }
+      ],
+      "gate": {
+        "title": "安全攻防:监控、钩子与保护",
+        "quiz": [
+          {
+            "q": "ring3 的 inline hook 是怎么拦截系统调用的?从内核怎么检测并绕过它?",
+            "a": "ring3 inline hook 把 ntdll 里 Nt* 桩(或 API)的开头几字节改成 `jmp 自己的处理函数`,使调用先落到它手里。检测:把进程内存中的模块代码和磁盘干净副本逐字节比对,发现开头被改成 jmp/push-ret 即命中。绕过:从内核直接调底层实现,或用干净副本还原被改的字节后再调用,让调用不经过被 hook 的 ring3 代码。"
+          },
+          {
+            "q": "做 SSDT HOOK 前为什么要清 CR0 的 WP 位?不清会怎样?",
+            "a": "SSDT/内核代码页通常是只读的,CR0 的 WP(Write Protect,bit 16)位使内核态写只读页也会触发页错误。要改写 ServiceTable[号] 必须先 `mov eax,cr0; and eax,~0x10000; mov cr0,eax` 清 WP(并常配合关中断),改完再恢复。不清 WP 直接写会立刻蓝屏(ATTEMPTED_WRITE_TO_READONLY_MEMORY)。"
+          },
+          {
+            "q": "为什么要\"从磁盘手动映射干净模块\"?它在反 hook 里解决什么问题?",
+            "a": "系统里正在运行的 ntdll/ntoskrnl 可能已被 hook 污染,拿它做\"原始基准\"就不可靠。从磁盘读原始 PE、自己映射并做重定位,得到一份没被任何 hook 改过的镜像,用它解析导出/SSDT 拿到真值,再和内存现状比对就能可靠地发现并还原被篡改处。"
+          }
+        ],
+        "lab": {
+          "task": "写一个最小 SSDT HOOK:挂住 NtOpenProcess,在代理函数里对目标 PID 拒绝(返回 STATUS_ACCESS_DENIED),其余放行。",
+          "steps": [
+            "取 KeServiceDescriptorTable,算出 NtOpenProcess 的服务号与表项地址,备份原函数指针。",
+            "关中断 + 清 CR0.WP,把该表项改成自己的 MyNtOpenProcess,恢复 WP 与中断。",
+            "MyNtOpenProcess 里判断请求打开的是不是受保护 PID:是→返回 STATUS_ACCESS_DENIED;否→调原函数。",
+            "加载驱动后,用任务管理器/OpenProcess 尝试打开受保护进程,确认被拒。",
+            "Unload 时务必用同样方式把表项还原成备份值,否则卸载后 SSDT 指向已卸载驱动=蓝屏。"
+          ],
+          "pass": "受保护进程打不开/杀不掉,其他进程正常;驱动可安全加载与卸载,卸载后 SSDT 已复原。",
+          "tip": "多核下 SSDT 是全局共享的,改表要考虑其他核可能正好在分发;实验环境先保证单步可控,生产手法要用 KeIpiGenericCall 之类同步所有核。x64 有 PatchGuard,SSDT HOOK 会被打死,本课手法主要针对 x86。"
+        },
+        "pits": [
+          {
+            "s": "刚写 SSDT 表项就蓝屏 ATTEMPTED_WRITE_TO_READONLY_MEMORY",
+            "c": "没清 CR0 的 WP 位就写只读的 SSDT 页。",
+            "f": "写前清 WP、写后恢复;或用 MDL 把该页重新映射成可写副本再改。"
+          },
+          {
+            "s": "驱动卸载后随机蓝屏",
+            "c": "Unload 没把 SSDT 表项还原,系统仍跳到已释放的代理函数地址。",
+            "f": "Unload 里用备份指针原样还原表项(同样要清 WP),确认还原成功再让驱动退出。"
+          },
+          {
+            "s": "x64 系统上 SSDT HOOK 一挂就蓝屏/被还原",
+            "c": "64 位有 PatchGuard,周期性校验 SSDT 等关键结构,发现被改就主动 bugcheck。",
+            "f": "理解这是设计使然;学习期在 x86 或关闭 PG 的实验环境做,别在 x64 生产系统上硬改 SSDT。"
+          }
+        ]
+      }
     }
   ]
 }
